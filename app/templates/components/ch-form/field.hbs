@@ -1,0 +1,119 @@
+{{#if (not-eq type "checkbox")}}
+  {{#if label}}
+      <label class="{{labelClass}}" for="{{name}}">
+        {{label}}{{#if required}} {{requiredLabel}}{{/if}}
+      </label>
+  {{/if}}
+{{/if}}
+
+{{#if hasBlock}}
+
+  {{#if (not-eq type "radioGroup")}}
+    {{yield (hash value=(or value (get model name))
+      controlClass = controlClass
+      update       = (action 'update')
+      model        = model
+      name         = name)
+    }}
+  {{else}}
+    {{#each options as |option|}}
+      <div class="radio">
+        <label>
+          {{one-way-radio
+            value    = (or value (get model name))
+            option   = option.key
+            name     = name
+            update   = (action "update")
+            disabled = disabled
+          }}
+          {{yield option}}
+        </label>
+      </div>
+    {{/each}}
+  {{/if}}
+
+{{else}}
+  {{#if (eq type "search")}}
+    {{#power-select search=onSearch
+                    selected=(get model name)
+                    onchange=(action 'update')
+                    as |item| }}
+        {{item}}
+    {{/power-select}}
+  {{else if (eq type "select")}}
+    <select
+        id={{inputId}}
+        name={{name}}
+        onchange={{action 'update' value="target.value"}}
+        disabled={{disabled}}
+        class="{{controlClass}}"
+      >
+      {{ch-form/options-builder options (or value (get model name))}}
+    </select>
+  {{else if (eq type "radioGroup")}}
+
+    {{#each options as |option|}}
+      <div class="{{radioClass}}">
+        <label>
+          <input
+            type     = "radio"
+            value    = {{or value (get model name)}}
+            option   = option.key
+            name     = name
+            onclick  = {{action "update" value="target.value"}}
+            disabled = disabled
+          >
+          {{option.label}}</label>
+      </div>
+    {{/each}}
+
+  {{else if (eq type "checkbox")}}
+    <div class="{{checkboxClass}}">
+      <label>
+        <input
+          type = "checkbox"
+          name       = name
+          checked    = {{get model name}}
+          onclick    = {{action "update" value="target.checked"}}
+        >
+        {{label}}
+      </label>
+    </div>
+
+  {{else if (eq type "textarea")}}
+    {{textarea
+      name        = name
+      value       = (mut (get model name))
+      class       = (concat controlClass " " (unless isValid elementErrorClass))
+      placeholder = placeholder
+      disabled    = disabled
+      autofocus   = autofocus
+      rows        = rows
+      cols        = cols
+    }}
+  {{else}}
+    <input
+      type        = {{type}}
+      value       = {{_val}}
+      name        = {{name}}
+      class       = "{{controlClass}} {{unless isValid elementErrorClass}}"
+      placeholder = {{placeholder}}
+      disabled    = {{disabled}}
+      autofocus   = {{autofocus}}
+      oninput     = {{action "update" value = "target.value"}}
+      >
+  {{/if}}
+{{/if}}
+
+{{#unless isValid}}
+  {{#each errors as |msg|}}
+    <div class="{{textErrorClass}}">&bullet; {{msg}}</div>
+  {{/each}}
+  {{#each error.validation as |msg|}}
+    <div class="{{textErrorClass}}">&bullet; {{msg}}</div>
+  {{/each}}
+{{/unless}}
+
+{{#if hint}}
+  <small id="{{domId}}Help" class="{{hintClass}}">{{hint}}</small>
+{{/if}}

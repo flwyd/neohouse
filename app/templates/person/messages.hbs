@@ -1,0 +1,53 @@
+{{#ch-box 'Ranger Messages'}}
+{{#link-to 'person.message-new' person.id class="btn btn-primary mb-2"}}Compose Message{{/link-to}}
+  {{#if person.messages}}
+    <p class="text-muted small">Note: all times are in the Pacific Timezone.</p>
+
+    <div class="table-responsive-lg">
+      <table class="table person-messages">
+        <thead class="thead-light">
+          <th>From</th>
+          <th>Message</th>
+          <th>Sent</th>
+        </thead>
+        <tbody>
+          {{#each person.messages as |message|}}
+            <tr>
+              <td class="person-message-sender">{{message.sender_callsign}}</td>
+              <td class="person-message-text">
+                {{unless message.is_read (badge 'warning' 'unread')}}
+                <strong>{{message.subject}}</strong>
+              </td>
+              <td class="person-message-sent">
+                {{moment-format message.sent_at 'MMM DD HH:MM'}}
+                <span class="text-muted small">({{moment-from-now message.sent_at}})</span>
+              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td colspan="3">
+                {{message.body}}
+                {{#if message.isDictacted}}
+                <p class="text-muted small mt-2">
+                (written by {{message.creator_callsign}} for {{message.sender_callsign}})
+                </p>
+                {{/if}}
+                <p class="mt-2">
+                  {{#link-to 'person.message-new' person.id
+                      (query-params replyTo=message.sender_callsign subject=message.subject)
+                      class="btn btn-primary btn-sm"
+                  }}Reply{{/link-to}}
+                  {{#unless message.is_read}}
+                  <button {{action 'markRead' message}} type="button" class="btn btn-success btn-sm">Mark Read</button>
+                  {{/unless}}
+                </p>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <b>Congratulations!</b> There are no messages.
+  {{/if}}
+{{/ch-box}}

@@ -1,0 +1,143 @@
+
+body {
+  /* Margin bottom by footer height */
+  /*margin-bottom: 150px;*/
+  padding-top: 3.5rem;
+  background-color: #fff4e5;
+}
+
+main {
+  margin-top: 10px
+}
+
+.footer {
+  width: 100%;
+  padding: 15px 0;
+  color: #000;
+  font-size: 0.9em;
+  background-color: #d2b48c;
+}
+
+.footer a, .footer a:visited {
+  color: #000;
+  font-weight:bold;
+}
+
+body > .container, body > .container-fluid {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.bg-khaki {
+  background-color: #d2b48c;
+}
+
+/**
+ * Progress bars with centered text
+ */
+.progress span {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+
+.form-text-invalid {
+  font-size: 0.9em;
+  color: #dc3545;
+}
+
+/* Sidebar CSS */
+#sidebar-container {
+    min-height: 100vh;
+    background-color: #333;
+    padding: 0;
+}
+
+/* Sidebar sizes when expanded and expanded */
+.sidebar-expanded {
+    width: 230px;
+}
+.sidebar-collapsed {
+    width: 60px;
+}
+
+/* Menu item*/
+#sidebar-container .list-group a {
+    height: 50px;
+    color: white;
+}
+
+/* Submenu item*/
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 45px;
+    padding-left: 30px;
+}
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+
+/* Separators */
+.sidebar-separator-title {
+    background-color: #333;
+    height: 35px;
+}
+.sidebar-separator {
+    background-color: #333;
+    height: 25px;
+}
+.logo-separator {
+    background-color: #333;
+    height: 60px;
+}
+
+/* Closed submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+}
+/* Opened submenu icon */
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 10px;
+}
+
+
+/* Messages */
+
+.person-messages tbody tr:nth-child(4n-1), .person-messages tbody tr:nth-child(4n) {
+  background-color: rgba(0,0,0,.04);
+}
+
+.person-message-sender {
+  width: 15%;
+}
+
+.person-message-text {
+  width: 55%;
+}
+
+.person-message-sent {
+  width: 25%;
+}
+
+
+.person-messages td {
+  border-top: none;
+}

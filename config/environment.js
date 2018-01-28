@@ -19,9 +19,26 @@ module.exports = function(environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
-    }
+    },
+
+    'ember-simple-auth': {
+      authorizer: 'authorizer:token',
+      routeAfterAuthentication: '/'
+    },
+
+    'ember-simple-auth-token': {
+      refreshAccessTokens      : false,
+      identificationField      : 'email',
+      passwordField            : 'password',
+      tokenPropertyName        : 'token',
+      refreshTokenPropertyName : 'refresh_token',
+      authorizationPrefix      : 'JWT ',
+      authorizationHeaderName  : 'Authorization',
+      headers                  : {}
+    },
+    flashMessageDefaults: {
+      sticky: true,
+    },
   };
 
   if (environment === 'development') {
@@ -30,6 +47,20 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.contentSecurityPolicy = {
+      'default-src': "'none'",
+      'script-src': "'self' *",
+      'font-src': "'self' *",
+      'connect-src': "'self' *",
+      'img-src': "'self' *",
+      'style-src': "'self' 'unsafe-inline' ",
+      'media-src': "'self' *"
+    }
+    ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://localhost:3000/session/auth'
+    ENV['api-server'] = 'http://localhost:3000'
+    ENV.APP.LOG_TRANSITIONS = true
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true
+    ENV.APP.LOG_VIEW_LOOKUPS = true
   }
 
   if (environment === 'test') {
@@ -46,6 +77,8 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://rangeroffice.burningman.org/api/auth/session'
+    ENV['api-server'] = 'http://rangeroffice.burningman.org/api'
   }
 
   return ENV;

@@ -1,0 +1,14 @@
+export const ADMIN_FULL_ACCESS = 1;            // Change anything
+export const VIEW_PERSONAL_INFO = 2;           // See email, phone, address
+export const VIEW_EMAIL_ADDRESS = 3;           // See email
+export const GRANT_REVOKE_POSITION = 4;        // Grant or Revoke positions
+export const EDIT_ACCESS_DOCUMENTS = 5;        // Edit access documents
+export const EDIT_BMIDS = 6;                   // Edit BMIDs
+export const LOGIN_SCHEDULE_MODE = 11;         // Login (ordinary users)
+export const LOGIN_MANAGEMENT_MODE = 12;       // See, edit other's scheudles
+export const MENTOR_ACCESS = 101;              // Mentors
+export const TRAINING_ACCESS = 102;            // Trainers
+export const VOLCOORD_ACCESS = 103;            // VCs
+//const ASSET_AUTHORIZED = 21;
+export const EDIT_PERSON_INFO = 31;            // Edit your OWN info
+export const EDIT_PERSON_SCHEDULE = 32;        // Edit your OWN schedule

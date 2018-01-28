@@ -1,0 +1,27 @@
+<div class="row" id="body-row">
+   {{person-sidebar person=person}}
+    <main class="col">
+      <div class="row">
+        <div class="col-md-9">
+          <h3>{{person.callsign}}</h3>
+        </div>
+        <div class="col-md-3 text-right">
+          Years view {{person.years}}
+        </div>
+      </div>
+
+      {{flash-render}}
+
+      {{#unless person.callsign_approved}}
+        {{#ch-box 'Callsign Not Approved' type='danger' icon='exclamation-circle'}}
+        <p>You will not be able to sign up for trainings or shifts until your
+          callsign is approved.</p>
+        <p>If you intend to become a Black Rock Ranger on playa this year,
+        or audit a training, please email
+        {{mail-to (config 'GeneralSupportEmail')}}.</p>
+        {{/ch-box}}
+      {{/unless}}
+
+      {{outlet}}
+    </main>
+</div><!-- body-row END -->

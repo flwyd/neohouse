@@ -1,0 +1,48 @@
+{{#ch-box 'Edit Personal Information'}}
+  {{#ch-form "person" person validator=PersonInfoValidations onSubmit=(action "submit") as |f|}}
+    <fieldset>
+      <legend>General Information</legend>
+      <div class="form-row">
+        {{f.input "first_name" label="First Name" maxlength=25 wrapClass="form-group col-sm-4" }}
+        {{f.input "mi" label="M.I." maxlength=10 wrapClass="form-group col-sm-1" }}
+        {{f.input "last_name" label="Last Name" maxlength=25 wrapClass="form-group col-sm-4"}}
+      </div>
+      <div class="form-row">
+        {{f.input "email" label="Email" maxlength=50 wrapClass="form-group col-sm-4" }}
+      </div>
+      {{f.input "gender" label="Gender" hint="female, male, non-binary, gender fluid, etc." }}
+      {{f.input "languages" label="Languages Spoken"
+            hint="List the English names of languages you are comfortable speaking separated by a comma. Ex: english, french, japanese"}}
+      {{f.input "camp_location" type="textarea" label="Camp Location" cols=50 rows=2}}
+    </fieldset>
+    <fieldset>
+      <legend>Ranger Clothing</legend>
+      <div class="form-row">
+        {{f.input "teeshirt_size_style" type="select" label="T-Shirt Size" options=ShortSleeveOptions wrapClass="form-group col-sm-5"}}
+        {{f.input "longsleeveshirt_size_style" type="select" label="Long Sleeve Shirt Size" options=LongSleeveOptions wrapClass="form-group col-sm-5"}}
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Home Address</legend>
+      <div class="form-row">
+        {{f.input "street1" label="Street" wrapClass="form-group col-sm-8"}}
+        {{f.input "apt" label="Apt" wrapClass="form-group col-sm-1"}}
+        {{f.input "street2" label="Street Line 2" wrapClass="form-group col-sm-8"}}
+      </div>
+      <div class="form-row">
+        {{f.input "city" label="City" wrapClass="form-group col-sm-5 col-md-4"}}
+        {{f.input "state" label="State / Province" wrapClass="form-group col-sm-5 col-md-4"}}
+        {{f.input "zip" label="Zip / Postal Code" wrapClass="form-group col-sm-5 col-md-4"}}
+        {{f.input "country" label="Country" wrapClass="form-group col-sm-5 col-md-4"}}
+      </div>
+      <div class="form-row">
+        {{f.input "home_phone" label="Home Phone" wrapClass="form-group col-sm-4"}}
+        {{f.input "alt_phone" label="Alternative Phone" wrapClass="form-group col-sm-4"}}
+      </div>
+
+    </fieldset>
+
+    {{f.submit label="Update" disabled=isLoading}}
+    {{f.reset label="Reset"}}
+  {{/ch-form}}
+{{/ch-box}}

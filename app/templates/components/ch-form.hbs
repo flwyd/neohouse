@@ -1,0 +1,24 @@
+<form id="{{formid}}" method="post">
+{{yield (hash
+  model=model
+  loading=loading
+  input=(component 'ch-form/field'
+    model=model
+    submitted=submitted
+    formid=formid
+  )
+  submit=(component 'ch-form/submit'
+    class=submitClass
+    loading=loading
+    label=label
+    formid=formid
+    submitAction=(action 'submitForm')
+  )
+  reset=(component 'ch-form/reset-button'
+    label=label
+    class=resetClass
+    formid=formid
+    resetAction=(action 'resetForm')
+  )
+) }}
+</form>

@@ -1,0 +1,45 @@
+{{#ch-box 'Personal Information'}}
+  <dl class="row">
+    <dt class="col-md-3">Name</dt>
+    <dd class="col-md-9">{{person.first_name}} {{person.mi}} {{person.last_name}}</dd>
+
+    <dt class="col-md-3">Email</dt>
+    <dd class="col-md-9">{{person.email}}</dd>
+
+    <dt class="col-md-3">Gender</dt>
+    <dd class="col-md-9">{{present-or-not person.gender}}</dd>
+
+    <dt class="col-md-3">Languages Spoken</dt>
+    <dd class="col-md-9">{{present-or-not person.languages}}</dd>
+    <dt class="col-md-3">Camp location</dt>
+    <dd class="col-md-9">{{present-or-not person.camp_location}}</dd>
+
+    <dt class="col-md-3">T-Shirt</dt>
+    <dd class="col-md-9">{{present-or-not person.teeshirt_size_style}}</dd>
+
+    <dt class="col-md-3">Long Sleeve Shirt</dt>
+    <dd class="col-md-9">{{present-or-not person.longsleeveshirt_size_style}}</dd>
+
+    <dt class="col-md-3">Address</dt>
+    <dd class="col-md-9">
+      {{person.street1}} {{person.apt}}<br>
+      {{#if person.street2}}
+        {{person.street2}}<br>
+      {{/if}}
+      {{person.city}} {{person.state}} {{person.zip}} {{person.country}}
+    </dd>
+
+    <dt class="col-md-3">Phone</dt>
+    <dd class="col-md-9">{{#present-or-not person.home_phone}}
+          {{phone-link person.home_phone}}
+        {{/present-or-not}}
+    </dd>
+    <dt class="col-md-3">Alternate Phone</dt>
+    <dd class="col-md-9">{{#present-or-not person.alt_phone}}
+            {{phone-link person.alt_phone}}
+        {{/present-or-not}}
+    </dd>
+  </dl>
+
+  {{#link-to 'person.personal-info-edit' person class="btn btn-primary"}}Edit Information{{/link-to}}
+{{/ch-box}}

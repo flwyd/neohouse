@@ -1,0 +1,16 @@
+{{#ch-box 'Send A Message'}}
+  {{#ch-form 'message' message onSubmit=(action 'submit') validator=PersonMessageValidations as |f|}}
+    <div class="form-group">
+      <label>To</label>
+      {{#power-select search=(action 'searchCallsign')
+                      selected=f.model.recipient_callsign
+                      onchange=(action (mut f.model.recipient_callsign))
+                      as |callsign|}}
+                {{callsign}}
+      {{/power-select}}
+    </div>
+    {{f.input 'subject' label='Subject' maxlegnth=80}}
+    {{f.input 'body' label="Message" type='textarea' rows=4 cols=8}}
+    {{f.submit label="Send" }}
+  {{/ch-form}}
+{{/ch-box}}
