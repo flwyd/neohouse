@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import { sum } from '@ember/object/computed';
 
 export default Controller.extend({
   totalCredits: computed('slots.[]', function() {
@@ -17,7 +16,7 @@ export default Controller.extend({
   actions: {
     removeSlot(slot) {
       const slots = this.get('slots');
-      const flash = this.get('flashMessages');
+      const flash = this.get('flash');
 
       flash.clearMessages();
 
@@ -25,7 +24,7 @@ export default Controller.extend({
         slots.removeObject(slot);
         flash.success('The slot has been deleted.');
       }).catch((err) => {
-        flash.warning('The slot cannot be deleted as this time.');
+        flash.warning('The slot cannot be deleted as this time.', err);
       })
     },
   }

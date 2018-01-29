@@ -7,9 +7,9 @@ moduleForComponent('credits-format', 'helper:credits-format', {
 
 // Replace this with your real tests.
 test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+  this.set('credits', 12);
 
-  this.render(hbs`{{credits-format inputValue}}`);
+  this.render(hbs`{{credits-format credits}}`);
 
-  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(this.$().text().trim(), '12.00');
 });

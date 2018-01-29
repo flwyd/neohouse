@@ -10,10 +10,10 @@ export function initialize(app) {
   app.inject('route', 'ajax', 'service:ajax');
   app.inject('ability', 'ajax', 'service:ajax');
 
-  app.inject('controller', 'flashMessages', 'service:flashMessages');
-  app.inject('component', 'flashMessages', 'service:flashMessages');
-  app.inject('route', 'flashMessages', 'service:flashMessages');
-  app.inject('ability', 'flashMessages', 'service:flashMessages');
+  app.inject('controller', 'flash', 'service:flashMessages');
+  app.inject('component', 'flash', 'service:flashMessages');
+  app.inject('route', 'flash', 'service:flashMessages');
+  app.inject('ability', 'flash', 'service:flashMessages');
 
 }
 

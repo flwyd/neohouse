@@ -6,12 +6,18 @@ moduleForComponent('status-badge', 'helper:status-badge', {
   integration: true
 });
 
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+test('it renders active status', function(assert) {
+  this.set('status', 'active');
 
-  this.render(hbs`{{status-badge inputValue}}`);
+  this.render(hbs`{{status-badge status}}`);
 
-  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(this.$().html().trim(), '<span class="badge badge-success">active</span>');
 });
 
+test('it renders bonked status', function(assert) {
+  this.set('status', 'bonked');
+
+  this.render(hbs`{{status-badge status}}`);
+
+  assert.equal(this.$().html().trim(), '<span class="badge badge-danger">bonked</span>');
+});

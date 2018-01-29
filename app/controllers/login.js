@@ -15,7 +15,7 @@ export default Controller.extend({
         password: model.get('password')
       };
 
-      const flash = this.get('flashMessages');
+      const flash = this.get('flash');
 
       flash.clearMessages();
 

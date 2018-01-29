@@ -6,12 +6,11 @@ moduleForComponent('phone-link', 'helper:phone-link', {
   integration: true
 });
 
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+test('it renders a phone link', function(assert) {
+  const phoneNumber = '1-800-BURN-ME';
+  this.set('phone', phoneNumber);
 
-  this.render(hbs`{{phone-link inputValue}}`);
+  this.render(hbs`{{phone-link phone}}`);
 
-  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(this.$().html(), `<a href="tel:${phoneNumber}">${phoneNumber}</a>`);
 });
-

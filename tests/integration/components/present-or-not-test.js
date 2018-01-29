@@ -5,20 +5,18 @@ moduleForComponent('present-or-not', 'Integration | Component | present or not',
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('it renders a present value', function(assert) {
+  this.set('value', 'something');
 
-  this.render(hbs`{{present-or-not}}`);
+  this.render(hbs`{{present-or-not value}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(this.$().text().trim(), 'something');
+});
 
-  // Template block usage:
-  this.render(hbs`
-    {{#present-or-not}}
-      template block text
-    {{/present-or-not}}
-  `);
+test('it renders a not present/empty value', function(assert) {
+  this.set('value', '');
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.render(hbs`{{present-or-not value}}`);
+
+  assert.equal(this.$().html().trim(), '<i>not given</i>');
 });

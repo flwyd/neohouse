@@ -5,6 +5,7 @@ import Ember from 'ember';
 
 export function chFormOptionsBuilder([options, currentValue]) {
   let optionsHtml = '';
+  const escapeExpression = Ember.Handlebars.Utils.escapeExpression;
 
   options.forEach((opt) => {
     let label,value;
@@ -15,8 +16,8 @@ export function chFormOptionsBuilder([options, currentValue]) {
       label = value = opt;
     }
 
-    const isSelected = (currentValue == value) ? 'selected' : '';
-    optionsHtml += `<option value="${value}" ${isSelected}>${Ember.Handlebars.Utils.escapeExpression(label)}</option>`
+    const isSelected = (currentValue == value) ? 'selected="selected"' : '';
+    optionsHtml += `<option value="${value}" ${isSelected}>${escapeExpression(label)}</option>`
   })
 
   return htmlSafe(optionsHtml);

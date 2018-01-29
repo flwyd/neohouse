@@ -10,9 +10,9 @@ moduleForComponent('fa-icon', 'helper:fa-icon', {
 test('it render icons', function(assert) {
   this.render(hbs`{{fa-icon 'clock'}}`);
 
-  assert.equal(this.$('i').attr('class').trim(), 'fas fa-clock');
+  assert.equal(this.$().html(), '<i class="fas fa-clock "></i>');
 
   this.render(hbs`{{fa-icon 'clock' size='lg'}}`);
-  assert.equal(this.$('i').attr('class').trim(), 'fas fa-clock fa-lg');
+  assert.equal(this.$().html(), '<i class="fas fa-clock fa-lg"></i>');
 
 });

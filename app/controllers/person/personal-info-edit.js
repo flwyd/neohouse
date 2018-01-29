@@ -14,7 +14,7 @@ export default Controller.extend({
       if (!isValid)
         return;
 
-      const flash = this.get('flashMessages');
+      const flash = this.get('flash');
       const user = this.get('session.user');
       const self = this;
 

@@ -4,7 +4,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
   afterModel(model) {
-    const flash = this.get('flashMessages');
+    const flash = this.get('flash');
 
     // TODO: add year
     const params = {

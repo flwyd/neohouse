@@ -6,12 +6,26 @@ moduleForComponent('ch-form/options-builder', 'helper:ch-form/options-builder', 
   integration: true
 });
 
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+test('it renders html option tags', function(assert) {
+  const options = [
+    'opt1',
+    'opt2',
+    'opt3'
+  ];
 
-  this.render(hbs`{{ch-form/options-builder inputValue}}`);
+  this.set('options', options);
 
-  assert.equal(this.$().text().trim(), '1234');
+  this.render(hbs`{{ch-form/options-builder options "opt2"}}`);
+
+  const optionTags = this.$("option");
+  assert.equal(optionTags.length, 3);
+  assert.equal(optionTags.get(0).innerText, 'opt1');
+  assert.equal(optionTags.get(0).getAttribute('selected'), null);
+
+  assert.equal(optionTags.get(1).innerText, 'opt2');
+  assert.equal(optionTags.get(1).getAttribute('selected'), 'selected');
+
+  assert.equal(optionTags.get(2).innerText, 'opt3');
+  assert.equal(optionTags.get(2).getAttribute('selected'), null);
+
 });
-

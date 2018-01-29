@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import ENV from 'neohouse/config/environment';
-import Ember from 'ember';
 
 export default Route.extend(ApplicationRouteMixin, {
   beforeModel(transition) {
@@ -17,7 +16,7 @@ export default Route.extend(ApplicationRouteMixin, {
     }
 
     // Fetch the configuration
-    return Ember.$.get(`${ENV['api-server']}/configs`).then((result) => {
+    return this.ajax.request('configs').then((result) => {
       ENV['neoConfig'] = result;
       return this.setCurrentUser();
     }).catch(() => {

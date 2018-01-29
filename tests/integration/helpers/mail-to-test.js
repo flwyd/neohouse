@@ -8,10 +8,9 @@ moduleForComponent('mail-to', 'helper:mail-to', {
 
 // Replace this with your real tests.
 test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+  this.set('email', 'dangerranger@ranger.bm');
 
-  this.render(hbs`{{mail-to inputValue}}`);
+  this.render(hbs`{{mail-to email}}`);
 
-  assert.equal(this.$().text().trim(), '1234');
+  assert.equal(this.$().html(), '<a href="mailto:dangerranger@ranger.bm">dangerranger@ranger.bm</a>');
 });
-

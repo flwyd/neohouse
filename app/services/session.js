@@ -4,7 +4,6 @@ import {resolve, reject} from 'rsvp';
 
 export default SessionService.extend({
   store: service(),
-  flashMessages: service(),
 
   isCurrentPerson(person) {
     let thisUser = this.get('user');
@@ -16,10 +15,8 @@ export default SessionService.extend({
       return (
         this.get('store').findRecord('person',
           this.get('session.authenticated.person_id')).then(user => {
-            console.log("Got new users")
             this.set('user', user);
           }).catch(e => {
-            console.log("Session Set Error ",e)
             this.invalidate();
             return reject(e);
           })

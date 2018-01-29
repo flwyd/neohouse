@@ -6,12 +6,26 @@ moduleForComponent('meal-info', 'helper:meal-info', {
   integration: true
 });
 
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+test('it renders meal info', function(assert) {
+  this.set('meal', 'pre+event');
 
-  this.render(hbs`{{meal-info inputValue}}`);
+  this.render(hbs`{{meal-info meal}}`);
 
-  assert.equal(this.$().text().trim(), '1234');
+  assert.ok(this.$().text().trim().indexOf('you qualify for three meals/day') !== -1);
 });
 
+test('it renders meal info with null value', function(assert) {
+  this.set('meal', '');
+
+  this.render(hbs`{{meal-info meal}}`);
+
+  assert.ok(this.$().text().trim().indexOf('Meal Pogs') !== -1);
+});
+
+test('it renders meal info with unknown value', function(assert) {
+  this.set('meal', 'something-something-darkside');
+
+  this.render(hbs`{{meal-info meal}}`);
+
+  assert.ok(this.$().text().trim().indexOf('Unknown meal type') !== -1);
+});

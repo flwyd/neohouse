@@ -9,15 +9,20 @@ moduleForComponent('ch-form', 'Integration | Component | ch form', {
 test('it renders a basic form', function(assert) {
   // Template block usage:
 
-  const model = Object.create({ });
+  const model = Object.create({ field1: 'something' });
 
   this.set('model', model);
   this.render(hbs`
-    {{#ch-form "someform" model}}
+    {{#ch-form "someform" model as |f|}}
       Some form text
+      {{f.input 'field1' type="text"}}
     {{/ch-form}}
   `);
 
-  assert.equal(this.$('form').text().trim(), 'Some form text');
+  const form = this.$('form');
+  assert.equal(form.text().trim(), 'Some form text');
 
+  const input = this.$('input[type="text"]');
+  assert.equal(input.attr('name'), 'field1');
+  assert.equal(input.attr('value'), 'something');
 });

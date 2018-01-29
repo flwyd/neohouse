@@ -7,11 +7,11 @@ export default Controller.extend({
   isLoading: false,
 
   actions: {
-    submit(model, isValid, originalModel) {
+    submit(model, isValid, originalModel) { // eslint-disable-line no-unused-vars
       if (!isValid)
         return;
 
-      const flash = this.get('flashMessages');
+      const flash = this.get('flash');
       const person = this.get('person');
       const self = this;
 
@@ -29,7 +29,7 @@ export default Controller.extend({
       })
     },
 
-    back(model) {
+    back() {
       this.transitionToRoute('person.overview', this.get('person.id'));
     }
   }

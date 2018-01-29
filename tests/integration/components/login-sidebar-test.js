@@ -5,20 +5,8 @@ moduleForComponent('login-sidebar', 'Integration | Component | login sidebar', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
+test('it renders the login sidebar', function(assert) {
   this.render(hbs`{{login-sidebar}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#login-sidebar}}
-      template block text
-    {{/login-sidebar}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().trim().indexOf('Register') !== -1);
 });

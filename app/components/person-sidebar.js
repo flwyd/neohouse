@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import Ember from 'ember';
 import $ from 'jquery';
 
 const sidebarCollapse = function() {

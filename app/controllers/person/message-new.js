@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import PersonMessageValidations from 'neohouse/validations/person-message';
-import Object from 'ember';
 
 export default Controller.extend({
   PersonMessageValidations,
@@ -17,7 +16,7 @@ export default Controller.extend({
         return;
       }
 
-      const flash = this.get('flashMessages');
+      const flash = this.get('flash');
       const person = this.get('person');
       const self = this;
 
