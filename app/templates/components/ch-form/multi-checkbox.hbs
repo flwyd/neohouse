@@ -1,0 +1,11 @@
+{{#each checkboxes as |cb|}}
+<div class="form-check form-check-inline">
+  {{input
+    type="checkbox"
+    id=cb.fieldId
+    class="form-check-input"
+    checked=cb.isChecked
+  }}
+  <label for="{{cb.fieldId}}" class="form-check-label">{{cb.label}}</label>
+ </div>
+{{/each}}

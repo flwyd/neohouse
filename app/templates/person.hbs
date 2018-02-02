@@ -3,10 +3,10 @@
     <main class="col">
       <div class="row">
         <div class="col-md-9">
-          <h3>{{person.callsign}}</h3>
+          <h3>{{person.callsign}} {{status-badge person.status}}</h3>
         </div>
-        <div class="col-md-3 text-right">
-          Years view {{person.years}}
+        <div class="col-md-3 text-right year-select">
+            Year {{year-select years=person.years_rangered year=year onChange=(action 'changeYear')}}
         </div>
       </div>
 

@@ -12,6 +12,8 @@ export default DS.Model.extend({
   slot_ends:           DS.attr('string'),
   slot_ends_display:   DS.attr('string'),
 
+  slot_duration:       DS.attr('number'),
+
   slot_description:    DS.attr('string'),
   slot_signed_up:      DS.attr('number'),
   slot_max:            DS.attr('number'),

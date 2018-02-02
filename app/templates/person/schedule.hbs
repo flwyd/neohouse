@@ -1,9 +1,11 @@
-{{#ch-box (concat 'Your Ranger Schedule ' year)}}
+{{#ch-box (concat 'Ranger Schedule ' year)}}
+{{#if slots}}
 <div class="table-responsive">
   <table class="table table-hover">
     <thead class="thead-light">
       <th>Starts</th>
       <th>Ends</th>
+      <th class="text-right">Duration</th>
       <th>Description</th>
       <th>Position</th>
       <th class="text-right">Credits</th>
@@ -14,6 +16,7 @@
         <tr>
           <td>{{slot.slot_begins_display}}</td>
           <td>{{slot.slot_ends_display}}</td>
+          <td class="text-right">{{hour-minute-format slot.slot_duration}}</td>
           <td>
             {{#if slot.slot_url}}
               <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
@@ -24,17 +27,22 @@
           <td>{{slot.position_title}}</td>
           <td class="text-right">{{credits-format slot.credits}}</td>
           <td>
-            <button {{action 'removeSlot' slot}} type="button" class="btn btn-danger">{{fa-icon 'trash-alt' type='fas'}}</button>
+            <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger">{{fa-icon 'trash-alt' type='fas'}}</a>
           </td>
         </tr>
       {{/each}}
-      <tr>
-        <td colspan="4" class="text-right">Total Possible Credits</td>
+        <tr>
+        <td colspan="2" class="text-right">Total Duration</td>
+        <td class="text-right">{{hour-minute-format totalDuration}}</td>
+        <td colspan="2" class="text-right">Total Possible Credits</td>
         <td class="text-right">{{credits-format totalCredits}}</td>
         <td>&nbsp;</td>
       </tr>
     </tbody>
   </table>
 </div>
+{{else}}
+<p class="text-danger">{{fa-icon 'exclamation-triangle' size='lg'}} No scheduled shifts were found for {{year}}</p>
+{{/if}}
 
 {{/ch-box}}

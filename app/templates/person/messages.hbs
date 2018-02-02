@@ -1,6 +1,6 @@
 {{#ch-box 'Ranger Messages'}}
 {{#link-to 'person.message-new' person.id class="btn btn-primary mb-2"}}Compose Message{{/link-to}}
-  {{#if person.messages}}
+  {{#if messages}}
     <p class="text-muted small">Note: all times are in the Pacific Timezone.</p>
 
     <div class="table-responsive-lg">
@@ -11,7 +11,7 @@
           <th>Sent</th>
         </thead>
         <tbody>
-          {{#each person.messages as |message|}}
+          {{#each messages as |message|}}
             <tr>
               <td class="person-message-sender">{{message.sender_callsign}}</td>
               <td class="person-message-text">

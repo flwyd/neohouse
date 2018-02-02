@@ -46,8 +46,7 @@ export default Component.extend({
 
   actions: {
     update(value) {
-      let model = this.get('model');
-      model.set(this.get('name'), value);
+      this.get('model').set(this.get('name'), value);
     }
   }
 }).reopenClass({

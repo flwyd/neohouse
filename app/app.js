@@ -5,8 +5,13 @@ import config from './config/environment';
 import { assert } from '@ember/debug';
 import RSVP from 'rsvp';
 
+
 RSVP.on('error', function(error) {
-  assert(error, false);
+  // TODO: keep an eye on this
+  // https://github.com/emberjs/ember.js/issues/12505
+  if(error.name !== 'TransitionAborted') {
+    assert(error, false);
+  }
 });
 
 const App = Application.extend({
@@ -16,5 +21,6 @@ const App = Application.extend({
 });
 
 loadInitializers(App, config.modulePrefix);
+
 
 export default App;

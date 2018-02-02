@@ -13,6 +13,18 @@ export default Controller.extend({
     return totalCredits;
   }),
 
+  totalDuration: computed('slots.[]', function() {
+    let totalDuration = 0;
+
+    const slots = this.get('slots');
+
+    if (slots) {
+      totalDuration = slots.reduce((sum, slot) => sum + slot.get('slot_duration'), 0);
+    }
+
+    return totalDuration;
+  }),
+
   actions: {
     removeSlot(slot) {
       const slots = this.get('slots');

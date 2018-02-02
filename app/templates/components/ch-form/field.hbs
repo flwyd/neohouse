@@ -71,7 +71,7 @@
     <div class="{{checkboxClass}}">
       <label>
         <input
-          type = "checkbox"
+          type       = "checkbox"
           name       = name
           checked    = {{get model name}}
           onclick    = {{action "update" value="target.checked"}}
@@ -80,6 +80,14 @@
       </label>
     </div>
 
+  {{else if (eq type "multi-checkbox")}}
+    {{ch-form/multi-checkbox
+        name=name
+        value=_val
+        options=options
+        placeholder=placeholder
+        onUpdate=(action 'update')
+    }}
   {{else if (eq type "textarea")}}
     {{textarea
       name        = name

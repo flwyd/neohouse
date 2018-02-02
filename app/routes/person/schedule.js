@@ -1,29 +1,32 @@
 import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
 import PersonMixin from 'neohouse/mixins/person';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
-  afterModel(model) {
-    const flash = this.get('flash');
+  model(params) {
+    const flash = this.flash;
+    const model = this.modelFor('person');
+    const person = model.person;
+    const year = model.year;
 
-    // TODO: add year
-    const params = {
-      person_id: model.get('id'),
-      year: 2017
+    const scheduleParams = {
+      person_id: person.get('id'),
+      year,
     };
 
-    return this.store.query('person-schedule', params)
-        .then((slots) => {
-          model.set('slots', slots)
-          model.set('year', params.year)
-        }).catch((err) => {
-          flash.warning('The schedule could not be retrieved.', err)
-        })
+    console.log(`Schedule model year[${year}] person_id[${person.get('id')}]`);
+
+    return RSVP.hash({
+      slots: this.store.query('person-schedule', scheduleParams),
+      person: model.person,
+      year: year,
+      });
   },
 
   setupController(controller, model) {
     this._super(...arguments);
-    controller.set('slots', model.get('slots'));
-    controller.set('year', model.get('year'));
+    controller.set('slots', model.slots);
+    controller.set('year', model.year);
   }
 });

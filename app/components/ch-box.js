@@ -6,6 +6,7 @@ export default Component.extend({
   type: null,
   icon: null,
   wrapClass: '',
+  noBody: false,
 
   init() {
     const wrapClass = this.get('wrapClass');

@@ -141,3 +141,7 @@ body > .container, body > .container-fluid {
 .person-messages td {
   border-top: none;
 }
+
+.year-select {
+  font-size: 1.4em;
+}

@@ -1,93 +1,24 @@
-<!-- Sidebar -->
-<div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-  <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
-  <!-- Bootstrap List Group -->
-  <ul class="list-group">
-    <!-- Separator with title -->
-    <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-      <small>GENERAL</small>
-    </li>
-    <!-- /END Separator -->
-    {{#link-to 'person.overview' person.id class="bg-dark list-group-item list-group-item-action" }}
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="far fa-address-card fa-fw mr-3"></span>
-        <span class="menu-collapsed">Overview</span>
-      </div>
-    {{/link-to}}
-    {{#link-to 'person.messages' person.id class="bg-dark list-group-item list-group-item-action" }}
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="far fa-envelope fa-fw mr-3"></span>
-        <span class="menu-collapsed">Messages {{#if person.unread_message_count}}<span class="badge badge-pill badge-primary ml-2">{{person.unread_message_count}}</span>{{/if}}
-        </span>
-      </div>
-    {{/link-to}}
-    {{#link-to 'person.ranger-info-show' person.id class="bg-dark list-group-item list-group-item-action" }}
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="far fa-user fa-fw mr-3"></span>
-        <span class="menu-collapsed">Ranger Info</span>
-      </div>
-    {{/link-to}}
-    <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-      <small>SCHEDULING</small>
-    </li>
+{{#ch-sidebar}}
+  {{#ch-sidebar-group 'GENERAL'}}
+    {{ch-sidebar-link 'person.overview' person.id title="Overview" icon="address-card"}}
+    {{ch-sidebar-link 'person.messages' person.id title="Messages" icon="envelope" badgeText=person.unread_message_count}}
+    {{ch-sidebar-link 'person.ranger-info-show' person.id title="Ranger Info" icon="user"}}
+  {{/ch-sidebar-group}}
 
-    {{#link-to 'person.schedule' person.id class="bg-dark list-group-item list-group-item-action" }}
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="far fa-calendar-alt fa-fw mr-3"></span>
-        <span class="menu-collapsed">Schedule</span>
-      </div>
-    {{/link-to}}
-    <a href="#" class="bg-dark list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="far fa-clipboard fa-fw mr-3"></span>
-        <span class="menu-collapsed">Shift Signup</span>
-      </div>
-    </a>
-    <a href="#" class="bg-dark list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="fas fa-clock fa-fw mr-3"></span>
-        <span class="menu-collapsed">Timesheet</span>
-      </div>
-    </a>
+  {{#ch-sidebar-group 'SCHEDULING'}}
+    {{ch-sidebar-link 'person.schedule' person.id title="Schedule" icon="calendar-alt"}}
+    {{ch-sidebar-link '#' title="Shift Signup" icon="clipboard"}}
+    {{ch-sidebar-link '#' title="Timesheet" icon="clock"}}
+  {{/ch-sidebar-group}}
 
-    <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-      <small>PROFILE</small>
-    </li>
-    {{#link-to 'person.personal-info-show' person class="bg-dark list-group-item list-group-item-action" }}
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="fas fa-home fa-fw mr-3"></span>
-        <span class="menu-collapsed">Personal Info</span>
-      </div>
-    {{/link-to}}
-    {{#link-to 'person.emergency-contact-show' person class="bg-dark list-group-item list-group-item-action" }}
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="fas fa-exclamation fa-fw mr-3"></span>
-        <span class="menu-collapsed">Emergency Contact</span>
-      </div>
-    {{/link-to}}
-    {{#link-to 'person.password' person class="bg-dark list-group-item list-group-item-action" }}
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="fas fa-key fa-fw mr-3"></span>
-        <span class="menu-collapsed">Change Password</span>
-      </div>
-    {{/link-to}}
+  {{#ch-sidebar-group 'PROFILE'}}
+    {{ch-sidebar-link 'person.personal-info-show' person.id title="Personal Info" icon="home" iconType="s"}}
+    {{ch-sidebar-link 'person.emergency-contact-show' person.id title="Emergency Contact" icon="exclamation" iconType="s"}}
+    {{ch-sidebar-link 'person.password' person.id title="Change Password" icon="key" iconType="s"}}
+  {{/ch-sidebar-group}}
 
-    <!-- Separator without title -->
-    <li class="list-group-item sidebar-separator menu-collapsed"></li>
-    <!-- /END Separator -->
-    <a href="#" class="bg-dark list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span class="fa fa-question fa-fw mr-3"></span>
-        <span class="menu-collapsed">Help</span>
-      </div>
-    </a>
-    <a href="#" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
-      <div class="d-flex w-100 justify-content-start align-items-center">
-        <span id="collapse-icon" class="fas fa-lg mr-3"></span>
-        <span id="collapse-text" class="menu-collapsed">Collapse</span>
-      </div>
-    </a>
-  </ul>
-  <!-- List Group END-->
-</div>
-<!-- sidebar-container END -->
+  {{#ch-sidebar-group}}
+    {{ch-sidebar-link '#' title="Help" icon="question" iconType="s"}}
+    {{ch-sidebar-collapse}}
+  {{/ch-sidebar-group}}
+{{/ch-sidebar}}

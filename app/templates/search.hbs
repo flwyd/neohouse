@@ -1,0 +1,49 @@
+<div class="row" id="body-row">
+   {{search-sidebar}}
+    <main class="col">
+      <div class="row">
+        Maybe some kind of search here?
+      </div>
+
+      {{flash-render}}
+
+      {{#ch-box 'Search For'}}
+        {{#ch-form 'search' searchForm onSubmit=(action 'search') as |f|}}
+          {{f.input 'query' type='text' label='Search' maxlength=50}}
+          {{f.input 'search_fields' type='multi-checkbox' label='Fields to Search' options=SearchFieldOptions }}
+          {{f.submit label='Search' }}
+        {{/ch-form}}
+      {{/ch-box}}
+      {{#if searchResults}}
+
+      {{/if}}
+
+      {{#if searchResults}}
+      {{#ch-box 'Results'}}
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Callsign</th>
+              <th>Status</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{#each searchResults as |result|}}
+              <tr>
+                <td>{{#link-to 'person.personal-info-show' result.id}}{{result.callsign}}{{/link-to}}</td>
+                <td>{{status-badge result.status}}</td>
+                <td>{{result.first_name}}</td>
+                <td>{{result.last_name}}</td>
+                <td>{{result.email}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{/ch-box}}
+      {{/if}}
+    </main>
+</div><!-- body-row END -->

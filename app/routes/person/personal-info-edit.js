@@ -5,8 +5,10 @@ export default Route.extend(PersonMixin, {
   setupController(controller, model) {
     this._super(...arguments);
 
-    return model.retrieveLanguages().then((result) => {
-      model.set('languages', result.languages)
+    const person = model.person;
+
+    return person.retrieveLanguages().then((result) => {
+      person.set('languages', result.languages)
     });
   }
 });

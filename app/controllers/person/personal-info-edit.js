@@ -35,10 +35,6 @@ export default Controller.extend({
         flash.warning('The information could not be updated.');
       })
     },
-
-    back(model) {
-      this.transitionToRoute('profile.personal-info-show', model.get('id'));
-    }
   }
 
 });

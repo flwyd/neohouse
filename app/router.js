@@ -16,7 +16,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('login');
   this.route('offline');
-  this.route('person', { path: '/person/:id' }, function() {
+  this.route('person', { path: '/person/:person_id' }, function() {
     this.route('overview');
     this.route('ranger-info-show');
     this.route('personal-info-show');
@@ -29,6 +29,9 @@ Router.map(function() {
     this.route('schedule');
   });
 
+  this.route('search', function() {
+    this.route('person');
+  });
 });
 
 export default Router;

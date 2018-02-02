@@ -32,10 +32,6 @@ export default Controller.extend({
         flash.warning('The information could not be updated.');
       })
     },
-
-    back(model) {
-      this.transitionToRoute('person.emergency-contact-show', model.get('id'));
-    }
   }
 
 });

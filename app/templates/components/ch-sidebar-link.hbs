@@ -1,0 +1,21 @@
+{{#if (eq routePath '#')}}
+<a href="#" class="bg-dark list-group-item list-group-item-action">
+  <div class="d-flex w-100 justify-content-start align-items-center">
+    <span class="fa{{iconType}} fa-{{icon}} fa-fw mr-3"></span>
+    <span class="menu-collapsed">{{title}}{{#if badgeText}}
+        <span class="badge badge-pill badge-primary ml-2">{{badgeText}}</span>
+        {{/if}}
+    </span>
+  </div>
+</a>
+{{else}}
+{{#link-to routePath routeArg class="bg-dark list-group-item list-group-item-action" }}
+  <div class="d-flex w-100 justify-content-start align-items-center">
+    <span class="fa{{iconType}} fa-{{icon}} fa-fw mr-3"></span>
+    <span class="menu-collapsed">{{title}}{{#if badgeText}}
+        <span class="badge badge-pill badge-primary ml-2">{{badgeText}}</span>
+        {{/if}}
+    </span>
+  </div>
+{{/link-to}}
+{{/if}}
