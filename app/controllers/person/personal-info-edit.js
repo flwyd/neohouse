@@ -22,11 +22,7 @@ export default Controller.extend({
 
       return model.save().then(function() {
         flash.success('The personal information was successfully updated.');
-
-        self.transitionToRoute('person.personal-info-show', originalModel);
-        if (user.get('id') == originalModel.get('id')) {
-          return user.reload();
-        }
+        self.transitionToRoute('person.personal-info-show');
       }).catch(function (err) {
         console.log("SUBMIT error ", err);
         originalModel.get('errors').forEach((error) => {

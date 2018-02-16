@@ -75,7 +75,7 @@ export default DS.Model.extend({
   languages:                   DS.attr('string'),
 
 
-  // Read only - computed properties
+  // Read only 
 
   years_rangered:               DS.attr('', { readOnly: true}),
   unread_message_count:         DS.attr('number', { readOnly: true}),

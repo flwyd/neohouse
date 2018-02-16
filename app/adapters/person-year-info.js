@@ -7,6 +7,6 @@ export default ApplicationAdapter.extend({
     delete query.person_id;
     delete query.year; // eslint-disable-line no-param-reassign
 
-    return `${ENV['api-server']}/people/${person_id}/yearinfo/${year}`;
+    return `${ENV['api-server']}/person/${person_id}/yearinfo/${year}`;
   }
 });

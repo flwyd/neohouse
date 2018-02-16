@@ -25,7 +25,7 @@ export default Controller.extend({
             flash.danger(error.detail || error.title);
           })
         } else {
-          flash.danger('An unexpected error occurred.')
+          flash.danger('An unexpected error occurred.');
         }
       })
     }

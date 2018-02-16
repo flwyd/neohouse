@@ -4,7 +4,7 @@ import PersonMixin from 'neohouse/mixins/person';
 import RSVP from 'rsvp';
 //import { scheduleOnce } from '@ember/runloop';
 
-export default Route.extend(AuthenticatedRouteMixin, /*PersonMixin,,*/ {
+export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
   queryParams: {
     year: { refreshModel: true }
   },
@@ -27,18 +27,4 @@ export default Route.extend(AuthenticatedRouteMixin, /*PersonMixin,,*/ {
     });
   },
 
-  setupController(controller, model) {
-    controller.set('person', model.person);
-  },
-
-/*  actions: {
-    queryParamsDidChange() {
-      const self = this;
-      console.log("ACTION query parameter did changte")
-      /*this.refresh();*/
-/*      scheduleOnce('actions', function () {
-        self.refresh();
-      });
-    }
-  }*/
 });

@@ -7,10 +7,8 @@ export default DS.Model.extend({
   position_title:      DS.attr('string'),
 
   slot_begins:         DS.attr('string'),
-  slot_begins_display: DS.attr('string'),
 
   slot_ends:           DS.attr('string'),
-  slot_ends_display:   DS.attr('string'),
 
   slot_duration:       DS.attr('number'),
 

@@ -9,8 +9,6 @@ export default Controller.extend({
       console.log("Changing year to "+year);
     // Bubble up to route
       this.set('year', year);
-    //  this.transitionToRoute({ queryParams: { year }, refreshModel: true});
-    //  this.send('refreshRoute');
     }
   }
 });

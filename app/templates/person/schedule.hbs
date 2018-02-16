@@ -1,6 +1,6 @@
+
 {{#ch-box (concat 'Ranger Schedule ' year)}}
 {{#if slots}}
-<div class="table-responsive">
   <table class="table table-hover">
     <thead class="thead-light">
       <th>Starts</th>
@@ -14,8 +14,8 @@
     <tbody>
       {{#each slots as |slot slotidx| }}
         <tr>
-          <td>{{slot.slot_begins_display}}</td>
-          <td>{{slot.slot_ends_display}}</td>
+          <td>{{slot.slot_begins}}</td>
+          <td>{{slot.slot_ends}}</td>
           <td class="text-right">{{hour-minute-format slot.slot_duration}}</td>
           <td>
             {{#if slot.slot_url}}
@@ -40,9 +40,7 @@
       </tr>
     </tbody>
   </table>
-</div>
 {{else}}
 <p class="text-danger">{{fa-icon 'exclamation-triangle' size='lg'}} No scheduled shifts were found for {{year}}</p>
 {{/if}}
-
 {{/ch-box}}

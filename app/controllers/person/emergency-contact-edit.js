@@ -20,12 +20,8 @@ export default Controller.extend({
       return model.save().then(function() {
         flash.success('The emergency contact information was successfully updated.');
 
-        self.transitionToRoute('person.emergency-contact-show', originalModel.get('id'));
-        if (user.get('id') == originalModel.get('id')) {
-          return user.reload();
-        }
+        self.transitionToRoute('person.emergency-contact-show');
       }).catch(function (err) {
-        console.log("SUBMIT error ", err);
         originalModel.get('errors').forEach((error) => {
           model.pushErrors(error.attribute,  error.message);
         });

@@ -8,7 +8,7 @@ export default Component.extend({
 
   yearOptions: computed("years", function() {
     const currentYear = (new Date()).getFullYear();
-    const years = this.get('years').slice();
+    const years = (this.get('years') || []).slice();
 
     if (!years.includes(currentYear)) {
       years.push(currentYear);

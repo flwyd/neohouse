@@ -18,7 +18,7 @@ export default Controller.extend({
       flash.clearMessages();
       return person.changePassword({ password: model.get('password') }).then(function() {
         flash.success('The password was successfully changed.');
-        self.transitionToRoute('person.overview', person.get('id'));
+        self.transitionToRoute('person.overview');
       }).catch(function (result) {
         if (result && result.errors) {
           result.errors.forEach((error) => {
@@ -30,7 +30,7 @@ export default Controller.extend({
     },
 
     back() {
-      this.transitionToRoute('person.overview', this.get('person.id'));
+      this.transitionToRoute('person.overview');
     }
   }
 

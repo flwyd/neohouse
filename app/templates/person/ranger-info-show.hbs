@@ -5,11 +5,8 @@
 
     <dt class="col-md-2">Trained</dt>
     <dd class="col-md-9">
-      {{#if year_info.training_passed}}
-        {{badge 'success' 'YES'}} {{year_info.training_location}}
-      {{else}}
-        {{badge 'success' 'NO'}}
-      {{/if}}
+      {{training-status year_info.training_status}}
+      {{year_info.training_date}} {{year_info.training_location}}
     </dd>
     {{#if person.isRanger}}
 

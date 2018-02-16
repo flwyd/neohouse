@@ -38,7 +38,7 @@ export default Controller.extend({
 
       return model.save().then(function() {
         flash.success(`The message was sent to ${model.get('recipient_callsign')}.`);
-        self.transitionToRoute('person.messages', person.get('id'));
+        self.transitionToRoute('person.messages');
       }).catch(function () {
         originalModel.get('errors').forEach((error) => {
           model.pushErrors(error.attribute,  error.message);

@@ -27,11 +27,13 @@ module.exports = function(environment) {
     },
 
     'ember-simple-auth-token': {
-      refreshAccessTokens      : false,
-      identificationField      : 'email',
+      refreshAccessTokens      : true,
+      identificationField      : 'identification',
       passwordField            : 'password',
       tokenPropertyName        : 'token',
-      refreshTokenPropertyName : 'refresh_token',
+      refreshTokenPropertyName : 'token',
+    //  tokenExpireName          : 'expires_in',
+
       authorizationPrefix      : 'JWT ',
       authorizationHeaderName  : 'Authorization',
       headers                  : {}
@@ -56,8 +58,9 @@ module.exports = function(environment) {
       'style-src': "'self' 'unsafe-inline' ",
       'media-src': "'self' *"
     }
-    ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://localhost:3000/session/auth'
-    ENV['api-server'] = 'http://localhost:3000'
+    ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://localhost:8000/api/auth/login'
+    ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = 'http://localhost:8000/api/auth/refresh'
+    ENV['api-server'] = 'http://localhost:8000/api'
     ENV.APP.LOG_TRANSITIONS = true
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true
     ENV.APP.LOG_VIEW_LOOKUPS = true

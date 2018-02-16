@@ -17,6 +17,7 @@ export default SessionService.extend({
           this.get('session.authenticated.person_id')).then(user => {
             this.set('user', user);
           }).catch(e => {
+            alert("Failed to load user: "+e);
             this.invalidate();
             return reject(e);
           })
