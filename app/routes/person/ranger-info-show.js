@@ -6,7 +6,7 @@ export default Route.extend({
     const person_id = model.person.get('id');
     const year = model.year;
 
-    return this.get('ajax').request('person/'+person_id+'/yearinfo/'+year)
+    return this.get('ajax').request('person/'+person_id+'/yearinfo', { data: { year} })
        .then((result) => {
          model.year_info = EmberObject.create(result.year_info);
        }).catch((err) => {

@@ -36,7 +36,7 @@ export default Controller.extend({
         slots.removeObject(slot);
         flash.success('The slot has been deleted.');
       }).catch((err) => {
-        flash.warning('The slot cannot be deleted as this time.', err);
+        alert("The slot cannot be deleted at this time. "+err);
       })
     },
   }

@@ -12,7 +12,7 @@ export default ApplicationAdapter.extend({
       person_id = snapshot.attributes().person_id;
     }
 
-    const url = `${ENV['api-server']}/person/${person_id}/schedule`;
+    const url = `${ENV['api-server']}/person/${person_id}/slots`;
 
     return (id ? url + `/${id}` : url);
   }

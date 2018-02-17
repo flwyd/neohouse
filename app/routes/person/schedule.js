@@ -12,7 +12,7 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
       year,
     };
 
-    return this.store.query('person-schedule', scheduleParams)
+    return this.store.query('person-slot', scheduleParams)
         .then((slots) => { model.slots = slots; });
   },
 
