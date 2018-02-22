@@ -16,6 +16,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('login');
   this.route('offline');
+  this.route('reset-password');
   this.route('person', { path: '/person/:person_id' }, function() {
     this.route('overview');
     this.route('ranger-info-show');

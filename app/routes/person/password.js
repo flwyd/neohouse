@@ -3,8 +3,9 @@ import EmberObject from '@ember/object';
 import PersonMixin from 'neohouse/mixins/person';
 
 const PasswordModel = EmberObject.extend({
-  password_new: '',
-  password_confirm: ''
+  password_old: '',
+  password: '',
+  password_confirmation: '',
 });
 
 export default Route.extend(PersonMixin, {

@@ -5,13 +5,14 @@ import Object from '@ember/object';
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { typeOf } from '@ember/utils';
+import { guidFor } from '@ember/object/internals';
 
 const MultiCheckboxField = Object.extend({
   label: '',
   value: '',
   isChecked: false,
 
-  fieldId: null,
+//  fieldId: null,
 
   clicked: observer('isChecked', function() {
     this.get('onClick').call(this);
@@ -22,13 +23,13 @@ export default Component.extend({
   name: null,
   value: '',
 
-  options: [ ],
+  options: null,
   labelProperty: 'label',
   valueProperty: 'value',
 
   checkboxes: computed("options", function() {
     const self = this;
-    const options = this.get('options');
+    const options = this.get('options') || [];
     const labelProperty = this.get('labelProperty');
     const valueProperty = this.get('valueProperty');
     let values = this.get('value');
@@ -37,7 +38,7 @@ export default Component.extend({
       values = [ values ];
     }
 
-    return this.get("options").map(function(opt) {
+    return options.map(function(opt) {
       let label, value;
       const optType = typeOf(opt);
 
@@ -59,7 +60,7 @@ export default Component.extend({
         onClick() {  self.send('onClick'); }
       });
 
-      field.set('fieldId', 'checkbox-' + Ember.guidFor(field));
+      field.set('fieldId', 'checkbox-' + guidFor(field));
 
       return field;
     });

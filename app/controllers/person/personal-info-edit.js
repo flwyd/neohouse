@@ -15,7 +15,6 @@ export default Controller.extend({
         return;
 
       const flash = this.get('flash');
-      const user = this.get('session.user');
       const self = this;
 
       flash.clearMessages();

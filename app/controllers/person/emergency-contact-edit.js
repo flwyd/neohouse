@@ -12,7 +12,6 @@ export default Controller.extend({
         return;
 
       const flash = this.get('flash');
-      const user = this.get('session.user');
       const self = this;
 
       flash.clearMessages();
@@ -21,7 +20,7 @@ export default Controller.extend({
         flash.success('The emergency contact information was successfully updated.');
 
         self.transitionToRoute('person.emergency-contact-show');
-      }).catch(function (err) {
+      }).catch(() => {
         originalModel.get('errors').forEach((error) => {
           model.pushErrors(error.attribute,  error.message);
         });

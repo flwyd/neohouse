@@ -8,24 +8,27 @@ export default Controller.extend({
 
   actions: {
     submit(model, isValid, originalModel) { // eslint-disable-line no-unused-vars
-      if (!isValid)
+      if (!isValid) {
         return;
+      }
 
       const flash = this.get('flash');
       const person = this.get('person');
       const self = this;
+      let passwords = model.getProperties('password_old', 'password', 'password_confirmation');
 
       flash.clearMessages();
-      return person.changePassword({ password: model.get('password') }).then(function() {
+      return person.changePassword(passwords).then(function() {
         flash.success('The password was successfully changed.');
         self.transitionToRoute('person.overview');
       }).catch(function (result) {
         if (result && result.errors) {
           result.errors.forEach((error) => {
-            model.pushErrors(error.attribute,  error.message);
+            flash.warning(error.title);
           });
+        } else {
+          flash.warning('The password could not be changed.');
         }
-        flash.warning('The password could not be changed.');
       })
     },
 

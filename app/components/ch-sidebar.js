@@ -23,6 +23,9 @@ const sidebarCollapse = function(event) {
 
 
 export default Component.extend({
+  elementId: 'sidebar-container',
+  tagClassName: 'sidebar-expanded d-none d-md-block',
+
   didRender() {
     // Hide submenus
     $('#body-row .collapse').collapse('hide');

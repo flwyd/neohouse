@@ -1,15 +1,15 @@
 <div class="row" id="body-row">
-   {{login-sidebar person=person}}
+   {{login-sidebar}}
     <main class="col">
       {{flash-render}}
       <div class="row">
         <div class="col-md-6 col-sm-12">
           {{#ch-box 'Howdy Ranger!'}}
-          {{log  'auth' auth}}
             {{#ch-form 'auth' auth validator=LoginValidations onSubmit=(action "submit") as |f|}}
-              {{f.input "identification" label="Email or Callsign"}}
+              {{f.input "identification" label="Email"}}
               {{f.input "password" label="Password" type="password"}}
               {{f.submit label="Login" disabled=isLoading }}
+              <div class="text-muted">Forget password? </div>{{#link-to 'reset-password'}}Reset password{{/link-to}}
             {{/ch-form}}
           {{/ch-box}}
         </div>

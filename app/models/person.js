@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
 import { memberAction } from 'ember-api-actions';
+import { typeOf } from '@ember/utils';
 
 import * as PersonStatus from 'neohouse/constants/person_status';
 
@@ -75,7 +76,7 @@ export default DS.Model.extend({
   languages:                   DS.attr('string'),
 
 
-  // Read only 
+  // Read only
 
   years_rangered:               DS.attr('', { readOnly: true}),
   unread_message_count:         DS.attr('number', { readOnly: true}),
@@ -116,8 +117,25 @@ export default DS.Model.extend({
 
   retrieveLanguages: memberAction({ path: 'languages', type: 'get'}),
 
-  have_role(role) {
-    let roles = this.get('roles');
-    return (roles && roles.includes(role))
+  hasRole(...roles) {
+    let personRoles = this.get('roles');
+
+    if (!personRoles) {
+      return false;
+    }
+
+    return roles.some(r => personRoles.includes(r));
+  },
+
+  hasAllRoles(...roles) {
+    let personRoles = this.get('roles');
+
+    if (!personRoles) {
+      return false;
+    }
+
+    const count = roles.filter((r) => personRoles(r));
+
+    return (count == roles.length);
   }
 });

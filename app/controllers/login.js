@@ -1,8 +1,8 @@
 import Controller from '@ember/controller';
+import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
+import LoginValidations from 'neohouse/validations/login';
 
-import LoginValidations from '../validations/login';
-
-export default Controller.extend({
+export default Controller.extend(ClubhouseControllerMixins, {
   LoginValidations,
 
   actions: {
@@ -10,24 +10,11 @@ export default Controller.extend({
       if (!isValid)
         return;
 
-      let credentials = {
-        identification: model.get('identification'),
-        password: model.get('password')
-      };
+      let credentials = model.getProperties('identification', 'password');
+      this.flash.clearMessages();
 
-      const flash = this.get('flash');
-
-      flash.clearMessages();
-
-      return this.get('session').authenticate('authenticator:jwt', credentials).catch(reason => {
-        if (reason && reason.errors) {
-          reason.errors.forEach((error) => {
-            flash.danger(error.detail || error.title);
-          })
-        } else {
-          flash.danger('An unexpected error occurred.');
-        }
-      })
+      return this.session.authenticate('authenticator:jwt', credentials)
+              .catch(function (response) { this.handleErrorResponse(response) }.bind(this));
     }
   }
 

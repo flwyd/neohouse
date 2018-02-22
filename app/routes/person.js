@@ -20,7 +20,6 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
     if (!year) {
       year = (new Date()).getFullYear();
     }
-    console.log(`model loading person year ${year}`)
     return RSVP.hash({
       person: this.store.findRecord('person', person_id),
       year: year,

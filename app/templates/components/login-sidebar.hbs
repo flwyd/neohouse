@@ -1,20 +1,12 @@
-<!-- Sidebar -->
-<div id="sidebar-container" class="sidebar-expanded d-none d-md-block"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
-    <!-- Bootstrap List Group -->
-    <ul class="list-group">
-        <!-- /END Separator -->
-        <a href="{{config 'SignupUrl'}}" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fas fa-user-plus faw mr-3"></span>
-                <span class="menu-collapsed">Register</span>
-            </div>
-        </a>
-
-        <a href="https://profiles.burningman.com/participate/" class="bg-dark list-group-item list-group-item-action">
-              <div class="d-flex w-100 justify-content-start align-items-center">
-                  <span class="mr-3"><img src="assets/Burning-Man-logo.svg" style="width: 20px; height: 20px;"></span>
-                  <span class="menu-collapsed">Volunteer Profile</span>
-              </div>
-        </a>
-    </ul><!-- List Group END-->
-</div><!-- sidebar-container END -->
+{{#ch-sidebar}}
+  {{#ch-sidebar-group}}
+    {{ch-sidebar-link '#' title='Register' icon='user-plus' iconType='s'}}
+    {{ch-sidebar-link 'login' title='Login' icon='sign-in-alt' iconType='s'}}
+    {{ch-sidebar-link 'reset-password' title='Reset Password' icon='unlock' iconType='s'}}
+    {{ch-sidebar-link 'https://profiles.burningman.com/participate' iconUrl='assets/Burning-Man-logo.svg' title='Volunteer Profile'}}
+  {{/ch-sidebar-group}}
+  {{#ch-sidebar-group}}
+    {{ch-sidebar-link '#' title='Help' icon='question' iconType='s'}}
+    {{ch-sidebar-collapse}}
+  {{/ch-sidebar-group}}
+{{/ch-sidebar}}

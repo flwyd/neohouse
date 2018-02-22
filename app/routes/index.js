@@ -1,8 +1,11 @@
 import Route from '@ember/routing/route';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend({
   beforeModel() {
-    this.transitionTo('/person/me/overview')
+    if (this.session.get('isAuthenticated')) {
+      this.transitionTo('/person/me/overview');
+    } else {
+      this.transitionTo('/login');
+    }
   }
 });

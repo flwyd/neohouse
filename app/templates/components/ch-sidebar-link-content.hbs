@@ -1,0 +1,9 @@
+{{#if iconUrl}}
+  <span class="mr-3"><img src="{{iconUrl}}" style="width: 20px; height: 20px"></span>
+{{else}}
+  <span class="fa{{iconType}} fa-{{icon}} fa-fw mr-3"></span>
+{{/if}}
+<span class="menu-collapsed">{{title}}{{#if badgeText}}
+    <span class="badge badge-pill badge-primary ml-2">{{badgeText}}</span>
+    {{/if}}
+</span>
