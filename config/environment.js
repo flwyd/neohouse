@@ -39,7 +39,8 @@ module.exports = function(environment) {
       headers                  : {}
     },
     flashMessageDefaults: {
-      sticky: true,
+      sticky: false,
+      
     },
   };
 

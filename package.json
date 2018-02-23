@@ -42,6 +42,8 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-moment": "^7.6.0",
     "ember-power-select": "^2.0.0-beta.2",
+    "ember-print-this": "^1.0.0-beta.7",
+    "ember-radio-button": "^1.2.3",
     "ember-resolver": "^4.0.0",
     "ember-simple-auth": "^1.5.0",
     "ember-simple-auth-token": "^3.0.0",

@@ -4,9 +4,9 @@ import PersonMixin from 'neohouse/mixins/person';
 export default Route.extend(PersonMixin, {
   afterModel(model) {
     const person = model.person;
-      return this.store.query('person-message', { person_id: person.get('id') }).then((messages) => {
-        model.messages = messages;
-      })
+    return this.store.query('person-message', {person_id: person.get('id')}).then((messages) => {
+      model.messages = messages;
+    })
   },
 
   setupController(controller, model) {

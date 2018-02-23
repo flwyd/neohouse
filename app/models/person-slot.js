@@ -1,21 +1,21 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  person_id:           DS.attr('number'),
+  person_id:        DS.attr('number'),
+  slot_id:          DS.attr('number'),
 
-  position_id:         DS.attr('number'),
-  position_title:      DS.attr('string'),
+  position_id:      DS.attr('number', { readOnly: true }),
+  position_title:   DS.attr('string', { readOnly: true }),
 
-  slot_begins:         DS.attr('string'),
+  slot_begins:      DS.attr('string', { readOnly: true }),
+  slot_ends:        DS.attr('string', { readOnly: true }),
+  slot_duration:    DS.attr('number', { readOnly: true }),
+  has_ended:        DS.attr('boolean', { readOnly: true }),
 
-  slot_ends:           DS.attr('string'),
+  slot_description: DS.attr('string', { readOnly: true }),
+  slot_signed_up:   DS.attr('number', { readOnly: true }),
+  slot_max:         DS.attr('number', { readOnly: true }),
+  slot_url:         DS.attr('string', { readOnly: true }),
 
-  slot_duration:       DS.attr('number'),
-
-  slot_description:    DS.attr('string'),
-  slot_signed_up:      DS.attr('number'),
-  slot_max:            DS.attr('number'),
-  slot_url:            DS.attr('string'),
-
-  credits:             DS.attr('number'),
+  credits:          DS.attr('number', { readOnly: true }),
 });

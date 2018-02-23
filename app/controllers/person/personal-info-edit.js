@@ -1,34 +1,18 @@
 import Controller from '@ember/controller';
+import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
 import PersonInfoValidations from 'neohouse/validations/person-info';
 import { ShortSleeve as ShortSleeveOptions, LongSleeve as LongSleeveOptions } from 'neohouse/constants/shirts';
 
-export default Controller.extend({
+export default Controller.extend(ClubhouseControllerMixins, {
   PersonInfoValidations,
   ShortSleeveOptions,
   LongSleeveOptions,
 
-  isLoading: false,
-
   actions: {
-    submit(model, isValid, originalModel) {
-      if (!isValid)
-        return;
-
-      const flash = this.get('flash');
-      const self = this;
-
-      flash.clearMessages();
-
-      return model.save().then(function() {
-        flash.success('The personal information was successfully updated.');
-        self.transitionToRoute('person.personal-info-show');
-      }).catch(function (err) {
-        console.log("SUBMIT error ", err);
-        originalModel.get('errors').forEach((error) => {
-          model.pushErrors(error.attribute,  error.message);
-        });
-        flash.warning('The information could not be updated.');
-      })
+    submit(model, isValid) {
+      this.saveModel(model, isValid,
+          'The personal information was successfully updated.',
+          'person.personal-info-show');
     },
   }
 

@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
+import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
 
-export default Controller.extend({
+export default Controller.extend(ClubhouseControllerMixins, {
 
   actions: {
     markRead(message) {

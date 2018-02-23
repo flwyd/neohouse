@@ -1,10 +1,11 @@
 import Controller from '@ember/controller';
+import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
 import { debounce } from '@ember/runloop';
 import RSVP from 'rsvp';
 
 import PersonMessageValidations from 'neohouse/validations/person-message';
 
-export default Controller.extend({
+export default Controller.extend(ClubhouseControllerMixins, {
   PersonMessageValidations,
 
   _performSearch(callsign, resolve, reject) {
@@ -20,14 +21,13 @@ export default Controller.extend({
       });
     },
 
-    submit(model, isValid, originalModel) {
+    submit(model, isValid) {
       if (!isValid) {
         return;
       }
 
       const flash = this.get('flash');
       const person = this.get('person');
-      const self = this;
 
       flash.clearMessages();
 
@@ -39,12 +39,9 @@ export default Controller.extend({
       return model.save().then(function() {
         flash.success(`The message was sent to ${model.get('recipient_callsign')}.`);
         self.transitionToRoute('person.messages');
-      }).catch(function () {
-        originalModel.get('errors').forEach((error) => {
-          model.pushErrors(error.attribute,  error.message);
-        });
-        flash.warning('The message was not sent due to errors.');
-      })
+      }).catch(function (response) {
+        this.handleErrorResponse(response)
+      }.bind(this))
     }
   }
 });

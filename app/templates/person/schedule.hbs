@@ -1,46 +1,67 @@
 
 {{#ch-box (concat 'Ranger Schedule ' year)}}
-{{#if slots}}
-  <table class="table table-hover">
-    <thead class="thead-light">
-      <th>Starts</th>
-      <th>Ends</th>
-      <th class="text-right">Duration</th>
-      <th>Description</th>
-      <th>Position</th>
-      <th class="text-right">Credits</th>
-      <th>Actions</th>
-    </thead>
-    <tbody>
-      {{#each slots as |slot slotidx| }}
-        <tr>
-          <td>{{slot.slot_begins}}</td>
-          <td>{{slot.slot_ends}}</td>
-          <td class="text-right">{{hour-minute-format slot.slot_duration}}</td>
-          <td>
-            {{#if slot.slot_url}}
-              <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
-            {{else}}
-              {{slot.slot_description}}
-            {{/if}}
-          </td>
-          <td>{{slot.position_title}}</td>
-          <td class="text-right">{{credits-format slot.credits}}</td>
-          <td>
-            <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger">{{fa-icon 'trash-alt' type='fas'}}</a>
-          </td>
+<div class="mb-2">
+  <div class="form-check form-check-inline">
+    {{radio-button value="upcoming" groupValue=viewSchedule
+                  radioId="view-upcoming" radioClass="form-check-input"}}
+   <label for="view-upcoming" class="form-check-label">Upcoming Shifts</label>
+  </div>
+  <div class="form-check form-check-inline">
+  {{radio-button value="all" groupValue=viewSchedule radioId="view-all" classNames="form-check-label" radioClass="form-check-input" }} <label for="view-all" class="form-check-label">All Shifts</label>
+  </div>
+</div>
+{{#if viewSlots}}
+{{#print-this printSelector=".schedule-print" as |doPrint|}}
+  <div class="schedule-print">
+    <div class="d-none d-print-block"><h2>{{person.callsign}} Schedule {{year}}</h2></div>
+    <table class="table table-hover schedule-table">
+      <thead class="thead-light">
+        <th>Starts</th>
+        <th>Ends</th>
+        <th class="text-right">Duration</th>
+        <th>Description</th>
+        <th>Position</th>
+        <th class="text-right">Credits</th>
+        <th class="d-print-none">Actions</th>
+      </thead>
+      <tbody>
+        {{#each slots as |slot slotidx| }}
+          <tr>
+            <td>{{slot.slot_begins}}</td>
+            <td>{{slot.slot_ends}}</td>
+            <td class="text-right">{{hour-minute-format slot.slot_duration}}</td>
+            <td>
+              {{#if slot.slot_url}}
+                <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
+              {{else}}
+                {{slot.slot_description}}
+              {{/if}}
+            </td>
+            <td>{{slot.position_title}}</td>
+            <td class="text-right">{{credits-format slot.credits}}</td>
+            <td class="d-print-none">
+              <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger">{{fa-icon 'trash-alt' type='fas'}}</a>
+              <a href="#" {{action 'showPeople' slot}} class="btn btn-info">{{fa-icon 'users' type='fas'}}</a>
+            </td>
+          </tr>
+        {{/each}}
+          <tr>
+          <td colspan="2" class="text-right">Total Time</td>
+          <td class="text-right">{{hour-minute-format totalDuration}}</td>
+          <td colspan="2" class="text-right">Total Credits</td>
+          <td class="text-right">{{credits-format totalCredits}}</td>
+          <td>&nbsp;</td>
         </tr>
-      {{/each}}
-        <tr>
-        <td colspan="2" class="text-right">Total Duration</td>
-        <td class="text-right">{{hour-minute-format totalDuration}}</td>
-        <td colspan="2" class="text-right">Total Possible Credits</td>
-        <td class="text-right">{{credits-format totalCredits}}</td>
-        <td>&nbsp;</td>
-      </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-primary" {{action doPrint}}>Print</button>
+{{/print-this}}
 {{else}}
-<p class="text-danger">{{fa-icon 'exclamation-triangle' size='lg'}} No scheduled shifts were found for {{year}}</p>
+  {{#if slots}}
+    <p class="text-danger">No upcoming shifts were found.</p>
+  {{else}}
+    <p class="text-danger">No shifts were found for {{year}}</p>
+  {{/if}}
 {{/if}}
 {{/ch-box}}

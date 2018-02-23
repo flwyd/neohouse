@@ -1,31 +1,15 @@
 import Controller from '@ember/controller';
+import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
 import EmergencyContactValidations from 'neohouse/validations/emergency-contact';
 
-export default Controller.extend({
+export default Controller.extend(ClubhouseControllerMixins, {
   EmergencyContactValidations,
 
-  isLoading: false,
-
   actions: {
-    submit(model, isValid, originalModel) {
-      if (!isValid)
-        return;
-
-      const flash = this.get('flash');
-      const self = this;
-
-      flash.clearMessages();
-
-      return model.save().then(function() {
-        flash.success('The emergency contact information was successfully updated.');
-
-        self.transitionToRoute('person.emergency-contact-show');
-      }).catch(() => {
-        originalModel.get('errors').forEach((error) => {
-          model.pushErrors(error.attribute,  error.message);
-        });
-        flash.warning('The information could not be updated.');
-      })
+    submit(model, isValid) {
+      this.saveModel(model, isValid,
+        'The emergency contact information was successfully updated.',
+        'person.emergency-contact-show');
     },
   }
 

@@ -20,7 +20,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
       return this.ajax.request('/auth/reset-password', {
         method: 'POST',
         data: { identification }
-      }).then((result) => {
+      }).then(() => {
         flash.success(`Instructions to reset your password will be sent to you shortly. Please check your email '${identification}'.`);
         self.transitionTo('login');
       }).catch(function(response) { self.handleErrorResponse(response) });
