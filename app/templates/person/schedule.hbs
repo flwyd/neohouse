@@ -25,7 +25,7 @@
         <th class="d-print-none">Actions</th>
       </thead>
       <tbody>
-        {{#each slots as |slot slotidx| }}
+        {{#each viewSlots as |slot slotidx| }}
           <tr>
             <td>{{slot.slot_begins}}</td>
             <td>{{slot.slot_ends}}</td>
@@ -47,9 +47,9 @@
         {{/each}}
           <tr>
           <td colspan="2" class="text-right">Total Time</td>
-          <td class="text-right">{{hour-minute-format totalDuration}}</td>
+          <td class="text-right">{{hour-minute-format (sum-column slots 'slot_duration')}}</td>
           <td colspan="2" class="text-right">Total Credits</td>
-          <td class="text-right">{{credits-format totalCredits}}</td>
+          <td class="text-right">{{credits-format (sum-column slots 'credits')}}</td>
           <td>&nbsp;</td>
         </tr>
       </tbody>

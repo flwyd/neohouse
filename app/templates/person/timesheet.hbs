@@ -1,0 +1,50 @@
+{{#ch-box (concat "Timesheet for " year)}}
+{{#if timesheets}}
+<div class="table-responsive">
+  <table class="table table-hover schedule-table">
+    <thead class="thead-light">
+      <th>From</th>
+      <th>To</th>
+      <th class="text-right">Duration</th>
+      <th class="text-right">Credits</th>
+      <th>Position</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      {{#each timesheets as |ts|}}
+        <tr>
+          <td>{{ts.on_duty}}</td>
+          <td>{{ts.off_duty}}</td>
+          <td class="text-right">{{hour-minute-format ts.duration}}</td>
+          <td class="text-right">{{credits-format ts.credits}}</td>
+          <td>{{ts.position_title}}</td>
+          <td>&nbsp;</td>
+        </tr>
+      {{/each}}
+      <tr>
+        <td colspan="2" class="text-right">
+          Totals
+        </td>
+        <td class="text-right">
+          {{hour-minute-format (sum-column timesheets 'duration')}}
+        </td>
+        <td class="text-right">
+          {{credits-format (sum-column timesheets 'credits')}}
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td colspan="6">
+          {{#each positions as |position|}}
+          <span class="mr-3"><strong>{{position.title}}</strong> ({{position.total}}: {{hour-minute-format position.duration}}, {{credits-format position.credits}})</span>
+          {{/each}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{{else}}
+<div class="mt-2 text-danger">No timesheets were found for {{year}}.</div>
+{{/if}}
+{{/ch-box}}

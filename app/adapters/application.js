@@ -6,6 +6,7 @@ import ENV from 'neohouse/config/environment';
 const inflector = Inflector.inflector;
 
 inflector.uncountable('person');
+inflector.uncountable('timesheet');
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV['api-server'],

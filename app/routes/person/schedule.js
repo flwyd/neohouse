@@ -13,11 +13,17 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
     };
 
     return this.store.query('person-slot', scheduleParams)
-        .then((slots) => { model.slots = slots; });
+        .then((slots) => { model.slots = slots; })
+        .catch((response) => {
+          alert("Failed to retrieve slots: "+response);
+        });
   },
 
   setupController(controller, model) {
     this._super(...arguments);
     controller.set('slots', model.slots);
+
+    controller.set('viewSchedule',
+        (model.year == (new Date()).getFullYear()) ? 'upcoming' : 'all');
   }
 });

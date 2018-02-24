@@ -5,7 +5,7 @@ export function hourMinuteFormat([ duration ]) {
     duration = 0;
   }
 
-  const minutes = (duration / 60) % 60;
+  const minutes = Math.floor((duration / 60) % 60);
   const hours =  Math.floor(duration / 3600);
 
   if (minutes < 10) {

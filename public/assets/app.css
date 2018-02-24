@@ -155,7 +155,7 @@ body>.container, body>.container-fluid {
   padding-left: 10px;
 }
 
-.schedule-table tbody {
+.schedule-table {
   font-family: 'Roboto Mono';
   font-size: 0.9em;
 }
@@ -196,4 +196,8 @@ body>.container, body>.container-fluid {
 
 .year-select {
   font-size: 1.4em;
+}
+
+.sidebar-active {
+  background-color: #4b4f53 !important;
 }
