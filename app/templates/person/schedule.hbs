@@ -40,7 +40,9 @@
             <td>{{slot.position_title}}</td>
             <td class="text-right">{{credits-format slot.credits}}</td>
             <td class="d-print-none">
-              <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger">{{fa-icon 'trash-alt' type='fas'}}</a>
+              {{#unless slot.has_started}}
+                <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger">{{fa-icon 'trash-alt' type='fas'}}</a>
+              {{/unless}}
               <a href="#" {{action 'showPeople' slot}} class="btn btn-info">{{fa-icon 'users' type='fas'}}</a>
             </td>
           </tr>

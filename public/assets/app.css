@@ -93,7 +93,7 @@ body>.container, body>.container-fluid {
 /* Sidebar sizes when expanded and expanded */
 
 .sidebar-expanded {
-  width: 230px;
+  width: 210px;
 }
 
 .sidebar-collapsed {
@@ -105,6 +105,7 @@ body>.container, body>.container-fluid {
 #sidebar-container .list-group a {
   height: 50px;
   color: white;
+  font-size: 0.9em;
 }
 
 /* Submenu item*/

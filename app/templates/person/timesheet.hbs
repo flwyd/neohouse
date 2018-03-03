@@ -15,8 +15,20 @@
         <tr>
           <td>{{ts.on_duty}}</td>
           <td>{{ts.off_duty}}</td>
-          <td class="text-right">{{hour-minute-format ts.duration}}</td>
-          <td class="text-right">{{credits-format ts.credits}}</td>
+          <td class="text-right">
+              {{#if ts.off_duty}}
+                {{hour-minute-format ts.duration}}
+              {{else}}
+                <i>On Duty</i>
+              {{/if}}
+            </td>
+          <td class="text-right">
+            {{#if ts.off_duty}}
+                {{credits-format ts.credits}}
+            {{else}}
+                &nbsp;
+            {{/if}}
+          </td>
           <td>{{ts.position_title}}</td>
           <td>&nbsp;</td>
         </tr>
@@ -46,5 +58,13 @@
 </div>
 {{else}}
 <div class="mt-2 text-danger">No timesheets were found for {{year}}.</div>
+{{/if}}
+
+{{#if (config 'TimesheetCorrectionEnable')}}
+<a
+  href="{{concat (config 'TimesheetCorrectionBaseUrl') person.callsign}}"
+  class="text-danger"
+  target="_blank">
+    Click here to request a correction or report a missing shift</a> (opens a new window for a Google Form)
 {{/if}}
 {{/ch-box}}
