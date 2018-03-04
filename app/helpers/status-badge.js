@@ -21,11 +21,11 @@ export function statusBadge([ status ]) {
   case PersonStatus.ACTIVE:
   case PersonStatus.AUDITOR:
   case PersonStatus.VINTAGE:
-    color = 'success';
+    color = 'secondary';
     break;
 
   default:
-    color = 'secondary';
+    color = 'warning';
     break;
   }
   return htmlSafe(`<span class="badge badge-${color}">${status}</span>`);

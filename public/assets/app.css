@@ -18,12 +18,6 @@
       url('webfonts/RobotoMono-Bold.ttf') format('truetype');
 }
 
-body {
-  /* Margin bottom by footer height */
-  /*margin-bottom: 150px;*/
-  padding-top: 3.5rem;
-}
-
 @media not print {
   body {
     background-color: #fff4e5;
@@ -31,7 +25,7 @@ body {
 }
 
 main {
-  margin-top: 10px
+  margin-top: 10px;
 }
 
 .footer {
@@ -45,10 +39,6 @@ main {
 .footer a, .footer a:visited {
   color: #000;
   font-weight: bold;
-}
-
-body>.container, body>.container-fluid {
-  padding: 60px 15px 0;
 }
 
 .footer>.container {
@@ -83,61 +73,55 @@ body>.container, body>.container-fluid {
 }
 
 /* Sidebar CSS */
+#body-row {
+    margin-left:0;
+    margin-right:0;
+}
 
 #sidebar-container {
-  min-height: 100vh;
-  background-color: #333;
-  padding: 0;
+    min-height: 100vh;
+    background-color: #333;
+    padding: 0;
 }
 
 /* Sidebar sizes when expanded and expanded */
-
 .sidebar-expanded {
-  width: 210px;
+    width: 230px;
 }
-
 .sidebar-collapsed {
-  width: 60px;
+    width: 60px;
 }
 
 /* Menu item*/
-
 #sidebar-container .list-group a {
-  height: 50px;
-  color: white;
-  font-size: 0.9em;
+    height: 50px;
+    color: white;
 }
 
 /* Submenu item*/
-
 #sidebar-container .list-group .sidebar-submenu a {
-  height: 45px;
-  padding-left: 30px;
+    height: 45px;
+    padding-left: 30px;
 }
-
 .sidebar-submenu {
-  font-size: 0.9rem;
+    font-size: 0.9rem;
 }
 
 /* Separators */
-
 .sidebar-separator-title {
-  background-color: #333;
-  height: 35px;
+    background-color: #333;
+    height: 35px;
 }
-
 .sidebar-separator {
-  background-color: #333;
-  height: 25px;
+    background-color: #333;
+    height: 25px;
 }
-
 .logo-separator {
-  background-color: #333;
-  height: 60px;
+    background-color: #333;
+    height: 60px;
 }
 
 /* Closed submenu icon */
-
 #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
   content: " \f0d7";
   font-family: FontAwesome;
@@ -145,9 +129,7 @@ body>.container, body>.container-fluid {
   text-align: right;
   padding-left: 10px;
 }
-
 /* Opened submenu icon */
-
 #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
   content: " \f0da";
   font-family: FontAwesome;
@@ -155,17 +137,46 @@ body>.container, body>.container-fluid {
   text-align: right;
   padding-left: 10px;
 }
+/* end of sidebar */
+
 
 .schedule-table {
   font-family: 'Roboto Mono';
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 @media print {
   .schedule-table th {
     background-color: #e9ecef;
   }
+  .schedule-table {
+    font-size: 1em;
+  }
 }
+
+.schedule-table td {
+  vertical-align: top;
+}
+.schedule-time {
+  width: 20%;
+}
+
+.schedule-duration {
+  width: 5%;
+}
+
+.schedule-credits {
+  width: 5%;
+}
+
+.schedule-description {
+  width: 25%;
+}
+
+.schedule-actions {
+  width: 12%;
+}
+
 
 .form-check-label:hover {
   background-color: #f0f0f0;
@@ -201,4 +212,20 @@ body>.container, body>.container-fluid {
 
 .sidebar-active {
   background-color: #4b4f53 !important;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-primary {
+  color: #200;
+  background-color: #d2b48c;
+  border-color: #d2b48c;
+}
+
+.btn-info {
+  color: #200;
+  background-color: #d2b48c;
+  border-color: #d2b48c;
 }

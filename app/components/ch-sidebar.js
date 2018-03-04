@@ -12,9 +12,9 @@ const sidebarCollapse = function(event) {
   // Treating d-flex/d-none on separators with title
   var separatorTitle = $('.sidebar-separator-title');
   if (separatorTitle.hasClass('d-flex')) {
-    separatorTitle.removeClass('d-flex');
+      separatorTitle.removeClass('d-flex');
   } else {
-    separatorTitle.addClass('d-flex');
+      separatorTitle.addClass('d-flex');
   }
 
   // Collapse/Expand icon

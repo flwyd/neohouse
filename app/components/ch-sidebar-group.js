@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  title: ''
+  title: '',
+  tagName: '',
 }).reopenClass({
   positionalParams: [ 'title' ]
 });

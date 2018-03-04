@@ -20,7 +20,7 @@
               </td>
               <td class="person-message-sent">
                 {{moment-format message.sent_at 'MMM DD HH:MM'}}
-                <span class="text-muted small">({{moment-from-now message.sent_at}})</span>
+                <div class="text-muted small">({{moment-from-now message.sent_at}})</div>
               </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
                       class="btn btn-primary btn-sm"
                   }}Reply{{/link-to}}
                   {{#unless message.is_read}}
-                  <button {{action 'markRead' message}} type="button" class="btn btn-success btn-sm">Mark Read</button>
+                  <button {{action 'markRead' message}} type="button" class="btn btn-secondary btn-sm">Mark Read</button>
                   {{/unless}}
                 </p>
               </td>

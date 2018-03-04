@@ -14,7 +14,7 @@ export default Component.extend({
     }
 
     return (url == '#' || url.startsWith('http'));
-  })
+  }),
 }).reopenClass({
   positionalParams: [ 'routePath', 'routeArg' ]
 });

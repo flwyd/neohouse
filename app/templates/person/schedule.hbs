@@ -14,45 +14,43 @@
 {{#print-this printSelector=".schedule-print" as |doPrint|}}
   <div class="schedule-print">
     <div class="d-none d-print-block"><h2>{{person.callsign}} Schedule {{year}}</h2></div>
-    <table class="table table-hover schedule-table">
+    <table class="table table-hover schedule-table table-sm">
       <thead class="thead-light">
-        <th>Starts</th>
-        <th>Ends</th>
-        <th class="text-right">Duration</th>
-        <th>Description</th>
-        <th>Position</th>
-        <th class="text-right">Credits</th>
-        <th class="d-print-none">Actions</th>
+        <th class="schedule-time">Starts</th>
+        <th class="schedule-time">Ends</th>
+        <th class="schedule-duration text-right">Time</th>
+        <th class="schedule-credits text-right">Credits</th>
+        <th class="schedule-description">Position / Description</th>
+        <th class="schedule-actions d-print-none">Actions</th>
       </thead>
       <tbody>
         {{#each viewSlots as |slot slotidx| }}
           <tr>
-            <td>{{slot.slot_begins}}</td>
-            <td>{{slot.slot_ends}}</td>
-            <td class="text-right">{{hour-minute-format slot.slot_duration}}</td>
-            <td>
+            <td class="schedule-time">{{slot.slot_begins}}</td>
+            <td class="schedule-time">{{slot.slot_ends}}</td>
+            <td class="schedule-duration text-right">{{hour-minute-format slot.slot_duration}}</td>
+            <td class="schedule-credits text-right">{{credits-format slot.credits}}</td>
+            <td class="schedule-description">
+              {{slot.position_title}}<br>
               {{#if slot.slot_url}}
                 <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
               {{else}}
                 {{slot.slot_description}}
               {{/if}}
             </td>
-            <td>{{slot.position_title}}</td>
-            <td class="text-right">{{credits-format slot.credits}}</td>
-            <td class="d-print-none">
+            <td class="schedule-actions d-print-none">
               {{#unless slot.has_started}}
-                <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger">{{fa-icon 'trash-alt' type='fas'}}</a>
+                <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger btn-sm">{{fa-icon 'trash-alt' type='fas'}}</a>
               {{/unless}}
-              <a href="#" {{action 'showPeople' slot}} class="btn btn-info">{{fa-icon 'users' type='fas'}}</a>
+              <a href="#" {{action 'showPeople' slot}} class="btn btn-info btm-sm">{{fa-icon 'users' type='fas'}}</a>
             </td>
           </tr>
         {{/each}}
           <tr>
-          <td colspan="2" class="text-right">Total Time</td>
+          <td colspan="2" class="text-right">Total Time / Credits</td>
           <td class="text-right">{{hour-minute-format (sum-column slots 'slot_duration')}}</td>
-          <td colspan="2" class="text-right">Total Credits</td>
           <td class="text-right">{{credits-format (sum-column slots 'credits')}}</td>
-          <td>&nbsp;</td>
+          <td colspan="2" class="d-print-none">&nbsp;</td>
         </tr>
       </tbody>
     </table>
