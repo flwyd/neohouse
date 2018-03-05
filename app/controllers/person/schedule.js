@@ -36,7 +36,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
       return slots;
     }
 
-    return slots.filter((slot) => slot.get('has_ended'))
+    return slots.filter((slot) => !slot.get('has_started'))
 
   }),
 
@@ -55,13 +55,12 @@ export default Controller.extend(ClubhouseControllerMixins, {
         .catch((response) => self.handleErrorResponse(response));
     },
 
-    removeSlot(slot) {
+    leaveSlot(slot) {
       if (!confirm('Are you sure?'))
         return;
 
       const slots = this.get('slots');
       const flash = this.get('flash');
-      const ajax = this.get('ajax');
       const personId = this.get('person.id');
 
       flash.clearMessages();

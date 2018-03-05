@@ -158,23 +158,27 @@ main {
   vertical-align: top;
 }
 .schedule-time {
-  width: 20%;
+  width: 16%;
 }
 
 .schedule-duration {
-  width: 5%;
+  width: 4%;
 }
 
 .schedule-credits {
-  width: 5%;
+  width: 4%;
 }
 
 .schedule-description {
-  width: 25%;
+  width: 20%;
 }
 
 .schedule-actions {
-  width: 12%;
+  width: 10%;
+}
+
+.schedule-full {
+  width: 5%;
 }
 
 

@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import { computed } from '@ember/object';
 
 export default DS.Model.extend({
   // the position row id
@@ -35,4 +36,7 @@ export default DS.Model.extend({
   // The year this slot occurs
   year:             DS.attr('number', { readOnly: true }),
 
+  isFull: computed('slot_signed_up', 'slot_max', function() {
+    return (this.get('slot_signed_up') >= this.get('slot_max'));
+  }),
 });

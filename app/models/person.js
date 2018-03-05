@@ -4,6 +4,7 @@ import { memberAction } from 'ember-api-actions';
 import { typeOf } from '@ember/utils';
 
 import * as PersonStatus from 'neohouse/constants/person_status';
+import { roleName } from 'neohouse/constants/roles';
 
 export default DS.Model.extend({
   first_name:         DS.attr('string'),
@@ -109,33 +110,49 @@ export default DS.Model.extend({
     return (status == PersonStatus.ALPHA || status == PersonStatus.PROSPECTIVE);
   }),
 
-  //
-  // API methods
-  //
-
-  changePassword: memberAction({ path: 'password', type: 'patch'}),
-
-  retrieveLanguages: memberAction({ path: 'languages', type: 'get'}),
-
-  hasRole(...roles) {
+  hasRole(roles) {
     let personRoles = this.get('roles');
 
     if (!personRoles) {
       return false;
+    }
+
+    if (typeOf(roles) != 'array') {
+      roles = [ roles ];
     }
 
     return roles.some(r => personRoles.includes(r));
   },
 
-  hasAllRoles(...roles) {
+  hasAllRoles(roles) {
     let personRoles = this.get('roles');
 
     if (!personRoles) {
       return false;
     }
 
+    if (typeOf(roles) != 'array') {
+      roles = [ roles ];
+    }
+
     const count = roles.filter((r) => personRoles(r));
 
     return (count == roles.length);
-  }
+  },
+
+  roleNames: computed('roles', function() {
+    let personRoles = this.get('roles');
+
+    if (!personRoles) {
+      return 'none';
+    }
+
+    let names = [];
+
+    personRoles.forEach((role) => {
+      names.push(roleName(role))
+    });
+
+    return names.join(',');
+  }),
 });

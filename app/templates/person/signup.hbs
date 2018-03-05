@@ -1,0 +1,47 @@
+{{#ch-box (concat 'Shift Signup Sheet ' year)}}
+{{#each slotGroups as |group|}}
+  <h2>{{group.title}}</h2>
+  <table class="table table-hover schedule-table table-sm">
+    <thead>
+      <tr>
+        <th class="schedule-time">From</th>
+        <th class="schedule-time">To</th>
+        <th class="schedule-credits text-right">Credits</th>
+        <th class="schedule-description">Description</th>
+        <th class="schedule-full">Signups</th>
+        <th class="schedule-actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each group.slots as |slot|}}
+        <tr class="{{if slot.person_assigned 'table-warning'}}">
+          <td class="schedule-time">{{slot.slot_begins}}</td>
+          <td class="schedule-time">{{slot.slot_ends}}</td>
+          <td class="schedule-credits text-right">{{credits-format slot.credits}}</td>
+          <td class="schedule-description">
+            {{#if slot.slot_url}}
+              <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
+            {{else}}
+              {{slot.slot_description}}
+            {{/if}}
+          </td>
+          <td class="schedule-full">
+            {{slot.slot_signed_up}} / {{slot.slot_max}}
+          </td>
+          <td class="schedule-actions">
+            <a href="#" {{action 'showPeople' slot}} class="btn btn-primary btn-sm">{{fa-icon 'users' type='fas'}}</a>
+            {{#if slot.person_assigned}}
+              <a href="#" {{action 'leaveSlot' slot}} class="btn btn-danger btn-sm">{{fa-icon 'trash-alt' type='fas'}}</a>
+            {{else}}
+              {{#if (or (not slot.isFull) (has-role 'admin')) }}
+                <a href="#" {{action 'joinSlot' slot}} class="btn btn-secondary btn-sm">{{fa-icon 'user-plus' type='fas'}}</a>
+              {{/if}}
+            {{/if}}
+          </td>
+        </tr>
+        {{/each}}
+    </tbody>
+  </table>
+{{/each}}
+
+{{/ch-box}}

@@ -30,7 +30,7 @@
         <!-- Smaller devices menu END -->
       </ul>
       {{#if session.isAuthenticated}}
-        <span class="nav-text d-none-sm"><small>{{user.callsign}}</small></span>
+        <span class="nav-text d-none-sm"><small>{{user.callsign}} {{user.roleNames}}</small></span>
         <ul class="navbar-nav">
           <li class="nav-item"><a class='nav-link' {{action 'logout'}}>Logout</a></li>
         </ul>

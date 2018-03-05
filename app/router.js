@@ -29,6 +29,7 @@ Router.map(function() {
     this.route('message-new');
     this.route('schedule');
     this.route('timesheet');
+    this.route('signup');
   });
 
   this.route('search', function() {
