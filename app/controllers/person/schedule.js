@@ -47,7 +47,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
     showPeople(slot) {
       const self = this;
-      this.ajax.request('slot/'+slot.get('slot_id')+'/people')
+      this.ajax.request('slot/'+slot.get('id')+'/people')
         .then((result) => {
           const callsigns = result.people.map(function (person) { return person.callsign; })
           self.modal.info(slot.get('slot_begins')+' '+slot.get('slot_description'), callsigns.join(', '));
@@ -61,10 +61,12 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
       const slots = this.get('slots');
       const flash = this.get('flash');
+      const ajax = this.get('ajax');
+      const personId = this.get('person.id');
 
       flash.clearMessages();
 
-      slot.destroyRecord().then(() => {
+      slot.destroyRecord({ adapterOptions: { person_id: personId }}).then(() => {
         slots.removeObject(slot);
         flash.success('The slot has been deleted.');
       }).catch((err) => {

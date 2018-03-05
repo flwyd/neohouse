@@ -12,7 +12,7 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
       year,
     };
 
-    return this.store.query('person-slot', scheduleParams)
+    return this.store.query('schedule', scheduleParams)
         .then((slots) => { model.slots = slots; })
         .catch((response) => {
           alert("Failed to retrieve slots: "+response);

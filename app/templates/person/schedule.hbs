@@ -39,10 +39,8 @@
               {{/if}}
             </td>
             <td class="schedule-actions d-print-none">
-              {{#unless slot.has_started}}
-                <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger btn-sm">{{fa-icon 'trash-alt' type='fas'}}</a>
-              {{/unless}}
-              <a href="#" {{action 'showPeople' slot}} class="btn btn-info btm-sm">{{fa-icon 'users' type='fas'}}</a>
+              <a href="#" {{action 'showPeople' slot}} class="btn btn-primary btn-sm">{{fa-icon 'users' type='fas'}}</a>
+              <a href="#" {{action 'removeSlot' slot}} class="btn btn-danger btn-sm">{{fa-icon 'trash-alt' type='fas'}}</a>
             </td>
           </tr>
         {{/each}}
