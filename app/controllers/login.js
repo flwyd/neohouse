@@ -11,7 +11,6 @@ export default Controller.extend(ClubhouseControllerMixins, {
         return;
 
       let credentials = model.getProperties('identification', 'password');
-      this.flash.clearMessages();
 
       return this.session.authenticate('authenticator:jwt', credentials)
               .catch(function (response) { this.handleErrorResponse(response) }.bind(this));
