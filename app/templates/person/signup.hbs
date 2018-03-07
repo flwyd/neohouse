@@ -61,9 +61,7 @@
                   {{slot.slot_description}}
                 {{/if}}
               </td>
-              <td class="schedule-full">
-                {{slot.slot_signed_up}} / {{slot.slot_max}}
-              </td>
+              <td class="schedule-full"> {{slot-full-indicator slot}} </td>
               <td class="schedule-actions">
                 <a href="#" {{action 'showPeople' slot}} class="btn btn-primary btn-sm">{{fa-icon 'users' type='fas'}}</a>
                 {{#if slot.person_assigned}}

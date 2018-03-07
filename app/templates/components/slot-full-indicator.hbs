@@ -1,0 +1,8 @@
+{{#if slot.isFull}}
+<span class="text-danger">FULL</span>
+{{else}}
+<div class="progress position-relative" style="height: 1.75em;">
+  <div class="progress-bar bg-{{indicatorColor}}" role="progressbar" style="{{styleWidth}}"></div>
+  <span class="justify-content-center d-flex position-absolute w-100">{{slot.slot_signed_up}}/{{slot.slot_max}}</span>
+</div>
+{{/if}}

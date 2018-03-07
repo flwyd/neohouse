@@ -262,8 +262,12 @@ main {
 }
 
 .loading-spinner {
-  background: url('/assets/spinner.svg') no-repeat;
   height: 64px;
   width: 64px;
   margin: 0 auto;
+  -webkit-mask: url('/assets/spinner.svg') no-repeat 50% 50%;
+  mask: url('/assets/spinner.svg') no-repeat 50% 50%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background-color: black;
 }
