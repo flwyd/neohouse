@@ -5,16 +5,22 @@ export default Mixin.create({
     isLoading: false,
 
     handleErrorResponse(response) {
-      const flash = this.get('flash');
+      let message;
+      let responseErrors = '';
 
       console.log("Error Response: ", response);
 
-      const errors = [];
-      let message;
 
-      if (response && response.errors) {
-        response.errors.forEach(function(error) {
-          errors.push('<li>' + error.title + '</li>');
+      if (response) {
+        if (response.payload && response.payload.errors) {
+          responseErrors = response.payload.errors;
+        } else if (response.errors) {
+          responseErrors = response.errors;
+        }
+      }
+      if (responseErrors) {
+        const errors = responseErrors.map(function(error) {
+          return '<li>' + error.title + '</li>';
         })
         const plural = errors.length == 1? ' was' : 's were';
         message = `The following error${plural} encountered:<ul>${errors.join('')}<ul>`;
@@ -22,7 +28,7 @@ export default Mixin.create({
         message = 'A server error was encountered: ' + response;
       }
 
-      flash.add({
+      this.get('flash').add({
         type: 'danger',
         sticky: true,
         destroyOnClick: false,

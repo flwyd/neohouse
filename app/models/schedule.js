@@ -1,11 +1,14 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
+import moment from 'npm:moment';
 
 export default DS.Model.extend({
   // the position row id
   position_id:      DS.attr('number', { readOnly: true }),
   // position title associated with slot
   position_title:   DS.attr('string', { readOnly: true }),
+  // position type
+  position_type:    DS.attr('string', { readOnly: true }),
 
   // slot begin and end times. human formatted
   slot_begins:      DS.attr('string', { readOnly: true }),
@@ -39,4 +42,16 @@ export default DS.Model.extend({
   isFull: computed('slot_signed_up', 'slot_max', function() {
     return (this.get('slot_signed_up') >= this.get('slot_max'));
   }),
+
+  slotDay: computed('slot_begins', function() {
+    const begins = this.get('slot_begins');
+    let date;
+    try {
+      date = moment(begins).format('YYYY/MM/DD');
+    } catch (error) {
+      return begins + ' '+error;
+    }
+
+    return date;
+  })
 });

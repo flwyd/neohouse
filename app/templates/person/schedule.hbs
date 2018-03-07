@@ -26,8 +26,8 @@
       <tbody>
         {{#each viewSlots as |slot slotidx| }}
           <tr>
-            <td class="schedule-time">{{slot.slot_begins}}</td>
-            <td class="schedule-time">{{slot.slot_ends}}</td>
+            <td class="schedule-time">{{shift-format slot.slot_begins}}</td>
+            <td class="schedule-time">{{shift-format slot.slot_ends}}</td>
             <td class="schedule-duration text-right">{{hour-minute-format slot.slot_duration}}</td>
             <td class="schedule-credits text-right">{{credits-format slot.credits}}</td>
             <td class="schedule-description">

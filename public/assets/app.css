@@ -5,7 +5,7 @@
   font-style: normal;
   font-weight: 400;
   src: local('Roboto Mono'), local('RobotoMono-Regular'),
-        url('webfonts/RobotoMono-Regular.ttf') format('truetype');
+  url('webfonts/RobotoMono-Regular.ttf') format('truetype');
 }
 
 /* roboto-mono-700 - latin */
@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 700;
   src: local('Roboto Mono Bold'), local('RobotoMono-Bold'),
-      url('webfonts/RobotoMono-Bold.ttf') format('truetype');
+  url('webfonts/RobotoMono-Bold.ttf') format('truetype');
 }
 
 @media not print {
@@ -73,55 +73,69 @@ main {
 }
 
 /* Sidebar CSS */
+
 #body-row {
-    margin-left:0;
-    margin-right:0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #sidebar-container {
-    min-height: 100vh;
-    background-color: #333;
-    padding: 0;
+  min-height: 100vh;
+  background-color: #333;
+  padding: 0;
+}
+
+#sidebar-container a.list-group-item {
+  padding: 0.5rem;
 }
 
 /* Sidebar sizes when expanded and expanded */
+
 .sidebar-expanded {
-    width: 230px;
+  width: 220px;
 }
+
 .sidebar-collapsed {
-    width: 60px;
+  width: 60px;
 }
 
 /* Menu item*/
+
 #sidebar-container .list-group a {
-    height: 50px;
-    color: white;
+  height: 50px;
+  color: white;
 }
 
 /* Submenu item*/
+
 #sidebar-container .list-group .sidebar-submenu a {
-    height: 45px;
-    padding-left: 30px;
+  height: 45px;
+  padding-left: 30px;
 }
+
 .sidebar-submenu {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 /* Separators */
+
 .sidebar-separator-title {
-    background-color: #333;
-    height: 35px;
+  background-color: #333;
+  height: 35px;
 }
+
 .sidebar-separator {
-    background-color: #333;
-    height: 25px;
+  background-color: #333;
+  height: 25px;
 }
+
 .logo-separator {
-    background-color: #333;
-    height: 60px;
+  background-color: #333;
+  height: 60px;
 }
 
 /* Closed submenu icon */
+
 #sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
   content: " \f0d7";
   font-family: FontAwesome;
@@ -129,7 +143,9 @@ main {
   text-align: right;
   padding-left: 10px;
 }
+
 /* Opened submenu icon */
+
 #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
   content: " \f0da";
   font-family: FontAwesome;
@@ -137,8 +153,8 @@ main {
   text-align: right;
   padding-left: 10px;
 }
-/* end of sidebar */
 
+/* end of sidebar */
 
 .schedule-table {
   font-family: 'Roboto Mono';
@@ -157,6 +173,7 @@ main {
 .schedule-table td {
   vertical-align: top;
 }
+
 .schedule-time {
   width: 16%;
 }
@@ -189,7 +206,7 @@ main {
 /* Messages */
 
 .person-messages tbody tr:nth-child(4n-1),
- .person-messages tbody tr:nth-child(4n) {
+.person-messages tbody tr:nth-child(4n) {
   background-color: rgba(0, 0, 0, .04);
 }
 
@@ -215,7 +232,7 @@ main {
 }
 
 .sidebar-active {
-  background-color: #4b4f53 !important;
+  background-color: #747c84 !important;
 }
 
 .btn {
@@ -232,4 +249,21 @@ main {
   color: #200;
   background-color: #d2b48c;
   border-color: #d2b48c;
+}
+
+.loading-pane {
+  margin: 25px auto;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.loading-spinner {
+  background: url('/assets/spinner.svg') no-repeat;
+  height: 64px;
+  width: 64px;
+  margin: 0 auto;
 }
