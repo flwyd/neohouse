@@ -38,18 +38,15 @@ export default Controller.extend({
       }
 
       const self = this;
-      const flash = this.get('flash');
       const params = {
         query: model.get('query'),
         search_fields: model.get('search_fields').join(',')
       };
 
-      flash.clearMessages();
-
       return this.store.query('person', params).then(function(results) {
         self.set('searchResults', results);
-      }).catch((err) => {
-        flash.warning('The search could not be performed at this time.', err);
+      }).catch((response) => {
+        self.handleErrorResponse(response);
       });
     }
   }

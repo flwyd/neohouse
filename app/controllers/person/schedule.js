@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 export default Controller.extend(ClubhouseControllerMixins, {
   viewSchedule: 'upcoming',
 
-  totalCredits: computed('slots.[]', function() {
+  totalCredits: computed('slots', function() {
     let totalCredits = 0.0;
     const slots = this.get('slots');
 
@@ -16,7 +16,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     return totalCredits;
   }),
 
-  totalDuration: computed('slots.[]', function() {
+  totalDuration: computed('slots', function() {
     let totalDuration = 0;
 
     const slots = this.get('slots');
@@ -28,7 +28,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     return totalDuration;
   }),
 
-  viewSlots: computed('slots.[]', 'viewSchedule', function() {
+  viewSlots: computed('slots', 'viewSchedule', function() {
     const viewSchedule = this.get('viewSchedule');
     const slots = this.get('slots');
 
@@ -59,17 +59,17 @@ export default Controller.extend(ClubhouseControllerMixins, {
       if (!confirm('Are you sure?'))
         return;
 
-      const slots = this.get('slots');
-      const flash = this.get('flash');
+      let slots = this.get('slots');
       const personId = this.get('person.id');
+      const slotId = slot.get('id');
+      const self = this;
 
-      flash.clearMessages();
-
-      slot.destroyRecord({ adapterOptions: { person_id: personId }}).then(() => {
+      this.ajax.request(`person/${personId}/schedule/${slotId}`, {
+        method: 'DELETE',
+      }).then((result) => {
         slots.removeObject(slot);
-        flash.success('The slot has been deleted.');
       }).catch((err) => {
-        alert("The slot cannot be deleted at this time. "+err);
+        self.handleErrorResponse(err);
       })
     },
   }

@@ -11,14 +11,12 @@ export default Controller.extend(ClubhouseControllerMixins, {
         return;
       }
 
-      const flash = this.get('flash');
       const person = this.get('person');
 
       let passwords = model.getProperties('password_old', 'password', 'password_confirmation');
 
-      flash.clearMessages();
       return person.changePassword(passwords).then(function() {
-        flash.success('The password was successfully changed.');
+        self.notify.success('Password change successful.');
         self.transitionToRoute('person.overview');
       }).catch((response) => { self.handleErrorResponse(response) })
     },

@@ -38,10 +38,11 @@ module.exports = function(environment) {
       authorizationHeaderName  : 'Authorization',
       headers                  : {}
     },
-    flashMessageDefaults: {
-      sticky: false,
-      
-    },
+
+    'ember-cli-notifications': {
+      autoClear: true,
+      clearDuration: 5000,
+    }
   };
 
   if (environment === 'development') {

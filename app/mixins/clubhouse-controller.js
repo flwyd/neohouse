@@ -10,7 +10,6 @@ export default Mixin.create({
 
       console.log("Error Response: ", response);
 
-
       if (response) {
         if (response.payload && response.payload.errors) {
           responseErrors = response.payload.errors;
@@ -28,32 +27,23 @@ export default Mixin.create({
         message = 'A server error was encountered: ' + response;
       }
 
-      this.get('flash').add({
-        type: 'danger',
-        sticky: true,
-        destroyOnClick: false,
-        message: htmlSafe(message)
-      });
+      this.modal.info("There's a problem...", message);
     },
 
     saveModel(model, isValid, successMessage, routeAfterSave) {
       if (!isValid)
         return;
 
-      const flash = this.get('flashMessages');
       const self = this;
 
       if (!model.get('isDirty')) {
-        flash.success(successMessage);
+        self.notify.success(successMessage);
         self.transitionToRoute(routeAfterSave);
         return;
       }
 
-
-      flash.clearMessages();
-
       return model.save().then(function() {
-        flash.success(successMessage);
+        self.notify.success(successMessage);
         self.transitionToRoute(routeAfterSave);
       }).catch((response) => {
         self.handleErrorResponse(response);

@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
   styleWidth: computed('slot', function() {
@@ -7,7 +8,7 @@ export default Component.extend({
     const signedUp = slot.get('slot_signed_up');
     const max = slot.get('slot_max');
 
-    return `width: ${((signedUp*100)/max)}%`;
+    return htmlSafe(`width: ${Math.floor((signedUp*100)/max)}%`);
   }),
 
   indicatorColor: computed('slot', function() {
@@ -16,11 +17,7 @@ export default Component.extend({
     const max = slot.get('slot_max');
     const percent = signedUp/max;
 
-    if (percent > 0.85) {
-      return 'warning';
-    } else {
-      return 'success';
-    }
+    return htmlSafe(percent > 0.85 ? 'warning' : 'success');
   }),
 }).reopenClass({
   positionalParams: [ 'slot' ]

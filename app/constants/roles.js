@@ -45,6 +45,6 @@ const RoleToString = {
 
 function roleName(role) {
   return (RoleToString[role] || role);
-};
+}
 
 export { roleName, StringToRole, RoleToString };

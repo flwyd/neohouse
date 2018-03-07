@@ -26,10 +26,8 @@ export default Controller.extend(ClubhouseControllerMixins, {
         return;
       }
 
-      const flash = this.get('flash');
+      const notify = this.get('notify');
       const person = this.get('person');
-
-      flash.clearMessages();
 
       // Hacker here - person_id is used to build the URL up
       // based on the sender, not recipient. This will be
@@ -37,7 +35,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
       model.set('person_id', person.get('id'));
 
       return model.save().then(function() {
-        flash.success(`The message was sent to ${model.get('recipient_callsign')}.`);
+        notify.success(`Message sent to ${model.get('recipient_callsign')}.`);
         self.transitionToRoute('person.messages');
       }).catch(function (response) {
         this.handleErrorResponse(response)

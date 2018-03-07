@@ -8,7 +8,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
   actions: {
     submit(model, isValid) {
       this.saveModel(model, isValid,
-        'The emergency contact information was successfully updated.',
+        'Emergency contact info updated.',
         'person.emergency-contact-show');
     },
   }

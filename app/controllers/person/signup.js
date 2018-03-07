@@ -137,7 +137,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
   actions: {
     joinSlot(slot) {
-      const flash = this.get('flash');
+      const notify = this.get('notify');
       const modal = this.get('modal');
       const personId = this.get('person.id');
       const slotId = slot.get('id');
@@ -155,9 +155,9 @@ export default Controller.extend(ClubhouseControllerMixins, {
           slot.set('person_assigned', true);
           slot.set('slot_signed_up', response.signed_up);
           if (response.forced) {
-            flash.warning('The slot has been added the schedule. However, the is slot overcapacity.')
+            modal.info('Shift is full', 'The shift has been added to the schedule. However, the shift is overcapacity.')
           } else {
-            flash.success('Successfully signed up.');
+            notify.success('Successfully signed up.');
           }
       }).catch((response) => {
         if (!response.payload) {
@@ -167,7 +167,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
         switch (response.payload.status) {
           case 'full':
-            modal.info('The shift is full.', 'The slot is at capacity with '+slot.get('slot_signed_up')+' indivduals signed up.');
+            modal.info('The shift is full.', 'The shift is at capacity with '+slot.get('slot_signed_up')+' indivduals signed up.');
             break;
 
           case 'no-slot':
@@ -193,19 +193,16 @@ export default Controller.extend(ClubhouseControllerMixins, {
       if (!confirm('Are you sure?'))
         return;
 
-      const slots = this.get('slots');
-      const flash = this.get('flash');
+      const notify = this.get('notify');
       const personId = this.get('person.id');
+      const slotId = slot.get('id');
 
-      flash.clearMessages();
-
-      slot.destroyRecord({
-        adapterOptions: {
-          person_id: personId
-        }
-      }).then(() => {
-        slots.set('person_assigned', false);
-        flash.success('The shift sign up has been removed.');
+      this.ajax.request(`person/${personId}/schedule/${slotId}`, {
+        method: 'DELETE',
+      }).then((result) => {
+        slot.set('person_assigned', false);
+        slot.set('slot_signed_up', result.signed_up);
+        notify.success('The shift sign up has been removed.');
       }).catch((err) => {
         this.handleErrorResponse(err);
       })

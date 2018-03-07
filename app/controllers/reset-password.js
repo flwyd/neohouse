@@ -12,16 +12,13 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
       let identification = model.get('identification');
 
-      const flash = this.get('flash');
       const self = this;
-
-      flash.clearMessages();
 
       return this.ajax.request('/auth/reset-password', {
         method: 'POST',
         data: { identification }
       }).then(() => {
-        flash.success(`Instructions to reset your password will be sent to you shortly. Please check your email '${identification}'.`);
+        self.modal.info('Reset password instructions sent.', `Instructions to reset your password will be sent to you shortly. Please check your email '${identification}'.`);
         self.transitionTo('login');
       }).catch(function(response) { self.handleErrorResponse(response) });
     }

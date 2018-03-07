@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import { computed } from '@ember/object';
-import { memberAction } from 'ember-api-actions';
+//import { memberAction } from 'ember-api-actions';
 import { typeOf } from '@ember/utils';
 
 import * as PersonStatus from 'neohouse/constants/person_status';

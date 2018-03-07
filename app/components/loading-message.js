@@ -5,4 +5,3 @@ export default Component.extend({
 }).reopenClass({
   positionalParams: [ 'message' ]
 });
-;
