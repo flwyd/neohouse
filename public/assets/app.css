@@ -83,10 +83,12 @@ main {
   min-height: 100vh;
   background-color: #333;
   padding: 0;
+  /*  position:fixed;
+  z-index: 1;*/
 }
 
 #sidebar-container a.list-group-item {
-  padding: 0.5rem;
+  padding: 0.75rem 0.5rem;
 }
 
 /* Sidebar sizes when expanded and expanded */
@@ -95,8 +97,16 @@ main {
   width: 220px;
 }
 
+.sidebar-offset-expanded {
+  padding-left: 230px;
+}
+
+.sidebar-offset-collapsed {
+  padding-left: 55px;
+}
+
 .sidebar-collapsed {
-  width: 60px;
+  width: 45px;
 }
 
 /* Menu item*/
@@ -270,4 +280,96 @@ main {
   -webkit-mask-size: cover;
   mask-size: cover;
   background-color: black;
+}
+
+.ranger-logo {
+  margin-top: 20px;
+  height: 200px;
+  width: 200px;
+  mask: url('/assets/ranger-logo.svg') no-repeat 50% 50%;
+  -webkit-mask: url('/assets/ranger-logo.svg') no-repeat 50% 50%;
+
+  -webkit-mask-size: cover;
+  mask-size: cover;
+
+  background-color: #ececec;
+}
+
+/* this will be overridden if the screen is small
+ * enough to have the responsive table query kick in.
+ */
+
+.td-number {
+  text-align: right;
+}
+
+/*
+ * CSS responsive tables
+ */
+
+@media only screen and (max-width: 800px) {
+
+  .table-rc {
+    font-size: 1rem !important;
+  }
+  /* Force table to not be like tables anymore */
+  .table-rc table,
+  .table-rc thead,
+  .table-rc tbody,
+  .table-rc th,
+  .table-rc td,
+  .table-rc tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .table-rc thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table-rc tr {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+
+  .table-rc td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 36%;
+    white-space: normal;
+    text-align: left;
+    width: 100%;
+  }
+
+  .table-rc-hide {
+    display: none !important;
+  }
+
+  .table-rc td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 12px;
+    left: 8px;
+    width: 35%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  /*
+	Label the data
+	*/
+  .table-rc td:before {
+    content: attr(data-title);
+  }
+
+  .table-rc .td-number {
+    text-align: normal !important;
+  }
 }

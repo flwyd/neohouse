@@ -2,12 +2,11 @@ import Component from '@ember/component';
 import $ from 'jquery';
 
 const sidebarCollapse = function(event) {
-  event.preventDefault();
-
   $('.menu-collapsed').toggleClass('d-none');
   $('.sidebar-submenu').toggleClass('d-none');
   $('.submenu-icon').toggleClass('d-none');
   $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+  //$('main').toggleClass('sidebar-offset-expanded sidebar-offset-collapsed');
 
   // Treating d-flex/d-none on separators with title
   var separatorTitle = $('.sidebar-separator-title');
@@ -19,13 +18,15 @@ const sidebarCollapse = function(event) {
 
   // Collapse/Expand icon
   $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+
+  return false;
 };
 
 export default Component.extend({
   elementId: 'sidebar-container',
-  classNames: [ 'sidebar-expanded', 'd-none', 'd-md-block' ],
+  classNames: [ 'sidebar-expanded', 'col' ], //'d-none', 'd-sm-block', 'col' ],
 
-  didRender() {
+  didInsertElement() {
     // Hide submenus
     $('#body-row .collapse').collapse('hide');
 
@@ -34,6 +35,10 @@ export default Component.extend({
 
     // Collapse click
     $('[data-toggle=sidebar-colapse]').click(sidebarCollapse);
+
+    if ($(window).width() < 600) {
+      sidebarCollapse();
+    }
   },
 
   willDestroyElement() {

@@ -37,12 +37,12 @@
   {{#if slotGroups}}
     {{#each slotGroups as |group|}}
       <h1>{{group.title}}</h1>
-      <table class="table table-hover schedule-table table-sm">
+      <table class="table table-hover schedule-table table-sm table-rc">
         <thead>
           <tr>
             <th class="schedule-time">From</th>
             <th class="schedule-time">To</th>
-            <th class="schedule-credits text-right">Credits</th>
+            <th class="schedule-credits td-number">Credits</th>
             <th class="schedule-description">Description</th>
             <th class="schedule-full">Signups</th>
             <th class="schedule-actions">Actions</th>
@@ -51,18 +51,18 @@
         <tbody>
           {{#each group.slots as |slot|}}
             <tr class="{{if slot.person_assigned 'table-warning'}}">
-              <td class="schedule-time">{{shift-format slot.slot_begins}}</td>
-              <td class="schedule-time">{{shift-format slot.slot_ends}}</td>
-              <td class="schedule-credits text-right">{{credits-format slot.credits}}</td>
-              <td class="schedule-description">
+              <td class="schedule-time" data-title="From">{{shift-format slot.slot_begins}}</td>
+              <td class="schedule-time" data-title="To">{{shift-format slot.slot_ends}}</td>
+              <td class="schedule-credits td-number" data-title="Credits">{{credits-format slot.credits}}</td>
+              <td class="schedule-description" data-title="Description">
                 {{#if slot.slot_url}}
                   <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
                 {{else}}
                   {{slot.slot_description}}
                 {{/if}}
               </td>
-              <td class="schedule-full"> {{slot-full-indicator slot}} </td>
-              <td class="schedule-actions">
+              <td class="schedule-full" data-title="Signups"> {{slot-full-indicator slot}} </td>
+              <td class="schedule-actions" data-title="Actions">
                 <a href="#" {{action 'showPeople' slot}} class="btn btn-primary btn-sm">{{fa-icon 'users' type='fas'}}</a>
                 {{#if slot.person_assigned}}
                   <a href="#" {{action 'leaveSlot' slot}} class="btn btn-danger btn-sm">{{fa-icon 'trash-alt' type='fas'}}</a>

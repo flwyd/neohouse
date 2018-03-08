@@ -18,7 +18,7 @@ RSVP.on('error', function(error) {
 });
 
 Ember.onerror = function(error) {
-  console.error(error);
+  console.error(error.stack);
   // TODO - log exception to server
 
   if (error.stack) {
