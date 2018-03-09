@@ -215,26 +215,8 @@ main {
 
 /* Messages */
 
-.person-messages tbody tr:nth-child(4n-1),
-.person-messages tbody tr:nth-child(4n) {
-  background-color: rgba(0, 0, 0, .04);
-}
-
-.person-message-sender {
-  width: 15%;
-}
-
-.person-message-text {
-  width: 55%;
-}
-
-.person-message-sent {
-  width: 25%;
-}
-
-
-.person-messages td {
-  border-top: none;
+.person-message-box {
+  border-bottom: 1px solid #dcdcdc;
 }
 
 .year-select {

@@ -8,7 +8,7 @@ export default DS.Model.extend({
   // Only used for creating the message
   recipient_callsign: DS.attr('string'),
 
-  sender_id:          DS.attr('number', { readOnly: true }),
+  sender_person_id:   DS.attr('number', { readOnly: true }),
   message_from:       DS.attr('string'),
 
   creator_person_id:  DS.attr('number', { readOnly: true }),
@@ -16,12 +16,12 @@ export default DS.Model.extend({
 
   subject:            DS.attr('string'),
   body:               DS.attr('string'),
-  timestamp:          DS.attr('date'),
+  sent_at:            DS.attr('date'),
 
   delivered:          DS.attr('boolean', { readOnly: true }),
 
-  isDictacted: computed('creator_person_id', 'sender_id', function() {
-      return (this.get('creator_person_id') != this.get('sender_id'));
+  isDictacted: computed('creator_person_id', 'sender_person_id', function() {
+      return (this.get('creator_person_id') != this.get('sender_person_id'));
   }),
 
   markRead:           memberAction({ path: 'markread', type: 'patch'})

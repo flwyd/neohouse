@@ -1,53 +1,63 @@
 {{#ch-box 'Ranger Messages'}}
-{{#link-to 'person.message-new' person.id class="btn btn-primary mb-2"}}Compose Message{{/link-to}}
   {{#if messages}}
+    <div class="form-check form-check-inline">
+      {{radio-button value="all" groupValue=filterMessages
+                    radioId="filter-all" radioClass="form-check-input"}}
+     <label for="filter-all" class="form-check-label">All</label>
+    </div>
+    <div class="form-check form-check-inline">
+      {{radio-button value="unread" groupValue=filterMessages
+          radioId="filter-unread" classNames="form-check-label"
+          radioClass="form-check-input" }}
+      <label for="filter-unread" class="form-check-label">Unread</label>
+    </div>
+
+    <div class="form-check form-check-inline">
+      {{radio-button value="read" groupValue=filterMessages
+          radioId="filter-read" classNames="form-check-label"
+          radioClass="form-check-input" }}
+      <label for="filter-read" class="form-check-label">Read</label>
+    </div>
     <p class="text-muted small">Note: all times are in the Pacific Timezone.</p>
 
-    <div class="table-responsive-lg">
-      <table class="table person-messages">
-        <thead class="thead-light">
-          <th>From</th>
-          <th>Message</th>
-          <th>Sent</th>
-        </thead>
-        <tbody>
-          {{#each messages as |message|}}
-            <tr>
-              <td class="person-message-sender">{{message.sender_callsign}}</td>
-              <td class="person-message-text">
-                {{unless message.delivered (badge 'warning' 'unread')}}
-                <strong>{{message.subject}}</strong>
-              </td>
-              <td class="person-message-sent">
-                {{moment-format message.timestamp 'MMM DD HH:MM'}}
-                <div class="text-muted small">({{moment-from-now message.timestamp}})</div>
-              </td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td colspan="3">
-                {{message.body}}
-                {{#if message.isDictacted}}
-                <p class="text-muted small mt-2">
-                (written by {{message.creator_callsign}} for {{message.sender_callsign}})
-                </p>
-                {{/if}}
-                <p class="mt-2">
-                  {{#link-to 'person.message-new' person.id
-                      (query-params replyTo=message.sender_callsign subject=message.subject)
-                      class="btn btn-primary btn-sm"
-                  }}Reply{{/link-to}}
-                  {{#unless message.delivered}}
-                  <button {{action 'markRead' message}} type="button" class="btn btn-secondary btn-sm">Mark Read</button>
-                  {{/unless}}
-                </p>
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
+    <p class="text-muted">Showing {{viewMessages.length}} of {{messages.length}}</p>
+    {{#each viewMessages as |message|}}
+      <div class="mb-2 person-message-box">
+        <div class="row">
+          <div class="col-md-12 col-lg-9">
+            <h5>{{#unless message.delivered}}<span class="text-danger">&bullet;</span> {{/unless}}{{message.subject}}</h5>
+            From <strong>{{message.message_from}}</strong>
+             {{#if message.isDictacted}}
+              <span class="text-muted">
+                <small>(written by {{message.creator_callsign}})</small>
+              </span>
+            {{/if}}
+          </div>
+          <div class="col-md-12 col-lg-3">
+            {{shift-format message.sent_at}}
+            <div class="text-muted small">({{moment-from-now message.sent_at}})</div>
+          </div>
+
+          <div class="col-12 mt-2">
+            {{message.body}}
+            <p class="mt-3">
+              {{#link-to 'person.message-new' person.id
+                  (query-params replyTo=message.sender_callsign subject=message.subject)
+                  class="btn btn-primary btn-sm"
+              }}Reply{{/link-to}}
+              {{#unless message.delivered}}
+              <button {{action 'markRead' message}} type="button" class="btn btn-secondary btn-sm">Mark Read</button>
+              {{/unless}}
+            </p>
+
+          </div>
+        </div>
+      </div>
+    {{/each}}
   {{else}}
     <b>Congratulations!</b> There are no messages.
   {{/if}}
+
+  {{#link-to 'person.message-new' person.id class="btn btn-primary mt-2"}}Compose{{/link-to}}
+
 {{/ch-box}}
