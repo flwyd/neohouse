@@ -8,17 +8,17 @@ export default DS.Model.extend({
   // Only used for creating the message
   recipient_callsign:   DS.attr('string'),
 
-  sender_id:         DS.attr('number'),
+  sender_id:         DS.attr('number', { readOnly: true }),
   sender_callsign:   DS.attr('string'),
 
-  creator_person_id: DS.attr('number'),
-  creator_callsign:  DS.attr('string'),
+  creator_person_id: DS.attr('number', { readOnly: true }),
+  creator_callsign:  DS.attr('string', { readOnly: true }),
 
   subject:           DS.attr('string'),
   body:              DS.attr('string'),
   sent_at:           DS.attr('date'),
 
-  is_read:           DS.attr('boolean'),
+  delivered:           DS.attr('boolean', { readOnly: true }),
 
   isDictacted: computed('creator_person_id', 'sender_id', function() {
       return (this.get('creator_person_id') != this.get('sender_id'));

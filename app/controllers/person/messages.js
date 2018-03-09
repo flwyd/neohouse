@@ -8,8 +8,8 @@ export default Controller.extend(ClubhouseControllerMixins, {
       const person = this.get('person');
 
       return message.markRead().then((result) => {
-        message.set('is_read', true);
-        person.set('unread_message_count', result.unread);
+        message.set('delivered', true);
+        person.set('unread_message_count', person.get('unread_message_count') - 1);
       })
     }
   }

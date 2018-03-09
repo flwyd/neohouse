@@ -15,7 +15,7 @@
             <tr>
               <td class="person-message-sender">{{message.sender_callsign}}</td>
               <td class="person-message-text">
-                {{unless message.is_read (badge 'warning' 'unread')}}
+                {{unless message.delivered (badge 'warning' 'unread')}}
                 <strong>{{message.subject}}</strong>
               </td>
               <td class="person-message-sent">
@@ -37,7 +37,7 @@
                       (query-params replyTo=message.sender_callsign subject=message.subject)
                       class="btn btn-primary btn-sm"
                   }}Reply{{/link-to}}
-                  {{#unless message.is_read}}
+                  {{#unless message.delivered}}
                   <button {{action 'markRead' message}} type="button" class="btn btn-secondary btn-sm">Mark Read</button>
                   {{/unless}}
                 </p>

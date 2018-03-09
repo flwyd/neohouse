@@ -10,7 +10,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
   _performSearch(callsign, resolve, reject) {
     return this.get('ajax')
-          .request('callsigns', { data: {q: callsign, active: true} })
+          .request('callsigns', { data: {q: callsign, active: 1} })
           .then((result) => resolve(result.callsigns.map(row => row.callsign)), reject);
   },
 
@@ -28,11 +28,6 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
       const notify = this.get('notify');
       const person = this.get('person');
-
-      // Hacker here - person_id is used to build the URL up
-      // based on the sender, not recipient. This will be
-      // correctly set on the server side.
-      model.set('person_id', person.get('id'));
 
       return model.save().then(function() {
         notify.success(`Message sent to ${model.get('recipient_callsign')}.`);
