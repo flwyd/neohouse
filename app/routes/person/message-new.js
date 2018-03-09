@@ -16,6 +16,7 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
     const values = {
       recipient_callsign: replyTo,
       subject,
+      message_from: model.person.get('message_from')
     };
     this.set('message', this.store.createRecord('person-message', values));
   },

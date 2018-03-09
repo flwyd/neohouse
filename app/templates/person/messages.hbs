@@ -19,8 +19,8 @@
                 <strong>{{message.subject}}</strong>
               </td>
               <td class="person-message-sent">
-                {{moment-format message.sent_at 'MMM DD HH:MM'}}
-                <div class="text-muted small">({{moment-from-now message.sent_at}})</div>
+                {{moment-format message.timestamp 'MMM DD HH:MM'}}
+                <div class="text-muted small">({{moment-from-now message.timestamp}})</div>
               </td>
             </tr>
             <tr>

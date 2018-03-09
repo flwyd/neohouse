@@ -22,19 +22,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     },
 
     submit(model, isValid) {
-      if (!isValid) {
-        return;
-      }
-
-      const notify = this.get('notify');
-      const person = this.get('person');
-
-      return model.save().then(function() {
-        notify.success(`Message sent to ${model.get('recipient_callsign')}.`);
-        self.transitionToRoute('person.messages');
-      }).catch(function (response) {
-        this.handleErrorResponse(response)
-      }.bind(this))
+      this.saveModel(model, isValid, `Message sent to ${model.get('recipient_callsign')}.`, 'person.messages');
     }
   }
 });
