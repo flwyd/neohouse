@@ -66,10 +66,10 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
       this.ajax.request(`person/${personId}/schedule/${slotId}`, {
         method: 'DELETE',
-      }).then((result) => {
+      }).then(() => {
         slots.removeObject(slot);
-      }).catch((err) => {
-        self.handleErrorResponse(err);
+      }).catch((response) => {
+        self.handleErrorResponse(response);
       })
     },
   }

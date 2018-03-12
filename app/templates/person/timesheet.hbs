@@ -8,7 +8,9 @@
         <th class="text-right">Time</th>
         <th class="text-right">Credits</th>
         <th>Position</th>
+        {{#if showActions}}
         <th>Action</th>
+        {{/if}}
       </tr>
     </thead>
     <tbody>
@@ -31,7 +33,9 @@
             {{/if}}
           </td>
           <td data-title="Position">{{ts.position_title}}</td>
+          {{#if showActions}}
           <td data-title="Actions">&nbsp;</td>
+          {{/if}}
         </tr>
       {{/each}}
       <tr class="tr-no-responsive">
@@ -44,7 +48,11 @@
         <td class="td-number" data-title="Credits">
           {{credits-format (sum-column timesheets 'credits')}}
         </td>
+        {{#if showActions}}
         <td colspan="2" class="table-rc-hide">&nbsp;</td>
+        {{else}}
+        <td class="table-rc-hide">&nbsp;</td>
+        {{/if}}
       </tr>
     </tbody>
   </table>

@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import * as Role from 'neohouse/constants/roles';
 
 export default Controller.extend({
   positions: computed('timesheets', function() {
@@ -29,4 +30,10 @@ export default Controller.extend({
 
     return positions;
   }),
+
+  showActions: computed('session.user.roles', function() {
+    const user = this.get('session.user');
+
+    return (user.hasRole([ Role.ADMIN, Role.MANAGE ]));
+  })
 });
