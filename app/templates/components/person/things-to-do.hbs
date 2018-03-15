@@ -1,63 +1,53 @@
-<div class="row">
-  {{#ch-box 'Verify Your Personal Info' wrapClass="col-sm-6"}}
+{{#ch-box 'Welcome To The Secret Clubhouse'}}
+  <h5>Verify Your Personal Info</h5>
+  <p>
+    Look in the sidebar menu for
+    {{#link-to 'person.personal-info-show' person}}Personal Info{{/link-to}}
+  </p>
+  {{#unless person.isAuditor}}
     <p>
-      Look in the sidebar menu for
-      {{#link-to 'person.personal-info-show' person}}Personal Info{{/link-to}}
+      We'd really appreciate it if you'd make sure your phone numbers, emergency contacts, and shirt size info are all up to date!
     </p>
-    {{#unless person.isAuditor}}
-      <p>
-        We'd really appreciate it if you'd make sure your phone numbers,
-        emergency contacts, and shirt size info are all up to date!
-      </p>
-    {{/unless}}
-  {{/ch-box}}
+  {{/unless}}
+  <hr>
 
-  {{#ch-box 'Shift Signups' wrapClass="col-sm-6"}}
-    <p>Look in the side bar for Shift Signups.</p>
-    {{#if person.isNascentRanger}}
+  <h5>Shift Signups</h5>
+  <p>Look in the side bar for Shift Signups.</p>
+  {{#if person.isNascentRanger}}
+    <p>
+      Alpha shifts are posted on July 1. Alphas must pass training before they can sign up for an Alpha shift.
+    </p>
+  {{else}}
+    {{#if person.isRanger}}
       <p>
-        Alpha shifts are posted on July 1. Alphas must pass training
-        before they can sign up for an Alpha shift.
+        Ranger shifts start getting posted in June. You <b>do not</b> have to be trained to sign up for shifts, but you <b>must</b> be trained before actually working shifts on playa.
       </p>
-    {{else}}
-      {{#if person.isRanger}}
-        <p>
-          Ranger shifts start getting posted in June. You <b>do not</b>
-          have to be trained to sign up for shifts, but you <b>must</b>
-          be trained before actually working shifts on playa.
-        </p>
-      {{/if}}
     {{/if}}
-  {{/ch-box}}
+  {{/if}}
+  <hr>
+
 
   {{#if person.isRanger}}
-    {{#ch-box 'Tickets, Staff Credientals, Vehicle & Work Passes' wrapClass='col-sm-6'}}
-        TODO:INSERT TICKET LINK is the place to claim staff credentials,
-        reduced-price tickets, vehicle passes, and work access passes.
-    {{/ch-box}}
+    <h5>Tickets, Staff Credientals, Vehicle &amp; Work Passes</h5> TODO:INSERT TICKET LINK is the place to claim staff credentials, reduced-price tickets, vehicle passes, and work access passes.
+    <hr>
 
-    {{#ch-box 'Timesheets' wrapClass='col-sm-6'}}
-      Check that your timesheet is accurate: your timesheet is located
-      in TODO:INSERT TIMESHEET LINK.
-    {{/ch-box}}
+    <h5>Timesheets</h5> Check that your timesheet is accurate: your timesheet is located in
+    {{#link-to 'person.timesheet' person.id}}Timesheet{{/link-to}}
+    <hr>
 
-    {{#ch-box 'Get Involved More With Special Groups' wrapClass='col-sm-6'}}
-        Learn how to <a href="{{config 'JoiningRangerSpecialTeamsUrl'}}">join Ranger
+
+    <h5>Get Involved More With Special Groups</h5> Learn how to <a href="{{config 'JoiningRangerSpecialTeamsUrl'}}">join Ranger
         special teams</a> (opens in a new window)
-    {{/ch-box}}
 
-    {{#ch-box 'Motorpool Agreements' wrapClass='col-sm-6'}}
-      Complete your Ranger Motorpool Policy acknowledgement. Any Ranger
-      operating any type of vehicle for Ranger business at Burning Man must
-      agree to the Ranger Motorpool Policy by reading and filling out the
-      acknowledgment form located here:
-      <a href="{{config 'MotorpoolPolicyUrl'}}">Ranger Motorpool Policy</a>
-      (opens in a new window)
-    {{/ch-box}}
+    <hr>
+
+    <h5>Motorpool Agreements</h5> Complete your Ranger Motorpool Policy acknowledgement. Any Ranger operating any type of vehicle for Ranger business at Burning Man must agree to the Ranger Motorpool Policy by reading and filling out the acknowledgment form located here:
+    <a href="{{config 'MotorpoolPolicyUrl'}}">Ranger Motorpool Policy</a> (opens in a new window)
+    <hr>
+
   {{/if}}
 
-  {{#ch-box 'Need Help?' wrapClass='col-sm-6'}}
-      <p>For general questions &amp; support email: {{mail-to (config 'GeneralSupportEmail')}}</p>
-      <p>For technical support email: {{mail-to (config 'AdminEmail')}}</p>
-  {{/ch-box}}
-</div>
+  <h5>Need Help?</h5>
+  <p>For general questions &amp; support email: {{mail-to (config 'GeneralSupportEmail')}}</p>
+  <p>For technical support email: {{mail-to (config 'AdminEmail')}}</p>
+{{/ch-box}}

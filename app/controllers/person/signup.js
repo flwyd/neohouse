@@ -104,12 +104,16 @@ export default Controller.extend(ClubhouseControllerMixins, {
     slots = slots.sortBy('position_type', 'slot_description');
 
     slots.forEach(function(slot) {
-      const type = slot.get('position_type');
+      let type = slot.get('position_type');
       const title = slot.get('slot_description');
 
       if (!type || type == 'Other') {
         groupOther.options.push(title);
         return;
+      }
+
+      if (type == 'Training') {
+        type = 'Training - Location';
       }
 
       let group = groupOptions.find((opt) => { return type == opt.groupName });
