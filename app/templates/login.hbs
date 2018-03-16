@@ -4,17 +4,23 @@
       {{flash-render}}
       <div class="row">
         <div class="col-md-6 col-sm-12">
-          {{#ch-box 'Howdy Ranger!'}}
+          <h1>Howdy Ranger!</h1>
             {{#ch-form 'auth' auth validator=LoginValidations onSubmit=(action "submit") as |f|}}
-              {{f.input "identification" label="Email"}}
+              {{f.input "identification" label="Email" }}
               {{f.input "password" label="Password" type="password"}}
-              {{f.submit label="Login" disabled=isLoading }}
-              <div class="text-muted">Forget password? </div>{{#link-to 'reset-password'}}Reset password{{/link-to}}
+
+              <div class="row">
+                <div class="col-md-6 col-sm-12 mb-4">
+                  {{f.submit label="Login" disabled=isLoading submitClass="btn-lg"}}
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  {{#link-to 'reset-password' class="d-block"}}Forget the password?{{/link-to}}
+                </div>
+              </div>
             {{/ch-form}}
-          {{/ch-box}}
         </div>
 
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12 mt-4">
           {{#ch-box 'Interest in volunteering with The Rangers?'}}
             Please fill out a <a href="https://profiles.burningman.com/participate/">Burning Man Volunteer Questionnaire</a>;
              once your Volunteer Questionnaire is approved, a Secret Clubhouse
@@ -22,7 +28,7 @@
           {{/ch-box}}
         </div>
 
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12 mt-4">
           {{#ch-box 'Interested in training but not volunteering?'}}
             If you do NOT intend to volunteer with the Rangers on playa but are
             interested in taking Ranger training anyway, please

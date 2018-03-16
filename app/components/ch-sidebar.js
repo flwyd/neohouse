@@ -24,7 +24,7 @@ const sidebarCollapse = function(event) {
 
 export default Component.extend({
   elementId: 'sidebar-container',
-  classNames: [ 'sidebar-expanded', 'col' ], //'d-none', 'd-sm-block', 'col' ],
+  classNames: [ 'sidebar-expanded', 'col', 'd-none', 'd-md-block' ],
 
   didInsertElement() {
     // Hide submenus
@@ -35,10 +35,6 @@ export default Component.extend({
 
     // Collapse click
     $('[data-toggle=sidebar-colapse]').click(sidebarCollapse);
-
-    if ($(window).width() < 600) {
-      sidebarCollapse();
-    }
   },
 
   willDestroyElement() {

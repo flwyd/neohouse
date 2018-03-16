@@ -1,19 +1,18 @@
-{{#ch-box 'Edit Emergency Contact Information'}}
-  {{#ch-form "person" person validator=EmergencyContactValidations onSubmit=(action 'submit') as |f|}}
-    <div class="form-row">
-      {{f.input 'em_first_name' label="First Name" wrapClass="form-group col-sm-4"}}
-      {{f.input 'em_mi'  label="M.I." wrapClass="form-group col-sm-1"}}
-      {{f.input 'em_last_name' label="Last Name" wrapClass="form-group col-sm-4"}}
-      {{f.input 'em_handle' label="Playa Name / Handle" wrapClass="form-group col-sm-4"}}
-    </div>
-    <div class="form-row">
-      {{f.input 'em_email' label="Email" wrapClass="form-group col-sm-4"}}
-      {{f.input 'em_home_phone' label="Phone" wrapClass="form-group col-sm-4"}}
-      {{f.input 'em_alt_phone' label="Alternate Phone" wrapClass="form-group col-sm-4"}}
-    </div>
-    {{f.input 'em_camp_location' type="textarea" label="Camp Location" rows=2 cols=50}}
-    {{f.input 'emergency_contact' type="textarea" rows=2 cols=50 label="Additional Information"}}
-    {{f.submit label="Update"}}
-    {{f.reset label="Reset"}}
-  {{/ch-form}}
-{{/ch-box}}
+<h1>Edit Emergency Contact Information</h1>
+{{#ch-form "person" person validator=EmergencyContactValidations onSubmit=(action 'submit') as |f|}}
+  <div class="form-row">
+    {{f.input 'em_first_name' label="First Name" wrapClass="form-group col-sm-4"}}
+    {{f.input 'em_mi'  label="M.I." wrapClass="form-group col-sm-1"}}
+    {{f.input 'em_last_name' label="Last Name" wrapClass="form-group col-sm-4"}}
+    {{f.input 'em_handle' label="Playa Name / Handle" wrapClass="form-group col-sm-4"}}
+  </div>
+  <div class="form-row">
+    {{f.input 'em_email' label="Email" wrapClass="form-group col-sm-4"}}
+    {{f.input 'em_home_phone' label="Phone" wrapClass="form-group col-sm-4"}}
+    {{f.input 'em_alt_phone' label="Alternate Phone" wrapClass="form-group col-sm-4"}}
+  </div>
+  {{f.input 'em_camp_location' type="textarea" label="Camp Location" rows=2 cols=50}}
+  {{f.input 'emergency_contact' type="textarea" rows=2 cols=50 label="Additional Information"}}
+  {{f.submit label="Update"}}
+  {{f.reset label="Reset"}}
+{{/ch-form}}

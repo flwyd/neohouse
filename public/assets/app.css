@@ -20,12 +20,13 @@
 
 @media not print {
   body {
-    background-color: #fff4e5;
+    /*background-color: #fff4e5;*/
+    background-color: #fcfcfc;
   }
 }
 
 main {
-  margin-top: 10px;
+  margin: 15px 10px;
 }
 
 .footer {
@@ -164,6 +165,9 @@ main {
   padding-left: 10px;
 }
 
+.sidebar-callsign {
+  color: white;
+}
 /* end of sidebar */
 
 .schedule-table {
@@ -321,7 +325,7 @@ main {
     border: none;
     border-bottom: 1px solid #eee;
     position: relative;
-    padding-left: 36%;
+    padding-left: 50%;
     white-space: normal;
     text-align: left;
     width: 100%;
@@ -335,10 +339,9 @@ main {
     /* Now like a table header */
     position: absolute;
     /* Top/left values mimic padding */
-    top: 12px;
+    top: 5px;
     left: 8px;
-    width: 35%;
-    padding-right: 10px;
+    width: 50%;
     white-space: nowrap;
     text-align: left;
     font-weight: bold;

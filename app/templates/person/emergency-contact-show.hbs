@@ -1,44 +1,43 @@
-{{#ch-box 'Emergency Contact Information'}}
-  <dl class="row">
-    <dt class="col-md-3">Name</dt>
-    <dd class="col-md-9">
-      {{#if (or person.em_first_name person.em_last_name)}}
-        {{person.em_first_name}} {{person.em_mi}} {{person.em_last_name}}
-      {{else}}
-        <i>not given</i>
-      {{/if}}
-    </dd>
+<h1>Emergency Contact Information</h1>
+<dl class="row">
+  <dt class="col-md-3">Name</dt>
+  <dd class="col-md-9">
+    {{#if (or person.em_first_name person.em_last_name)}}
+      {{person.em_first_name}} {{person.em_mi}} {{person.em_last_name}}
+    {{else}}
+      <i>not given</i>
+    {{/if}}
+  </dd>
 
-    <dt class="col-md-3">Playa Name / Handle</dt>
-    <dd class="col-md-9">{{present-or-not person.em_handle}}</dd>
+  <dt class="col-md-3">Playa Name / Handle</dt>
+  <dd class="col-md-9">{{present-or-not person.em_handle}}</dd>
 
-    <dt class="col-md-3">Email</dt>
-    <dd class="col-md-9">
-      {{#present-or-not person.em_email}}
-        {{mail-to person.em_email}}
-      {{/present-or-not}}
-    </dd>
+  <dt class="col-md-3">Email</dt>
+  <dd class="col-md-9">
+    {{#present-or-not person.em_email}}
+      {{mail-to person.em_email}}
+    {{/present-or-not}}
+  </dd>
 
-    <dt class="col-md-3">Phone</dt>
-    <dd class="col-md-9">
-      {{#present-or-not person.em_home_phone}}
-        {{phone-link person.em_home_phone}}
-      {{/present-or-not}}
-    </dd>
-    <dt class="col-md-3">Alternate Phone</dt>
-    <dd class="col-md-9">
-      {{#present-or-not person.em_alt_phone}}
-        {{phone-link person.em_alt_phone}}
-      {{/present-or-not}}
-    </dd>
-    <dt class="col-md-3">Camp Location</dt>
-    <dd class="col-md-9">{{present-or-not person.em_camp_location}}</dd>
+  <dt class="col-md-3">Phone</dt>
+  <dd class="col-md-9">
+    {{#present-or-not person.em_home_phone}}
+      {{phone-link person.em_home_phone}}
+    {{/present-or-not}}
+  </dd>
+  <dt class="col-md-3">Alternate Phone</dt>
+  <dd class="col-md-9">
+    {{#present-or-not person.em_alt_phone}}
+      {{phone-link person.em_alt_phone}}
+    {{/present-or-not}}
+  </dd>
+  <dt class="col-md-3">Camp Location</dt>
+  <dd class="col-md-9">{{present-or-not person.em_camp_location}}</dd>
 
-    <dt class="col-md-3">Additional Information</dt>
-    <dd class="col-md-9">
-      {{present-or-not person.emergency_contact}}
-    </dd>
-  </dl>
+  <dt class="col-md-3">Additional Information</dt>
+  <dd class="col-md-9">
+    {{present-or-not person.emergency_contact}}
+  </dd>
+</dl>
 
-  {{#link-to 'person.emergency-contact-edit' person.id class="btn btn-primary" }}Edit Information{{/link-to}}
-{{/ch-box}}
+{{#link-to 'person.emergency-contact-edit' person.id class="btn btn-primary" }}Edit Information{{/link-to}}

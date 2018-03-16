@@ -1,65 +1,64 @@
-{{#ch-box (concat 'Ranger Information for ' year_info.year)}}
-  <dl class="row">
-    <dt class="col-md-2">Status</dt>
-    <dd class="col-md-9">{{status-badge person.status}}</dd>
+<h1>Ranger Information {{year_info.year}}</h1>
+<dl class="row">
+  <dt class="col-md-2">Status</dt>
+  <dd class="col-md-9">{{status-badge person.status}}</dd>
 
-    <dt class="col-md-2">Trained</dt>
+  <dt class="col-md-2">Trained</dt>
+  <dd class="col-md-9">
+    {{training-status year_info.training_status}}
+    {{year_info.training_date}} {{year_info.training_location}}
+  </dd>
+
+  {{#if person.isRanger}}
+    <dt class="col-md-2">Meals</dt>
+    <dd class="col-md-9">{{meal-info year_info.meals}}</dd>
+
+    <dt class="col-md-2">Showers</dt>
     <dd class="col-md-9">
-      {{training-status year_info.training_status}}
-      {{year_info.training_date}} {{year_info.training_location}}
+      {{#if year_info.showers}}
+        {{badge 'secondary' 'Wet Spot'}} Your BMID will allow you to take showers at the Wet Spot.
+      {{else}}
+        {{badge 'secondary' 'Shower Pogs'}} For every 40 hours you work on playa, you can get a shower pog from HQ, good for one shower at the Wet Spot.
+      {{/if}}
     </dd>
 
-    {{#if person.isRanger}}
-      <dt class="col-md-2">Meals</dt>
-      <dd class="col-md-9">{{meal-info year_info.meals}}</dd>
-
-      <dt class="col-md-2">Showers</dt>
-      <dd class="col-md-9">
-        {{#if year_info.showers}}
-          {{badge 'secondary' 'Wet Spot'}} Your BMID will allow you to take showers at the Wet Spot.
+    <dt class="col-md-2">Radios</dt>
+    <dd class="col-md-9">
+      {{#if year_info.radio_eligible}}
+        {{badge 'success' 'Event Radio'}}
+        {{#if (eq year_info.max_radio 1)}}
+          You may check out an Event radio for the duraiton of the event.
         {{else}}
-          {{badge 'secondary' 'Shower Pogs'}} For every 40 hours you work on playa, you can get a shower pog from HQ, good for one shower at the Wet Spot.
+          You may check out up to {{year_info.max_radio}} Event radios for the duraiton of the event.
         {{/if}}
-      </dd>
-
-      <dt class="col-md-2">Radios</dt>
-      <dd class="col-md-9">
-        {{#if year_info.radio_eligible}}
-          {{badge 'success' 'Event Radio'}}
-          {{#if (eq year_info.max_radio 1)}}
-            You may check out an Event radio for the duraiton of the event.
-          {{else}}
-            You may check out up to {{year_info.max_radio}} Event radios for the duraiton of the event.
-          {{/if}}
-        {{else}}
-          {{badge 'success' 'Shift Radio'}} You will need to check out a radio each time you show up to Ranger HQ for shift (and check it in at the end of your shift!).
-        {{/if}}
-      </dd>
-
-      <dt class="col-md-2">Motorpool</dt>
-      {{#if person.vehicle_blacklisted}}
-        <dd class="col-md-9">
-          {{badge 'danger' 'Blacklisted'}} We're sorry, but you cannot drive gators, cars, or trucks on playa for Ranger business.
-        </dd>
       {{else}}
-        <dd class="col-md-9">
-          {{#if person.vehicle_paperwork}}
-            {{badge 'success' 'Authorized'}} You are authorized to drive golf carts &amp; gators (UTVs) on playa for Ranger business
-          {{else}}
-            {{badge 'warning' 'Not Authorized'}} You are NOT authorized to drive golf carts &amp; gators (UTVs) on the playa for Ranger business. You can fix this by filling out
-            <a href="{{config 'MotorpoolPolicyUrl'}}" target="_blank">this form</a>. Please be patient, it may take a few days for us to process it.
-          {{/if}}
-        </dd>
-
-        <dt class="col-md-2">Org Vehicle Insurance</dt>
-        <dd class="col-md-9">
-          {{#if person.vehicle_insurance_paperwork}}
-            {{badge 'success' 'Authorized' }} You are authorized to drive cars and trucks (including your own personal vehicle) on playa for Ranger business.
-          {{else}}
-            {{badge 'warning' 'Not Authorized' }} You are NOT authorized to drive cars and trucks (including your own personal vehicle) on playa for Ranger business. If you think you need this to do your job on playa, please contact your manager or team lead.
-          {{/if}}
-        </dd>
+        {{badge 'success' 'Shift Radio'}} You will need to check out a radio each time you show up to Ranger HQ for shift (and check it in at the end of your shift!).
       {{/if}}
+    </dd>
+
+    <dt class="col-md-2">Motorpool</dt>
+    {{#if person.vehicle_blacklisted}}
+      <dd class="col-md-9">
+        {{badge 'danger' 'Blacklisted'}} We're sorry, but you cannot drive gators, cars, or trucks on playa for Ranger business.
+      </dd>
+    {{else}}
+      <dd class="col-md-9">
+        {{#if person.vehicle_paperwork}}
+          {{badge 'success' 'Authorized'}} You are authorized to drive golf carts &amp; gators (UTVs) on playa for Ranger business
+        {{else}}
+          {{badge 'warning' 'Not Authorized'}} You are NOT authorized to drive golf carts &amp; gators (UTVs) on the playa for Ranger business. You can fix this by filling out
+          <a href="{{config 'MotorpoolPolicyUrl'}}" target="_blank">this form</a>. Please be patient, it may take a few days for us to process it.
+        {{/if}}
+      </dd>
+
+      <dt class="col-md-2">Org Vehicle Insurance</dt>
+      <dd class="col-md-9">
+        {{#if person.vehicle_insurance_paperwork}}
+          {{badge 'success' 'Authorized' }} You are authorized to drive cars and trucks (including your own personal vehicle) on playa for Ranger business.
+        {{else}}
+          {{badge 'warning' 'Not Authorized' }} You are NOT authorized to drive cars and trucks (including your own personal vehicle) on playa for Ranger business. If you think you need this to do your job on playa, please contact your manager or team lead.
+        {{/if}}
+      </dd>
     {{/if}}
-  </dl>
-{{/ch-box}}
+  {{/if}}
+</dl>

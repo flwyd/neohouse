@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-khaki">
+  <nav class="navbar navbar-expand-md navbar-light bg-khaki">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,8 +9,18 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav mr-auto">
         {{#if session.isAuthenticated}}
-          <li class="nav-item">
-            {{#link-to 'person.overview' 'me' class='nav-link' }}Me{{/link-to}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Me</a>
+            <div class="dropdown-menu">
+              {{#link-to 'person.schedule' user.id class="dropdown-item"}}Schedule{{/link-to}}
+              {{#link-to 'person.signup' user.id class="dropdown-item"}}Shift Signup{{/link-to}}
+              {{#link-to 'person.timesheet' user.id class="dropdown-item"}}Timesheet{{/link-to}}
+              {{#link-to 'person.messages' user.id class="dropdown-item"}}Messages{{/link-to}}
+              {{#link-to 'person.ranger-info-show' user.id class="dropdown-item"}}Ranger Info{{/link-to}}
+              {{#link-to 'person.personal-info-show' user.id class="dropdown-item"}}Personal Info{{/link-to}}
+              {{#link-to 'person.emergency-contact-show' user.id class="dropdown-item"}}Emergency Contact{{/link-to}}
+              {{#link-to 'person.password' user.id class="dropdown-item"}}Change Password{{/link-to}}
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -18,7 +28,17 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Link2</a>
           </li>
-        {{/if}}
+      {{else}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Actions</a>
+          <div class="dropdown-menu">
+            {{#link-to 'login' class="dropdown-item"}}Login{{/link-to}}
+            {{#link-to 'reset-password' class="dropdown-item"}}Password Reset{{/link-to}}
+            <a href="#" class="dropdown-item">Register</a>
+            <a href="https://profiles.burningman.com/participate" class="dropdown-item">Volunteer Profile</a>
+          </div>
+        </li>
+      {{/if}}
 
         <!-- This menu is hidden in bigger devices with d-sm-none.
            The sidebar isn't proper for smaller screens imo, so this dropdown

@@ -88,7 +88,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
   descriptionOptions: computed('slots', function() {
     let slots = this.get('slots').uniqBy('slot_description');
-    const timeOfDay = [ 'Morning', 'Afternoon', 'Swing', 'Grave', 'Day' ];
+    const timeOfDay = [ 'Morning', 'Afternoon', 'Swing', 'Grave', 'Graveyard', 'Day' ];
 
     const groupOptions = [
       'All',
@@ -113,7 +113,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
       }
 
       if (type == 'Training') {
-        type = 'Training - Location';
+        type = 'Training Locations';
       }
 
       let group = groupOptions.find((opt) => { return type == opt.groupName });
