@@ -73,6 +73,14 @@ main {
   color: #dc3545;
 }
 
+legend {
+  background-color: #efefef;
+  padding-left: 10px;
+ }
+
+ .form-row, .form-group {
+   padding-left: 10px;
+ }
 /* Sidebar CSS */
 
 #body-row {
