@@ -7,8 +7,11 @@ module.exports = function(defaults) {
     // Add options here
     'ember-power-select': {
       theme: 'bootstrap'
-    }
+    },
 
+    'ember-cli-babel': {
+      includePolyfill: true
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

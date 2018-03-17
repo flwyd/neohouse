@@ -5,12 +5,9 @@ import RSVP from 'rsvp';
 //import { scheduleOnce } from '@ember/runloop';
 
 export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
-  model(params, transition) {
-    let person_id =  this.get('session.user.id');
-
+  model() {
     return RSVP.hash({
-      person: this.store.findRecord('person', person_id),
+      person: this.store.findRecord('person', this.get('session.user.id')),
     });
   },
-
 });

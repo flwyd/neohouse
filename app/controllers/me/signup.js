@@ -1,13 +1,15 @@
 import Controller from '@ember/controller';
 import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
-import {computed} from '@ember/object';
 import {A} from '@ember/array';
 import moment from 'npm:moment';
+import { computed } from 'ember-decorators/object';
 
 export default Controller.extend(ClubhouseControllerMixins, {
   queryParams: [ 'year' ],
+  showSchedule: true,
 
-  slotGroups: computed('slots.[]', 'filterDay', 'filterPosition', 'filterDescription', function() {
+  @computed('slots', 'filterDay', 'filterPosition', 'filterDescription')
+	get slotGroups() {
     let slots = this.get('slots');
     const filterDay = this.get('filterDay');
     const filterPosition = this.get('filterPosition');
@@ -46,9 +48,10 @@ export default Controller.extend(ClubhouseControllerMixins, {
     });
 
     return groups.sortBy('title');
-  }),
+  },
 
-  positionOptions: computed('slots', function() {
+  @computed('slots')
+	get positionOptions() {
     const unique = this.get('slots').uniqBy('position_title');
 
     let options = A();
@@ -60,13 +63,15 @@ export default Controller.extend(ClubhouseControllerMixins, {
     options = options.sortBy('title');
     options.unshiftObject({id: 'all', title: 'All Positions'});
     return options;
-  }),
+  },
 
-  filterPosition: computed('positionOptions', function() {
+  @computed('positionOptions')
+	filterPosition() {
     return this.get('positionOptions.firstObject');
-  }),
+  },
 
-  dayOptions: computed('slots', 'filterPosition', function() {
+  @computed('slots', 'filterPosition')
+	get dayOptions() {
     const unique = this.get('slots').uniqBy('slotDay').mapBy('slotDay');
     const days = A();
 
@@ -78,13 +83,15 @@ export default Controller.extend(ClubhouseControllerMixins, {
     });
 
     return days;
-  }),
+  },
 
-  filterDay: computed('dayOptions', function() {
+  @computed('dayOptions')
+	filterDay() {
     return this.get('dayOptions.firstObject');
-  }),
+  },
 
-  descriptionOptions: computed('slots', function() {
+  @computed('slots')
+	get descriptionOptions() {
     let slots = this.get('slots').uniqBy('slot_description');
     const timeOfDay = [ 'Morning', 'Afternoon', 'Swing', 'Grave', 'Graveyard', 'Day' ];
 
@@ -131,11 +138,17 @@ export default Controller.extend(ClubhouseControllerMixins, {
     }
 
     return groupOptions;
-  }),
+  },
 
-  filterDescription: computed('descriptionOptions', function() {
+  @computed('descriptionOptions')
+	filterDescription() {
     return this.get('descriptionOptions').objectAt(0);
-  }),
+  },
+
+  @computed('slots.@each.person_assigned')
+	get signedUpSlots() {
+    return this.get('slots').filterBy('person_assigned', true);
+  },
 
   actions: {
     changeYear(year) {
@@ -224,8 +237,8 @@ export default Controller.extend(ClubhouseControllerMixins, {
       }).catch((response) => self.handleErrorResponse(response));
     },
 
-    resetFilters() {
-      this.clearFilters();
+    toggleSchedule() {
+      this.set('showSchedule', !this.get('showSchedule'));
     }
   }
 });

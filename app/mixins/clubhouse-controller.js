@@ -1,5 +1,4 @@
 import Mixin from '@ember/object/mixin';
-import { htmlSafe } from '@ember/string';
 
 export default Mixin.create({
     isLoading: false,

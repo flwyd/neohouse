@@ -1,0 +1,64 @@
+<div class="mb-2">
+  <div class="form-check form-check-inline">
+    {{radio-button value="upcoming" groupValue=viewSchedule
+                  radioId="view-upcoming" radioClass="form-check-input"}}
+   <label for="view-upcoming" class="form-check-label">Upcoming Shifts ({{upcomingCount}})</label>
+  </div>
+  <div class="form-check form-check-inline">
+  {{radio-button value="all" groupValue=viewSchedule radioId="view-all" classNames="form-check-label" radioClass="form-check-input" }} <label for="view-all" class="form-check-label">All Shifts ({{slots.length}})</label>
+  </div>
+</div>
+{{#if viewSlots}}
+{{#print-this printSelector=".schedule-print" as |doPrint|}}
+  <div class="schedule-print">
+    <div class="d-none d-print-block"><h2>{{person.callsign}} Schedule {{year}}</h2></div>
+    <table class="table table-hover schedule-table table-sm table-rc">
+      <thead class="thead-light">
+        <tr>
+          <th class="schedule-time">From</th>
+          <th class="schedule-time">To</th>
+          <th class="schedule-duration text-right">Time</th>
+          <th class="schedule-credits text-right">Credits</th>
+          <th class="schedule-description">Position / Description</th>
+          <th class="schedule-actions d-print-none">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each viewSlots as |slot slotidx| }}
+          <tr>
+            <td class="schedule-time" data-title="From">{{shift-format slot.slot_begins}}</td>
+            <td class="schedule-time" data-title="To">{{shift-format slot.slot_ends}}</td>
+            <td class="schedule-duration td-number" data-title="Time">{{hour-minute-format slot.slot_duration}}</td>
+            <td class="schedule-credits td-number" data-title="Credits">{{credits-format slot.credits}}</td>
+            <td class="schedule-description" data-title="Description">
+              {{slot.position_title}}<br>
+              {{#if slot.slot_url}}
+                <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
+              {{else}}
+                {{slot.slot_description}}
+              {{/if}}
+            </td>
+            <td class="schedule-actions d-print-none" data-title="Actions">
+              <a href="#" {{action 'showPeople' slot}} class="btn btn-primary btn-sm">{{fa-icon 'users' type='fas'}}</a>
+              <a href="#" {{action 'leaveSlot' slot}} class="btn btn-danger btn-sm">{{fa-icon 'trash-alt' type='fas'}}</a>
+            </td>
+          </tr>
+        {{/each}}
+          <tr>
+          <td colspan="2" class="text-right table-rc-hide">Total Time / Credits</td>
+          <td class="td-number" data-title="Total Time">{{hour-minute-format (sum-column slots 'slot_duration')}}</td>
+          <td class="td-number" data-title="Total Credits">{{credits-format (sum-column slots 'credits')}}</td>
+          <td colspan="2" class="d-print-none">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button type="button" class="btn btn-primary" {{action doPrint}}>Print</button>
+{{/print-this}}
+{{else}}
+  {{#if slots}}
+    <p class="text-danger">No upcoming shifts were found.</p>
+  {{else}}
+    <p class="text-danger">No shifts were found for {{year}}</p>
+  {{/if}}
+{{/if}}
