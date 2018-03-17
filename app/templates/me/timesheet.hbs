@@ -1,4 +1,4 @@
-<h1>Timesheet {{year}}</h1>
+{{year-select 'Timesheet' person.years_rangered year onChange=(action 'changeYear')}}
 {{#if timesheets}}
   <table class="table table-hover schedule-table table-rc">
     <thead class="thead-light">

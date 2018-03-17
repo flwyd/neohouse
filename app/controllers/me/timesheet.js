@@ -3,6 +3,8 @@ import { computed } from '@ember/object';
 import * as Role from 'neohouse/constants/roles';
 
 export default Controller.extend({
+  queryParams: [ 'year' ],
+
   positions: computed('timesheets', function() {
     let positionGroups = {};
     const timesheets = this.get('timesheets');
@@ -35,5 +37,11 @@ export default Controller.extend({
     const user = this.get('session.user');
 
     return (user.hasRole([ Role.ADMIN, Role.MANAGE ]));
-  })
+  }),
+
+  actions: {
+    changeYear(year) {
+      this.set('year', year);
+    }
+  }
 });

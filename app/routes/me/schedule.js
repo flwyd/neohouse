@@ -1,36 +1,44 @@
 import Route from '@ember/routing/route';
 import PersonMixin from 'neohouse/mixins/person';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import RSVP from 'rsvp';
 
 export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
-  afterModel(model) {
-    const person = model.person;
-    const year = model.year;
+  queryParams: {
+    year: { refreshModel: true }
+  },
 
+  model(params) {
     const scheduleParams = {
-      person_id: person.get('id'),
-      year,
+      person_id: this.get('session.user.id'),
+      year: (params.year || (new Date()).getFullYear()),
     };
 
-    //
-    // Note, since ED is being used to do the heavy
-    // lifting for the query, and ajax calls are
-    // used to do the deletion, the result needs to be
     // converted to a basic array. Otherwise, ember
     // gets cranky when trying to removeObject() from
     // the collection.
-    return this.store.query('schedule', scheduleParams)
-        .then((slots) => { model.slots = slots.toArray(); })
+    return RSVP.hash({
+      slots: this.store.query('schedule', scheduleParams)
+        .then((slots) => { return slots.toArray(); })
         .catch((response) => {
           alert("Failed to retrieve slots: "+response);
-        });
+        }),
+      year: params.year,
+    });
   },
 
   setupController(controller, model) {
     this._super(...arguments);
     controller.set('slots', model.slots);
-
+    controller.set('year', model.year);
     controller.set('viewSchedule',
         (model.year == (new Date()).getFullYear()) ? 'upcoming' : 'all');
+  },
+
+  actions: {
+    changeYear(year) {
+      console.log(`CHANGE YEAR [${year}]`);
+      this.transitionTo({ queryParams: { year }})
+    }
   }
 });

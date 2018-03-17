@@ -1,4 +1,4 @@
-<h1>Shift Signup Sheet {{year}}</h1>
+{{year-select 'Shift Signup Sheet' person.years_rangered year onChange=(action 'changeYear')}}
 {{#if slots}}
   <div class="row mb-1">
     <div class="col-md-4 mb-2">

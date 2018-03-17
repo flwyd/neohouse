@@ -1,21 +1,25 @@
 import Route from '@ember/routing/route';
 import EmberObject from '@ember/object';
+import PersonMixins from 'neohouse/mixins/person';
 
-export default Route.extend({
-  afterModel(model) {
-    const person_id = model.person.get('id');
-    const year = model.year;
+export default Route.extend(PersonMixins, {
+  queryParams: {
+    year: { refreshModel: true }
+  },
 
-    return this.get('ajax').request('person/'+person_id+'/yearinfo', { data: { year} })
-       .then((result) => {
-         model.year_info = EmberObject.create(result.year_info);
-       }).catch((err) => {
+  model(params) {
+    const person_id = this.get('session.user.id');
+    const year = (params.year || (new Date).getFullYear());
+
+    return this.get('ajax').request('person/'+person_id+'/yearinfo', { data: { year } })
+       .then((result) => { return EmberObject.create(result.year_info); })
+       .catch((err) => {
          alert("Could not retrieve ranger year info "+err);
        });
   },
 
   setupController(controller, model) {
-    controller.set('person', model.person);
-    controller.set('year_info', model.year_info);
+    this._super(...arguments);
+    controller.set('year_info', model);
   }
 });

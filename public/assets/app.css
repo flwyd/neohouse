@@ -283,7 +283,8 @@ legend {
 }
 
 .ranger-logo {
-  margin-top: 20px;
+  text-align: center;
+  margin: 20px auto 0 auto;
   height: 200px;
   width: 200px;
   mask: url('/assets/ranger-logo.svg') no-repeat 50% 50%;

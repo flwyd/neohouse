@@ -5,9 +5,7 @@ import {A} from '@ember/array';
 import moment from 'npm:moment';
 
 export default Controller.extend(ClubhouseControllerMixins, {
-  setup(model) {
-    this.set('slots', model.slots);
-  },
+  queryParams: [ 'year' ],
 
   slotGroups: computed('slots.[]', 'filterDay', 'filterPosition', 'filterDescription', function() {
     let slots = this.get('slots');
@@ -140,6 +138,10 @@ export default Controller.extend(ClubhouseControllerMixins, {
   }),
 
   actions: {
+    changeYear(year) {
+      this.set('year', year);
+    },
+
     joinSlot(slot) {
       const notify = this.get('notify');
       const modal = this.get('modal');

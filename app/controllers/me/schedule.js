@@ -3,6 +3,8 @@ import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend(ClubhouseControllerMixins, {
+  queryParams: [ 'year' ],
+
   viewSchedule: 'upcoming',
 
   totalCredits: computed('slots', function() {
@@ -40,9 +42,18 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
   }),
 
+  upcomingCount: computed('slots', function() {
+    const slots = this.get('slots');
+    return slots.reduce(function(upcoming, slot) { return (slot.get('has_started') ? 0 : 1)+upcoming; }, 0);
+  }),
+
   actions: {
     changeView(value) {
       this.set('viewSchedule', value);
+    },
+
+    changeYear(year) {
+      this.set('year', year);
     },
 
     showPeople(slot) {

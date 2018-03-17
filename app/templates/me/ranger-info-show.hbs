@@ -1,4 +1,5 @@
-<h1>Ranger Information {{year_info.year}}</h1>
+{{year-select 'Ranger Information' person.years_rangered year onChange=(action 'changeYear')}}
+
 <dl class="row">
   <dt class="col-md-2">Status</dt>
   <dd class="col-md-9">{{status-badge person.status}}</dd>

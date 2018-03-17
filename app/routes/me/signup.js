@@ -3,20 +3,20 @@ import PersonMixin from 'neohouse/mixins/person';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
-  afterModel(model) {
-    const person = model.person;
-    const year = model.year;
+  queryParams: {
+    year: { refreshModel: true }
+  },
 
+  model(params) {
     const scheduleParams = {
-      person_id: person.get('id'),
-      year,
+      person_id: this.get('session.user.id'),
+      year: (params.year || (new Date).getFullYear()),
       signups: 1, // *sigh* laravel only take 1 or 0 for booleans as of 5.6
     };
 
     this.store.unloadAll('schedule');
 
     return this.store.query('schedule', scheduleParams)
-        .then((slots) => { model.slots = slots; })
         .catch((response) => {
           alert("Failed to retrieve slots: "+response);
         });
@@ -24,6 +24,6 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
 
   setupController(controller, model) {
     this._super(...arguments);
-    controller.setup(model);
+    controller.set('slots', model);
   }
 });

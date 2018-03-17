@@ -18,4 +18,6 @@ export default Component.extend({
     years.sort((a, b) => (b - a));
     return years;
   }),
+}).reopenClass({
+  positionalParams: [ 'title', 'years', 'year']
 });
