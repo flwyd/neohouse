@@ -18,12 +18,12 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
       return person.changePassword(passwords).then(function() {
         self.notify.success('Password has been changed.');
-        self.transitionToRoute('person.overview');
+        self.transitionToRoute('me.overview');
       }).catch((response) => { self.handleErrorResponse(response) })
     },
 
     back() {
-      this.transitionToRoute('person.overview');
+      this.transitionToRoute('me.overview');
     }
   }
 });

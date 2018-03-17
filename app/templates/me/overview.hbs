@@ -1,0 +1,9 @@
+{{#if person.isPastProspectiveDisabled }}
+  {{me/past-prospective-disabled person=person}}
+{{else}}
+
+  {{#if userNeedsPhoto}}
+    {{me/needs-photo person=person}}
+  {{/if}}
+  {{me/things-to-do person=person}}
+{{/if}}

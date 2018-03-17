@@ -22,7 +22,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     },
 
     submit(model, isValid) {
-      this.saveModel(model, isValid, `Message sent to ${model.get('recipient_callsign')}.`, 'person.messages');
+      this.saveModel(model, isValid, `Message sent to ${model.get('recipient_callsign')}.`, 'me.messages');
     }
   }
 });

@@ -36,7 +36,7 @@ export default Route.extend(ApplicationRouteMixin, {
     // before everything is setup.
     //this._super(...arguments);
     return this.setCurrentUser().then(() => {
-      this.transitionTo('/person/me/overview');
+      this.transitionTo('me.overview');
     });
   },
 

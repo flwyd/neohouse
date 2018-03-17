@@ -9,7 +9,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     submit(model, isValid) {
       this.saveModel(model, isValid,
         'Emergency contact info updated.',
-        'person.emergency-contact-show');
+        'me.emergency-contact-show');
     },
   }
 

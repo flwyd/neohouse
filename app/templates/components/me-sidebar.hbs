@@ -1,0 +1,29 @@
+{{#ch-sidebar}}
+  <li class="list-group-item sidebar-separator-title sidebar-callsign d-flex align-items-center menu-collapsed">
+    {{person.callsign}}
+  </li>
+  {{#ch-sidebar-group 'SCHEDULING'}}
+    {{ch-sidebar-link 'me.schedule' title="Schedule" icon="calendar-alt"}}
+    {{ch-sidebar-link 'me.signup' title="Shift Signup" icon="clipboard"}}
+    {{ch-sidebar-link 'me.timesheet' title="Timesheet" icon="clock"}}
+  {{/ch-sidebar-group}}
+
+  {{#ch-sidebar-group 'GENERAL'}}
+    {{ch-sidebar-link 'me.messages' title="Messages" icon="envelope" badgeText=person.unread_message_count}}
+    {{ch-sidebar-link 'me.ranger-info-show' title="Ranger Info" icon="user"}}
+  {{/ch-sidebar-group}}
+
+  {{#ch-sidebar-group 'PROFILE'}}
+    {{ch-sidebar-link 'me.personal-info-show' title="Personal Info" icon="home" iconType="s"}}
+    {{ch-sidebar-link 'me.emergency-contact-show' title="Emergency Contact" icon="exclamation" iconType="s"}}
+    {{ch-sidebar-link 'me.password' title="Change Password" icon="key" iconType="s"}}
+  {{/ch-sidebar-group}}
+
+  {{#ch-sidebar-group}}
+    {{ch-sidebar-link '#' title="Help" icon="question" iconType="s"}}
+    {{ch-sidebar-collapse}}
+  {{/ch-sidebar-group}}
+
+  <div class="ranger-logo menu-collapsed"></div>
+
+{{/ch-sidebar}}

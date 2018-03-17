@@ -10,12 +10,8 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
   },
 
   model(params, transition) {
-    let person_id = params.person_id;
+    let person_id =  this.get('session.user.id');
     let year = transition.queryParams.year;
-
-    if (person_id == 'me') {
-      person_id = this.get('session.user.id');
-    }
 
     if (!year) {
       year = (new Date()).getFullYear();

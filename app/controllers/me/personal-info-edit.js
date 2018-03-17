@@ -12,7 +12,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     submit(model, isValid) {
       this.saveModel(model, isValid,
           'The personal information was successfully updated.',
-          'person.personal-info-show');
+          'me.personal-info-show');
     },
   }
 
