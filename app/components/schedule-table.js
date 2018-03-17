@@ -3,6 +3,7 @@ import { computed } from 'ember-decorators/object';
 
 export default Component.extend({
   viewSchedule: 'upcoming',
+  showSchedule: true,
 
   @computed('slots')
   get totalCredits() {
@@ -48,7 +49,17 @@ export default Component.extend({
     return slots.reduce(function(upcoming, slot) { return (slot.get('has_started') ? 0 : 1)+upcoming; }, 0);
   },
 
+  @computed('slots')
+  get overlapping() {
+    return this.get('slots').reduce(function(total, slot) { return (slot.get('is_overlapping') ? 1 : 0)+total;}, 0);
+  },
+
   actions: {
+
+    toggleSchedule() {
+      this.set('showSchedule', !this.get('showSchedule'));
+    },
+
     changeView(value) {
       this.set('viewSchedule', value);
     },

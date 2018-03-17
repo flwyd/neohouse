@@ -220,6 +220,10 @@ legend {
   width: 5%;
 }
 
+.schedule-overlapping {
+  background-color: #fbd3d3;
+}
+
 
 .form-check-label:hover {
   background-color: #f0f0f0;

@@ -13,6 +13,11 @@ export default DS.Model.extend({
   // slot begin and end times. human formatted
   slot_begins:      DS.attr('string', { readOnly: true }),
   slot_ends:        DS.attr('string', { readOnly: true }),
+
+  // slot begin & ends time in UNIX seconds
+  slot_begins_time:  DS.attr('number', { readOnly: true }),
+  slot_ends_time:    DS.attr('number', { readOnly: true }),
+
   // Length in minutes
   slot_duration:    DS.attr('number', { readOnly: true }),
 

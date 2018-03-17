@@ -6,7 +6,6 @@ import { computed } from 'ember-decorators/object';
 
 export default Controller.extend(ClubhouseControllerMixins, {
   queryParams: [ 'year' ],
-  showSchedule: true,
 
   @computed('slots', 'filterDay', 'filterPosition', 'filterDescription')
 	get slotGroups() {
@@ -50,7 +49,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     return groups.sortBy('title');
   },
 
-  @computed('slots')
+  @computed('slots.[]')
 	get positionOptions() {
     const unique = this.get('slots').uniqBy('position_title');
 
@@ -70,7 +69,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     return this.get('positionOptions.firstObject');
   },
 
-  @computed('slots', 'filterPosition')
+  @computed('slots.[]', 'filterPosition')
 	get dayOptions() {
     const unique = this.get('slots').uniqBy('slotDay').mapBy('slotDay');
     const days = A();
@@ -90,7 +89,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     return this.get('dayOptions.firstObject');
   },
 
-  @computed('slots')
+  @computed('slots.[]')
 	get descriptionOptions() {
     let slots = this.get('slots').uniqBy('slot_description');
     const timeOfDay = [ 'Morning', 'Afternoon', 'Swing', 'Grave', 'Graveyard', 'Day' ];
@@ -147,7 +146,21 @@ export default Controller.extend(ClubhouseControllerMixins, {
 
   @computed('slots.@each.person_assigned')
 	get signedUpSlots() {
-    return this.get('slots').filterBy('person_assigned', true);
+    const slots =  this.get('slots').filterBy('person_assigned', true);
+    let prevEndTime = 0, prevSlot = null;
+
+    slots.forEach(function(slot) {
+      if (slot.get('slot_begins_time') < prevEndTime) {
+        slot.set('is_overlapping', true);
+        prevSlot.set('is_overlapping', true);
+      } else {
+        slot.set('is_overlapping', false);
+      }
+      prevEndTime = slot.get('slot_ends_time');
+      prevSlot = slot;
+    });
+
+    return slots;
   },
 
   actions: {
@@ -236,9 +249,5 @@ export default Controller.extend(ClubhouseControllerMixins, {
         self.modal.info(slot.get('slot_description'), callsigns.join(', '));
       }).catch((response) => self.handleErrorResponse(response));
     },
-
-    toggleSchedule() {
-      this.set('showSchedule', !this.get('showSchedule'));
-    }
   }
 });
