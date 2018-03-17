@@ -1,8 +1,7 @@
-{{#ch-box 'Send A Message'}}
-  {{#ch-form 'message' message onSubmit=(action 'submit') validator=PersonMessageValidations as |f|}}
-    {{f.input 'recipient_callsign' label='To' type='search' onSearch=(action 'searchCallsign') }}
-    {{f.input 'subject' label='Subject' maxlegnth=80}}
-    {{f.input 'body' label="Message" type='textarea' rows=4 cols=8}}
-    {{f.submit label="Send" }}
-  {{/ch-form}}
-{{/ch-box}}
+<h1>Send Message</h1>
+{{#ch-form 'message' message onSubmit=(action 'submit') validator=PersonMessageValidations as |f|}}
+  {{f.input 'recipient_callsign' label='To' type='search' onSearch=(action 'searchCallsign') }}
+  {{f.input 'subject' label='Subject' maxlegnth=80}}
+  {{f.input 'body' label="Message" type='textarea' rows=4 cols=8}}
+  {{f.submit label="Send" }}
+{{/ch-form}}

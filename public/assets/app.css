@@ -228,7 +228,13 @@ legend {
 /* Messages */
 
 .person-message-box {
-  border-bottom: 1px solid #dcdcdc;
+  margin-bottom: 10px;
+}
+
+.person-message-header {
+  padding: 10px 0;
+  margin-bottom: 10px;
+  background-color: #f0f0f0;
 }
 
 .year-select {
@@ -289,6 +295,19 @@ legend {
   background-color: #ececec;
 }
 
+.mugshot {
+  padding: 10px;
+  border: 1px solid #222;
+  text-align: center;
+}
+
+.mugshot img {
+  height: 200px;
+}
+
+.mugshot-icon {
+  width: 180px;
+}
 /* this will be overridden if the screen is small
  * enough to have the responsive table query kick in.
  */

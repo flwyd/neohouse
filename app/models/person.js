@@ -81,6 +81,7 @@ export default DS.Model.extend({
 
   years_rangered:               DS.attr('', { readOnly: true}),
   unread_message_count:         DS.attr('number', { readOnly: true}),
+  photo_url:                    DS.attr('string', { readOnly: true }),
 
   // Computed methods
   isPastProspectiveDisabled: computed('status', 'callsign_approved', function() {
