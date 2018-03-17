@@ -1,15 +1,13 @@
 {{year-select 'Schedule & Shift Signup' person.years_rangered year onChange=(action 'changeYear')}}
-<hr>
 {{#if showSchedule}}
 <h3>Current Schedule</h3>
-<div id="current-schedule">
+<div id="current-schedule" class="mb-4">
 {{schedule-table slots=signedUpSlots person=person}}
 </div>
 <a class="btn btn-info" {{action 'toggleSchedule'}}>Hide Schedule</a>
 {{else}}
 <a class="btn btn-info" {{action 'toggleSchedule'}}>Show Schedule</a>
 {{/if}}
-<hr>
 <h3>Available Shifts</h3>
 {{#if slots}}
   <div class="row mb-1">
