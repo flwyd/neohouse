@@ -75,21 +75,22 @@ export default Component.extend({
     },
 
     leaveSlot(slot) {
-      if (!confirm('Are you sure?'))
-        return;
+      this.modal.confirm('Confirm removal', `Are you sure you want to remove "${slot.title}" from the schedule?`,
+        function() {
+          let slots = this.get('slots');
+          const personId = this.get('person.id');
+          const slotId = slot.get('id');
+          const self = this;
 
-      let slots = this.get('slots');
-      const personId = this.get('person.id');
-      const slotId = slot.get('id');
-      const self = this;
-
-      this.ajax.request(`person/${personId}/schedule/${slotId}`, {
-        method: 'DELETE',
-      }).then(() => {
-        slot.set('person_assigned', false);
-      }).catch((response) => {
-        self.handleErrorResponse(response);
-      })
+          this.ajax.request(`person/${personId}/schedule/${slotId}`, {
+            method: 'DELETE',
+          }).then(() => {
+            slot.set('person_assigned', false);
+          }).catch((response) => {
+            self.handleErrorResponse(response);
+          })
+        }
+      );
     },
   }
 });

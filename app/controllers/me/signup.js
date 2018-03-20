@@ -174,12 +174,6 @@ export default Controller.extend(ClubhouseControllerMixins, {
       const personId = this.get('person.id');
       const slotId = slot.get('id');
 
-      if (slot.get('slot_signed_up') >= slot.get('slot_max')) {
-        if (!confirm('This shift is already at capacity. Continue to signup?')) {
-          return;
-        }
-      }
-
       this.ajax.request(`person/${personId}/schedule`, {
         method: 'POST',
         data: { slot_id: slotId }
@@ -222,22 +216,27 @@ export default Controller.extend(ClubhouseControllerMixins, {
     },
 
     leaveSlot(slot) {
-      if (!confirm('Are you sure?'))
-        return;
+      const self = this;
 
-      const notify = this.get('notify');
-      const personId = this.get('person.id');
-      const slotId = slot.get('id');
+      self.modal.confirm('Confirm Leaving Shift',
+        `Are you want to leave the shift "${slot.get('slot_description')}"?`,
+        function() {
+          const notify = self.get('notify');
+          const personId = self.get('person.id');
+          const slotId = slot.get('id');
 
-      this.ajax.request(`person/${personId}/schedule/${slotId}`, {
-        method: 'DELETE',
-      }).then((result) => {
-        slot.set('person_assigned', false);
-        slot.set('slot_signed_up', result.signed_up);
-        notify.success('The shift sign up has been removed.');
-      }).catch((err) => {
-        this.handleErrorResponse(err);
-      })
+          self.ajax.request(`person/${personId}/schedule/${slotId}`, {
+            method: 'DELETE',
+          }).then((result) => {
+            slot.set('person_assigned', false);
+            slot.set('slot_signed_up', result.signed_up);
+            notify.success('The shift sign up has been removed.');
+          }).catch((err) => {
+            self.handleErrorResponse(err);
+          })
+
+        }
+      );
     },
 
     showPeople(slot) {

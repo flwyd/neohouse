@@ -10,23 +10,14 @@ RSVP.on('error', function(error) {
   // TODO: keep an eye on this
   // https://github.com/emberjs/ember.js/issues/12505
   if(error.name !== 'TransitionAborted') {
-    if (error.stack) {
-      alert("RSVP Exception "+error.stack);
-    }
-    assert(error, false);
+    console.error('RSVP Exception', error.stack);
+    alert('RSVP Exception: '+error.stack);
   }
 });
 
 Ember.onerror = function(error) {
   console.error(error.stack);
-  // TODO - log exception to server
-
-  if (error.stack) {
-    alert("Exception "+error.stack);
-  } else {
-    alert("Exception unknown "+error);
-  }
-
+  alert("Exception "+error.stack);
 }
 
 const App = Application.extend({

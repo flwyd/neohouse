@@ -16,7 +16,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
             .catch(function(response) {
                 this.handleErrorResponse(response)
             }.bind(this));
-    }
+    },
   }
 
 });

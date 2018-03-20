@@ -1,20 +1,30 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
+import RSVP from 'rsvp';
 
 export default Service.extend({
   dialogs: A(),
 
-  info(title, message, model=null) {
-    this.open('modal-info', title, message, model);
+  info(title, message) {
+    this.open('modal-info', title, message);
   },
 
-  open(component, title, message, model) {
+  confirm(title, message, confirmCallback) {
+    this.open('modal-confirm', title, message, confirmCallback)
+  },
+
+  open(component, title, message, confirmCallback) {
     this.get('dialogs').pushObject({
-      component, title, message, model
+      component, title, message, confirmCallback
     });
   },
 
-  close() {
+  closeAction() {
     this.get('dialogs').shiftObject();
+  },
+
+  confirmAction() {
+    const dialog = this.get('dialogs').shiftObject();
+    dialog.confirmCallback();
   }
 });
