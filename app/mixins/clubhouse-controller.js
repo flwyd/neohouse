@@ -7,7 +7,7 @@ export default Mixin.create({
       let message;
       let responseErrors = '';
 
-      console.log("Error Response: ", response);
+      console.error("Error Response: ", response);
 
       if (response) {
         if (response.payload && response.payload.errors) {
@@ -26,7 +26,7 @@ export default Mixin.create({
         message = 'A server error was encountered: ' + response;
       }
 
-      this.modal.info("There's a problem...", message);
+      this.notify.error("There's a problem: "+message, { autoClear: false });
     },
 
     saveModel(model, isValid, successMessage, routeAfterSave) {

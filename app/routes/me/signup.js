@@ -24,6 +24,6 @@ export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
 
   setupController(controller, model) {
     this._super(...arguments);
-    controller.set('slots', model);
+    controller.setup(model);
   }
 });

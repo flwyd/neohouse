@@ -13,9 +13,6 @@ export default Route.extend(PersonMixins, {
 
     return this.get('ajax').request('person/'+person_id+'/yearinfo', { data: { year } })
        .then((result) => { return EmberObject.create(result.year_info); })
-       .catch((err) => {
-         alert("Could not retrieve ranger year info "+err);
-       });
   },
 
   setupController(controller, model) {

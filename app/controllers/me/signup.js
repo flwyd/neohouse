@@ -4,8 +4,18 @@ import {A} from '@ember/array';
 import moment from 'npm:moment';
 import { computed } from 'ember-decorators/object';
 
+const allDays = { id: 'all', title: 'All Days'};
+const allPositions = {id: 'all', title: 'All Positions'};
+
 export default Controller.extend(ClubhouseControllerMixins, {
   queryParams: [ 'year' ],
+
+  setup(model) {
+    this.set('slots', model);
+    this.set('filterDay', allDays);
+    this.set('filterPosition', allPositions);
+    this.set('filterDescription', 'All');
+  },
 
   @computed('slots', 'filterDay', 'filterPosition', 'filterDescription')
 	get slotGroups() {
@@ -60,13 +70,8 @@ export default Controller.extend(ClubhouseControllerMixins, {
     });
 
     options = options.sortBy('title');
-    options.unshiftObject({id: 'all', title: 'All Positions'});
+    options.unshiftObject(allPositions);
     return options;
-  },
-
-  @computed('positionOptions')
-	get filterPosition() {
-    return this.get('positionOptions.firstObject');
   },
 
   @computed('slots.[]', 'filterPosition')
@@ -74,7 +79,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
     const unique = this.get('slots').uniqBy('slotDay').mapBy('slotDay');
     const days = A();
 
-    days.pushObject({id: 'all', title: 'All Days'});
+    days.pushObject(allDays);
     days.pushObject({id: 'upcoming', title: 'Upcoming Shifts'});
 
     unique.forEach(function(day) {
@@ -82,11 +87,6 @@ export default Controller.extend(ClubhouseControllerMixins, {
     });
 
     return days;
-  },
-
-  @computed('dayOptions')
-	get filterDay() {
-    return this.get('dayOptions.firstObject');
   },
 
   @computed('slots.[]')
@@ -137,11 +137,6 @@ export default Controller.extend(ClubhouseControllerMixins, {
     }
 
     return groupOptions;
-  },
-
-  @computed('descriptionOptions')
-	get filterDescription() {
-    return this.get('descriptionOptions').objectAt(0);
   },
 
   @computed('slots.@each.person_assigned')
@@ -219,7 +214,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
       const self = this;
 
       self.modal.confirm('Confirm Leaving Shift',
-        `Are you want to leave the shift "${slot.get('slot_description')}"?`,
+        `Are you sure you want to leave the shift "${slot.get('slot_description')}"?`,
         function() {
           const notify = self.get('notify');
           const personId = self.get('person.id');
@@ -245,7 +240,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
         const callsigns = result.people.map(function(person) {
           return person.callsign;
         })
-        self.modal.info(slot.get('slot_description'), callsigns.join(', '));
+        self.modal.info('Scheduled (Callsigns) for '+slot.get('slot_description'), callsigns.join(', '));
       }).catch((response) => self.handleErrorResponse(response));
     },
   }

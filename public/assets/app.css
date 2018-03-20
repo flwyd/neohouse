@@ -265,6 +265,14 @@ legend {
   border-color: #d2b48c;
 }
 
+.error-pane {
+  margin: 25px auto;
+}
+
+.error-message {
+  color: red;
+}
+
 .loading-pane {
   margin: 25px auto;
 }

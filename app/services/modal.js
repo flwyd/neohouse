@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
-import RSVP from 'rsvp';
 
 export default Service.extend({
   dialogs: A(),
