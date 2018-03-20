@@ -15,17 +15,12 @@
               {{#link-to 'me.signup' class="dropdown-item"}}Schedule &amp; Shift Signup{{/link-to}}
               {{#link-to 'me.timesheet' class="dropdown-item"}}Timesheet{{/link-to}}
               {{#link-to 'me.messages' class="dropdown-item"}}Messages{{/link-to}}
+              {{#link-to 'me.tickets' class="dropdown-item"}}Tickets &amp; Stuff{{/link-to}}
               {{#link-to 'me.ranger-info-show' class="dropdown-item"}}Ranger Info{{/link-to}}
               {{#link-to 'me.personal-info-show' class="dropdown-item"}}Personal Info{{/link-to}}
               {{#link-to 'me.emergency-contact-show' class="dropdown-item"}}Emergency Contact{{/link-to}}
               {{#link-to 'me.password' class="dropdown-item"}}Change Password{{/link-to}}
             </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link2</a>
           </li>
       {{else}}
         <li class="nav-item dropdown">
@@ -48,7 +43,7 @@
         <!-- Smaller devices menu END -->
       </ul>
       {{#if session.isAuthenticated}}
-        <span class="nav-text d-none-sm"><small>{{user.callsign}} {{user.roleNames}}</small></span>
+        <span class="nav-text"><small>{{user.callsign}}</small></span>
         <ul class="navbar-nav">
           <li class="nav-item"><a class='nav-link' {{action 'logout'}}>Logout</a></li>
         </ul>
@@ -64,7 +59,7 @@
 
 <footer class="footer">
   <div class="container text-center">
-    <div>For general questions and support email: {{mail-to (config 'GeneralSupportEmail')}}</div>
+    <p>For general questions and support email: {{mail-to (config 'GeneralSupportEmail')}}</p>
     <p>For technical support email: {{mail-to (config 'AdminEmail')}}</p>
     <p><small>{{config 'SiteNotice'}}</small></p>
   </div>

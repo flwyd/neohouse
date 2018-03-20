@@ -9,18 +9,18 @@
     {{radio-button value="unread" groupValue=filterMessages
         radioId="filter-unread" classNames="form-check-label"
         radioClass="form-check-input" }}
-    <label for="filter-unread" class="form-check-label">Unread</label>
+    <label for="filter-unread" class="form-check-label">Unread ({{unreadCount}})</label>
   </div>
 
   <div class="form-check form-check-inline">
     {{radio-button value="read" groupValue=filterMessages
         radioId="filter-read" classNames="form-check-label"
         radioClass="form-check-input" }}
-    <label for="filter-read" class="form-check-label">Read</label>
+    <label for="filter-read" class="form-check-label">Read ({{readCount}})</label>
   </div>
   <p class="text-muted small">Note: all times are in the Pacific Timezone.</p>
 
-  <p class="text-muted">Showing {{viewMessages.length}} of {{messages.length}}</p>
+  <p class="text-muted">Showing {{pluralize viewMessages.length 'message'}}</p>
   {{#each viewMessages as |message|}}
     <div class="mb-2 person-message-box">
       <div class="row person-message-header">

@@ -1,7 +1,7 @@
 import DS from 'ember-data';
-import { computed } from '@ember/object';
 import { memberAction } from 'ember-api-actions';
 import { typeOf } from '@ember/utils';
+import { computed } from 'ember-decorators/object';
 
 import * as PersonStatus from 'neohouse/constants/person_status';
 import { roleName } from 'neohouse/constants/roles';
@@ -84,31 +84,41 @@ export default DS.Model.extend({
   photo_url:                    DS.attr('string', { readOnly: true }),
 
   // Computed methods
-  isPastProspectiveDisabled: computed('status', 'callsign_approved', function() {
+  @computed('status', 'callsign_approved')
+	get isPastProspectiveDisabled() {
       return (this.get('status') == PersonStatus.PAST_PROSPECTIVE && !this.get('callsign_approved'));
-  }),
+  },
 
-  isRanger: computed('status', function() {
+  @computed('status')
+	get isRanger() {
     const status = this.get('status');
 
     return (status == PersonStatus.ACTIVE
           || status == PersonStatus.VINTAGE
           || status == PersonStatus.AUDITOR);
-  }),
+  },
 
-  isAlpha: computed('status', function() {
+  @computed('status')
+	get isAlpha() {
     return (status == PersonStatus.ALPHA)
-  }),
+  },
 
-  isAuditor: computed('status', function() {
+  @computed('status')
+	get isAuditor() {
     return this.get('status') == PersonStatus.AUDITOR;
-  }),
+  },
 
-  isNascentRanger: computed('status', function() {
+  @computed('status')
+	get isNascentRanger() {
     const status = this.get('status');
 
     return (status == PersonStatus.ALPHA || status == PersonStatus.PROSPECTIVE);
-  }),
+  },
+
+  @computed('status')
+  get isAuditorOrPastProspective() {
+    return (status == PersonStatus.AUDITOR || status == PersonStatus.PAST_PROSPECTIVE);
+  },
 
   hasRole(roles) {
     let personRoles = this.get('roles');
@@ -140,7 +150,8 @@ export default DS.Model.extend({
     return (count == roles.length);
   },
 
-  roleNames: computed('roles', function() {
+  @computed('roles')
+	get roleNames() {
     let personRoles = this.get('roles');
 
     if (!personRoles) {
@@ -154,7 +165,7 @@ export default DS.Model.extend({
     });
 
     return names.join(',');
-  }),
+  },
 
   //
   // AJAX methods

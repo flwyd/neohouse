@@ -65,7 +65,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
   },
 
   @computed('positionOptions')
-	filterPosition() {
+	get filterPosition() {
     return this.get('positionOptions.firstObject');
   },
 
@@ -85,7 +85,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
   },
 
   @computed('dayOptions')
-	filterDay() {
+	get filterDay() {
     return this.get('dayOptions.firstObject');
   },
 
@@ -140,7 +140,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
   },
 
   @computed('descriptionOptions')
-	filterDescription() {
+	get filterDescription() {
     return this.get('descriptionOptions').objectAt(0);
   },
 

@@ -1,0 +1,58 @@
+<h1>My Tickets &amp; Stuff</h1>
+{{#if ticketsDisabled}}
+  {{#ch-box 'My Tickets And Stuff page is currently disabled' type='danger'}}
+    Sorry, the page is disabled for the moment. Please check again later.
+  {{/ch-box}}
+{{else if isAuditorOrPastProspective}}
+    Sorry, auditors and past prospectives don't have access to this page.
+{{else if wapDisabled}}
+    Sorry, access to any Work Access Passes is currently disabled. Please check again later.
+{{else}}
+  {{#if accepting}}
+    <p>
+      This page allows you to request, claim, or bank any items you've qualified
+      for, such as a Staff Credential, Reduced-Price Ticket, Vehicle Pass,
+      Work Access Pass, or Work Access Passes for your significant
+      others/critical campmates.
+    </p>
+    <p class="text-danger lead">You must make your selections below by {{submitTime}} Pacific time on {{submitDate}}.</p>
+    <p>
+        (But don't worry, you can change your mind multiple times between now and then!)
+    </p>
+    <p>
+      Note that by accepting any of the below items you agree that you will
+      volunteer and work shifts as a Ranger on playa this year.
+    </p>
+
+  {{/if}}
+
+  <h2>What Happens Next?</h2>
+  <p>
+    {{#if accepting}}
+      You have until {{submitTime}} Pacific time on {{submitDate}} to make
+      your selections above.  The next day we'll start uploading everyone's
+      requests into the Burning Man Ticket Request System.
+    {{else}}
+      Sometime in late July we'll start uploading goodies into the
+      Burning Man Ticket Request System.
+    {{/if}}
+    You'll then receive emails from Ticketfly {{mail-to 'memberservices@ticketfly.com'}}
+    giving you access to the goodies that you've claimed or requested.
+
+    {{#unless person.isNascentRanger}}
+      If you claimed a Reduced-Price Ticket, you'll need to pay for it at
+      that time.
+    {{/unless}}
+  </p>
+
+  <h2>Got Questions? Something Wrong? Need Help?</h2>
+
+  <p>
+    If you have questions or think that any of the above is incorrect in
+    some way or otherwise need help, please email
+    {{mail-to (config 'TAS_Email')}}
+    Please be sure to tell us your real-world name, your Ranger callsign,
+    and what you think the issue is.  Thanks!
+  </p>
+
+{{/if}}

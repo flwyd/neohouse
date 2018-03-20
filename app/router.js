@@ -30,6 +30,8 @@ Router.map(function() {
     this.route('schedule');
     this.route('timesheet');
     this.route('signup');
+    this.route('tickets');
+    this.route('help');
   });
 
   this.route('search', function() {

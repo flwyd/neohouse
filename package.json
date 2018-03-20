@@ -24,7 +24,7 @@
     "ember-api-actions": "^0.1.8",
     "ember-changeset": "^1.4.2-beta.1",
     "ember-changeset-validations": "^1.2.11",
-    "ember-cli": "~3.0.0",
+    "ember-cli": "^3.0.1",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.12.0",
     "ember-cli-dependency-checker": "^2.0.0",
