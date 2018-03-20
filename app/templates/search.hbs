@@ -5,8 +5,6 @@
         Maybe some kind of search here?
       </div>
 
-      {{flash-render}}
-
       {{#ch-box 'Search For'}}
         {{#ch-form 'search' searchForm onSubmit=(action 'search') as |f|}}
           {{f.input 'query' type='text' label='Search' maxlength=50}}

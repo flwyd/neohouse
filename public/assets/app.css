@@ -76,11 +76,12 @@ main {
 legend {
   background-color: #efefef;
   padding-left: 10px;
- }
+}
 
- .form-row, .form-group {
-   padding-left: 10px;
- }
+.form-row, .form-group {
+  padding-left: 10px;
+}
+
 /* Sidebar CSS */
 
 #body-row {
@@ -176,6 +177,7 @@ legend {
 .sidebar-callsign {
   color: white;
 }
+
 /* end of sidebar */
 
 .schedule-table {
@@ -259,6 +261,11 @@ legend {
   border-color: #d2b48c;
 }
 
+.btn-primary:hover {
+  background-color: #dec9ae;
+  color: #200;
+}
+
 .btn-info {
   color: #200;
   background-color: #d2b48c;
@@ -321,6 +328,7 @@ legend {
 .mugshot-icon {
   width: 180px;
 }
+
 /* this will be overridden if the screen is small
  * enough to have the responsive table query kick in.
  */
@@ -397,4 +405,19 @@ legend {
   .table-rc .td-number {
     text-align: normal !important;
   }
+}
+
+/*
+ * position the flash messages on top
+*/
+
+.flash-message {
+  position: fixed;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 80%;
+  max-width: 600px;
+  z-index: 1000;
 }

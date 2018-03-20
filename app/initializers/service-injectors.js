@@ -2,7 +2,7 @@ const servicesToInject = {
   ajax:    'ajax',
   modal:   'modal',
   session: 'session',
-  notify:  'notification-messages'
+  notify:  'flashMessages'
 };
 
 export function initialize(app) {
