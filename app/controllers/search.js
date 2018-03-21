@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import * as PersonStatus from 'neohouse/constants/person_status';
+import { PersonStatus } from 'neohouse/constants/person_status';
 
 const SearchFieldOptions = [
   { value: 'name', label: 'Name' },

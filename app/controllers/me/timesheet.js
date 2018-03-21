@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import * as Role from 'neohouse/constants/roles';
+import { Role } from 'neohouse/constants/roles';
 
 export default Controller.extend({
   queryParams: [ 'year' ],

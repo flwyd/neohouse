@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
 import { computed } from 'ember-decorators/object';
 import moment from 'npm:moment';
-import { config } from 'neohouse/utils/config';
 
-import * as PersonStatus from 'neohouse/constants/person_status';
+import { config } from 'neohouse/utils/config';
+import { PersonStatus } from 'neohouse/constants/person_status';
 
 export default Controller.extend({
   get ticketsDisabled() {

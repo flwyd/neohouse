@@ -3,6 +3,7 @@ import ClubhouseControllerMixins from 'neohouse/mixins/clubhouse-controller';
 import {A} from '@ember/array';
 import moment from 'npm:moment';
 import { computed } from 'ember-decorators/object';
+import { Role } from 'neohouse/constants/roles';
 
 const allDays = { id: 'all', title: 'All Days'};
 const allPositions = {id: 'all', title: 'All Positions'};
@@ -158,56 +159,72 @@ export default Controller.extend(ClubhouseControllerMixins, {
     return slots;
   },
 
+  handleJoinResponse(response, slot) {
+    const modal = this.modal;
+    if (!response.payload) {
+      this.handleErrorResponse(response);
+      return;
+    }
+
+    switch (response.payload.status) {
+      case 'full':
+        modal.info('The shift is full.', 'The shift is at capacity with '+slot.get('slot_signed_up')+' indivduals signed up.');
+        break;
+
+      case 'no-slot':
+        modal.info('The slot could not be found?', 'The slot '+slot.get('id')+' was not found in the database. This looks like a bug!');
+        break;
+
+      case 'no-position':
+        modal.info('Position not held', 'You do not hold the position ['+slot.get('position_title')+'] in order to sign up for this shift.');
+        break;
+
+      case 'exists':
+        modal.info('Already signed up','Huh, looks like you already signed up for the shift.');
+        break;
+
+      default:
+        this.handleErrorResponse(response);
+        break;
+    }
+  },
+
+  joinSlotRequest(slot) {
+    const personId = this.get('person.id');
+    const slotId = slot.get('id');
+    const self = this;
+
+    this.ajax.request(`person/${personId}/schedule`, {
+      method: 'POST',
+      data: { slot_id: slotId }
+    }).then((response) => {
+        slot.set('person_assigned', true);
+        slot.set('slot_signed_up', response.signed_up);
+        if (response.forced) {
+          self.notify.success('Successfully signed up, and the shift is overcapacity. Hope you know what you are doing!');
+        } else {
+          self.notify.success('Successfully signed up.');
+        }
+    }).catch((response) => {
+      self.handleJoinResponse(response, slot);
+    });
+  },
+
   actions: {
     changeYear(year) {
       this.set('year', year);
     },
 
     joinSlot(slot) {
-      const notify = this.get('notify');
-      const modal = this.get('modal');
-      const personId = this.get('person.id');
-      const slotId = slot.get('id');
-
-      this.ajax.request(`person/${personId}/schedule`, {
-        method: 'POST',
-        data: { slot_id: slotId }
-      }).then((response) => {
-          slot.set('person_assigned', true);
-          slot.set('slot_signed_up', response.signed_up);
-          if (response.forced) {
-            modal.info('Shift is full', 'The shift has been added to the schedule. However, the shift is overcapacity.')
-          } else {
-            notify.success('Successfully signed up.');
-          }
-      }).catch((response) => {
-        if (!response.payload) {
-          this.handleErrorResponse(response);
-          return;
-        }
-
-        switch (response.payload.status) {
-          case 'full':
-            modal.info('The shift is full.', 'The shift is at capacity with '+slot.get('slot_signed_up')+' indivduals signed up.');
-            break;
-
-          case 'no-slot':
-            modal.info('The slot could not be found?', 'The slot '+slot.get('id')+' was not found in the database. This looks like a bug!');
-            break;
-
-          case 'no-position':
-            modal.info('Position not held', 'You do not hold the position ['+slot.get('position_title')+'] in order to sign up for this shift.');
-            break;
-
-          case 'exists':
-            modal.info('Already signed up','Huh, looks like you already signed up for the shift.');
-            break;
-
-          default:
-            this.handleErrorResponse(response);
-            break;
-        }
-      });
+      const self = this;
+      if (slot.get('isFull') && this.get('session.user').hasRole(Role.ADMIN)) {
+        this.modal.confirm(
+              'Shift is full',
+              'Since you are an admin, you may force adding this shift to the schedule. Please confirm you wish to do this.',
+              function() { self.joinSlotRequest(slot); });
+      } else {
+        this.joinSlotRequest(slot);
+      }
     },
 
     leaveSlot(slot) {

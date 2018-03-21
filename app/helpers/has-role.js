@@ -1,6 +1,6 @@
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
-import * as Role from 'neohouse/constants/roles';
+import { Role, StringToRole } from 'neohouse/constants/roles';
 
 export default Helper.extend({
   session: service(),
@@ -14,7 +14,7 @@ export default Helper.extend({
     }
 
     params.forEach(function(name) {
-      const roleValue = Role.StringToRole[name];
+      const roleValue = StringToRole[name];
 
       if (roleValue) {
         roles.push(roleValue);

@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 import { htmlSafe } from '@ember/string';
-import * as PersonStatus from '../constants/person_status';
+import { PersonStatus } from '../constants/person_status';
 
 export function statusBadge([ status ]) {
   let color;

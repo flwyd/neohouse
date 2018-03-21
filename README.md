@@ -1,11 +1,12 @@
-# neohouse
+# Neohouse - The Next Generation Ranger Clubhouse Frontend
+(An experiment in Ember)
 
 This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
 
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
+(See the neoapi repository README file for instructions on how to bring up the API backend)
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with npm)
@@ -21,8 +22,18 @@ You will need the following things properly installed on your computer.
 ## Running / Development
 
 * `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* See the neoapi instructions on how to bring up the front end
+
+* Visit the neohouse app at [http://localhost:4200](http://localhost:4200).
+
 * Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+(2018/03/21 - tests are not yet available)
+
+### API Server Endpoint
+
+The API endpoint is specified in app/config/environment.js
+
+For the development environment this is http://localhost:8000/api
 
 ### Code Generators
 

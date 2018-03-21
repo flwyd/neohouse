@@ -3,7 +3,7 @@ import { memberAction } from 'ember-api-actions';
 import { typeOf } from '@ember/utils';
 import { computed } from 'ember-decorators/object';
 
-import * as PersonStatus from 'neohouse/constants/person_status';
+import { PersonStatus } from 'neohouse/constants/person_status';
 import { roleName } from 'neohouse/constants/roles';
 
 export default DS.Model.extend({
