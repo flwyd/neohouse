@@ -24,8 +24,6 @@ const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
   Resolver,
-
-  LOG_TRANSITIONS_INTERNAL: true
 });
 
 loadInitializers(App, config.modulePrefix);

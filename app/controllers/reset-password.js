@@ -19,7 +19,7 @@ export default Controller.extend(ClubhouseControllerMixins, {
         data: { identification }
       }).then(() => {
         self.modal.info('Reset password instructions sent.', `Instructions to reset your password will be sent to you shortly. Please check your email '${identification}'.`);
-        self.transitionTo('login');
+        self.transitionToRoute('login');
       }).catch(function(response) { self.handleErrorResponse(response) });
     }
   }

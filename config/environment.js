@@ -77,8 +77,9 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://rangeroffice.burningman.org/api/auth/session'
-    ENV['api-server'] = 'http://rangeroffice.burningman.org/api'
+    ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://neohouse.burg.me/api/auth/login'
+    ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = 'http://neohouse.burg.me/api/auth/refresh'
+    ENV['api-server'] = 'http://neohouse.burg.me/api'
   }
 
   return ENV;
