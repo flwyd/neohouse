@@ -12,14 +12,50 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Me</a>
             <div class="dropdown-menu">
+              <div class="navbar-text">Scheduling</div>
               {{#link-to 'me.signup' class="dropdown-item"}}Schedule &amp; Shift Signup{{/link-to}}
               {{#link-to 'me.timesheet' class="dropdown-item"}}Timesheet{{/link-to}}
+              <div class="navbar-text">General</div>
               {{#link-to 'me.messages' class="dropdown-item"}}Messages{{/link-to}}
               {{#link-to 'me.tickets' class="dropdown-item"}}Tickets &amp; Stuff{{/link-to}}
               {{#link-to 'me.ranger-info-show' class="dropdown-item"}}Ranger Info{{/link-to}}
+              <div class="navbar-text">Profile</div>
               {{#link-to 'me.personal-info-show' class="dropdown-item"}}Personal Info{{/link-to}}
               {{#link-to 'me.emergency-contact-show' class="dropdown-item"}}Emergency Contact{{/link-to}}
               {{#link-to 'me.password' class="dropdown-item"}}Change Password{{/link-to}}
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
+            <div class="dropdown-menu dropdown-mega">
+              <div class="row">
+                <div class="col">
+                  <div class="navbar-text">Database</div>
+                  <a href="#" class="dropdown-item">Edit Slots</a>
+                  <a href="#" class="dropdown-item">Edit Positions</a>
+                  <a href="#" class="dropdown-item">Edit Credits</a>
+                  <a href="#" class="dropdown-item">DB Conversions</a>
+                  <a href="#" class="dropdown-item">Maintenance</a>
+                  <a href="#" class="dropdown-item">Log View</a>
+                </div>
+                <div class="col">
+                  <div class="navbar-text">Misc.</div>
+                  <a href="#" class="dropdown-item">Salesforce Import</a>
+                  <a href="#" class="dropdown-item">Reminder Emails</a>
+                  <a href="#" class="dropdown-item">Bulk Upload</a>
+                  <a href="#" class="dropdown-item">Sync. Lam Photos</a>
+                  <a href="#" class="dropdown-item">Export Lam Photos</a>
+                  <a href="#" class="dropdown-item">Bulk Signout</a>
+                </div>
+                <div class="col">
+                  <div class="navbar-text">Post Event</div>
+                  <a href="#" class="dropdown-item">Thank-You Cards</a>
+                  <a href="#" class="dropdown-item">Timesheet Sanity Check</a>
+                  <a href="#" class="dropdown-item">Manual Review</a>
+                  <a href="#" class="dropdown-item">Hours/Credits</a>
+                  <a href="#" class="dropdown-item">Person Status Change</a>
+                </div>
+              </div>
             </div>
           </li>
       {{else}}

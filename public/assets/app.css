@@ -29,6 +29,19 @@ main {
   margin: 15px 10px;
 }
 
+.dropdown-mega {
+  width: 650px;
+}
+
+.dropdown-menu .navbar-text {
+  margin-left: 24px;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #222;
+}
+
+
+
 .footer {
   width: 100%;
   padding: 15px 0;
