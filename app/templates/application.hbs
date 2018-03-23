@@ -81,7 +81,7 @@
         <!-- Smaller devices menu END -->
       </ul>
       {{#if session.isAuthenticated}}
-        <span class="nav-text"><small>{{user.callsign}}</small></span>
+        <span class="nav-text"><small>{{session.user.callsign}}</small></span>
         <ul class="navbar-nav">
           <li class="nav-item"><a class='nav-link' {{action 'logout'}}>Logout</a></li>
         </ul>
