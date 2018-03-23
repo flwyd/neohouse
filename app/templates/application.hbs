@@ -25,6 +25,7 @@
               {{#link-to 'me.password' class="dropdown-item"}}Change Password{{/link-to}}
             </div>
           </li>
+          {{#if (has-role 'admin')}}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
             <div class="dropdown-menu dropdown-mega">
@@ -58,6 +59,7 @@
               </div>
             </div>
           </li>
+          {{/if}}
       {{else}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Actions</a>
