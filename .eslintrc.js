@@ -2,6 +2,7 @@ module.exports = {
   globals: {
     server: true,
   },
+  parser: 'babel-eslint',
   root: true,
   parserOptions: {
     ecmaVersion: 2017,
@@ -18,6 +19,7 @@ module.exports = {
     browser: true
   },
   rules: {
+    'no-console': 'off',
   },
   overrides: [
     // node files

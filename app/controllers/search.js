@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { PersonStatus } from 'neohouse/constants/person_status';
 
 const SearchFieldOptions = [
   { value: 'name', label: 'Name' },
@@ -7,25 +6,6 @@ const SearchFieldOptions = [
   { value: 'email', label: 'Email' },
   { value: 'fka', label: 'Formerly Known As' },
   { value: 'barcode', label: 'Barcode' },
-];
-
-const StatusOptions = [
-  PersonStatus.ACTIVE,
-  PersonStatus.VINTAGE,
-  PersonStatus.PROSPECTIVE,
-  PersonStatus.PAST_PROSPECTIVE,
-  PersonStatus.ALPHA,
-  PersonStatus.AUDITOR,
-
-  PersonStatus.INACTIVE,
-  PersonStatus.INACTIVE_EXTENSION,
-  PersonStatus.BONKED,
-  PersonStatus.UBERBONKED,
-
-  PersonStatus.DISMISSED,
-  PersonStatus.DECEASED,
-  PersonStatus.RESIGNED,
-  PersonStatus.RETIRED,
 ];
 
 export default Controller.extend({

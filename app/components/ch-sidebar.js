@@ -2,6 +2,10 @@ import Component from '@ember/component';
 import $ from 'jquery';
 
 const sidebarCollapse = function(event) {
+  if (event) {
+    event.preventDefault();
+  }
+
   $('.menu-collapsed').toggleClass('d-none');
   $('.sidebar-submenu').toggleClass('d-none');
   $('.submenu-icon').toggleClass('d-none');

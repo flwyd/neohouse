@@ -77,7 +77,6 @@ export default Component.extend({
     leaveSlot(slot) {
       this.modal.confirm('Confirm removal', `Are you sure you want to remove "${slot.title}" from the schedule?`,
         function() {
-          let slots = this.get('slots');
           const personId = this.get('person.id');
           const slotId = slot.get('id');
           const self = this;

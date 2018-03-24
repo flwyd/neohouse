@@ -1,6 +1,6 @@
 import Helper from '@ember/component/helper';
 import { inject as service } from '@ember/service';
-import { Role, StringToRole } from 'neohouse/constants/roles';
+import { StringToRole } from 'neohouse/constants/roles';
 
 export default Helper.extend({
   session: service(),
