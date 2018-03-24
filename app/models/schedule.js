@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { computed } from '@ember/object';
+import { computed } from 'ember-decorators/object';
 import moment from 'npm:moment';
 
 export default DS.Model.extend({
@@ -44,11 +44,13 @@ export default DS.Model.extend({
   // The year this slot occurs
   year:             DS.attr('number', { readOnly: true }),
 
-  isFull: computed('slot_signed_up', 'slot_max', function() {
+  @computed('slot_signed_up', 'slot_max')
+  isFull() {
     return (this.get('slot_signed_up') >= this.get('slot_max'));
-  }),
+  },
 
-  slotDay: computed('slot_begins', function() {
+  @computed('slot_begins')
+  slotDay() {
     const begins = this.get('slot_begins');
     let date;
     try {
@@ -58,5 +60,5 @@ export default DS.Model.extend({
     }
 
     return date;
-  })
+  }
 });

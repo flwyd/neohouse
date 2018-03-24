@@ -3,7 +3,7 @@
 
 import Object from '@ember/object';
 import Component from '@ember/component';
-import { computed, observer } from '@ember/object';
+import { computed, observer } from 'ember-decorators/object';
 import { typeOf } from '@ember/utils';
 import { guidFor } from '@ember/object/internals';
 
@@ -13,10 +13,10 @@ const MultiCheckboxField = Object.extend({
   isChecked: false,
 
 //  fieldId: null,
-
-  clicked: observer('isChecked', function() {
+  @observer('isChecked')
+  clicked() {
     this.get('onClick').call(this);
-  }),
+  },
 });
 
 export default Component.extend({
@@ -27,7 +27,8 @@ export default Component.extend({
   labelProperty: 'label',
   valueProperty: 'value',
 
-  checkboxes: computed("options", function() {
+  @computed('options')
+  checkboxes() {
     const self = this;
     const options = this.get('options') || [];
     const labelProperty = this.get('labelProperty');
@@ -65,7 +66,7 @@ export default Component.extend({
       return field;
     });
 
-  }),
+  },
 
   actions: {
     onClick() {

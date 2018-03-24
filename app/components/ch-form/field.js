@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import {computed} from '@ember/object';
+import {computed} from 'ember-decorators/object';
 
 export default Component.extend({
   type: 'text',
@@ -25,24 +25,28 @@ export default Component.extend({
     this._super(...arguments);
   },
 
-  domId: computed('name', function() {
+  @computed('name')
+  domId() {
     return `${this.get('formid')}-${this.get('name')}`
-  }),
+  },
 
   // ember-changeset-validate uses model.error (singular)
   // to place validation errors
-  error: computed('model.error', function() {
+  @computed('model.error')
+  error() {
     const error = this.get('model.error');
     return error ? error[this.get('name')] : null;
-  }),
+  },
 
-  isValid: computed('error', function() {
+  @computed('error')
+  isValid() {
     return !this.get('error');
-  }),
+  },
 
-  _val: computed('value', 'model', 'name', function() {
+  @computed('value', 'model', 'name')
+  _val() {
     return this.get('value') || this.get(`model.${this.get('name')}`);
-  }),
+  },
 
   actions: {
     update(value) {

@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { computed } from '@ember/object';
+import { computed } from 'ember-decorators/object';
 import { memberAction } from 'ember-api-actions';
 
 export default DS.Model.extend({
@@ -20,9 +20,10 @@ export default DS.Model.extend({
 
   delivered:          DS.attr('boolean', { readOnly: true }),
 
-  isDictacted: computed('creator_person_id', 'sender_person_id', function() {
+  @computed('creator_person_id', 'sender_person_id')
+  isDictacted() {
       return (this.get('creator_person_id') != this.get('sender_person_id'));
-  }),
+  },
 
   markRead:           memberAction({ path: 'markread', type: 'patch'})
 });

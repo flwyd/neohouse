@@ -1,12 +1,13 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed } from 'ember-decorators/object';
 
 export default Component.extend({
   iconType: 'r',
   tagName: '',
   tagClass: 'bg-dark list-group-item list-group-item-action',
 
-  isUrl: computed('routePath', function() {
+  @computed('routePath')
+  isUrl() {
     const url = this.get('routePath');
 
     if (url == '') {
@@ -14,7 +15,7 @@ export default Component.extend({
     }
 
     return (url == '#' || url.startsWith('http'));
-  }),
+  },
 }).reopenClass({
   positionalParams: [ 'routePath', 'routeArg' ]
 });

@@ -1,12 +1,13 @@
 import Component from '@ember/component';
-import {computed} from '@ember/object';
+import {computed} from 'ember-decorators/object';
 
 export default Component.extend({
   tagName: '',
   years: null,
   year: 0,
 
-  yearOptions: computed("years", function() {
+  @computed("years")
+  yearOptions() {
     const currentYear = (new Date()).getFullYear();
     const years = (this.get('years') || []).slice();
 
@@ -17,7 +18,7 @@ export default Component.extend({
     // descending sort
     years.sort((a, b) => (b - a));
     return years;
-  }),
+  },
 }).reopenClass({
   positionalParams: [ 'title', 'years', 'year']
 });

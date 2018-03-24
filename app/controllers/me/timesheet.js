@@ -1,11 +1,12 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { computed } from 'ember-decorators/object';
 import { Role } from 'neohouse/constants/roles';
 
 export default Controller.extend({
   queryParams: [ 'year' ],
 
-  positions: computed('timesheets', function() {
+  @computed('timesheets')
+  positions() {
     let positionGroups = {};
     const timesheets = this.get('timesheets');
 
@@ -31,13 +32,14 @@ export default Controller.extend({
     });
 
     return positions;
-  }),
+  },
 
-  showActions: computed('session.user.roles', function() {
+  @computed('session.user.roles')
+  showActions() {
     const user = this.get('session.user');
 
     return (user.hasRole([ Role.ADMIN, Role.MANAGE ]));
-  }),
+  },
 
   actions: {
     changeYear(year) {
