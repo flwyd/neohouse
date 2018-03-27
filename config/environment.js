@@ -87,18 +87,29 @@ module.exports = function(environment) {
     // Testem prefers this...
     ENV.locationType = 'none';
 
+    ENV['dual-clubhouse'] = false;
+    ENV['clubhouse-prime'] = null;
+
+    ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://localhost:8000/api/auth/login'
+    ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = 'http://localhost:8000/api/auth/refresh'
+
+    ENV['api-server'] = 'http://localhost:8000/api'
+
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    ENV['ember-cli-mirage'] = {
+      enabled: true
+    };
   }
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
     ENV['dual-clubhouse'] = true;
-    ENV['clubhouse-prime'] = 'https://clubprime.burg.me';
+    ENV['clubhouse-prime'] = 'https://neohouse.burg.me/clubhouse';
 
     ENV['ember-simple-auth-token'].serverTokenEndpoint = 'https://neohouse.burg.me/api/auth/login'
     ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = 'https://neohouse.burg.me/api/auth/refresh'

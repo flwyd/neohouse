@@ -56,7 +56,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Vol Coord</a>
             <div class="dropdown-menu">
-              <a href="{{config 'clubhouse-prime'}}/standard/javascripts/nameconflicts.html">Check Callsigns</a>
+              <a href="{{clubhouse-prime '/standard/javascripts/nameconflicts.html'}}" class="dropdown-item">Check Callsigns</a>
               {{#if (has-role 'edit-access-docs')}}
               <a href="{{cgo 'accessdoc' 'listAllAccessDocs'}}" class="dropdown-item">Manage Access Docs</a>
               {{/if}}
@@ -73,7 +73,7 @@
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Admin</a>
             <div class="dropdown-menu dropdown-menu-large">
               <div class="row">
-                <div class="col">
+                <div class="col-sm-3">
                     <a href="{{cgo 'slot' 'selectAll'}}" class="dropdown-item">Edit Schedule Slots</a>
                     <a href="{{cgo 'slot' 'selectCredits'}}" class="dropdown-item">Edit Schedule Credits</a>
             {{#if (has-role 'admin')}}
@@ -84,7 +84,7 @@
             {{/if}}
                 </div>
             {{#if (has-role 'admin')}}
-              <div class="col">
+              <div class="col-sm-3">
                     <a href="{{cgo 'salesforce' 'import'}}" class="dropdown-item">Salesforce Import</a>
                     <a href="{{cgo 'conversion' 'convert'}}" class="dropdown-item">Database Conversions</a>
                     <a href="{{cgo 'reminders' 'index'}}" class="dropdown-item">Reminder Emails</a>
@@ -93,7 +93,7 @@
                     <a href="{{cgo 'lam' 'exportLamPhotos'}}" class="dropdown-item">Export Lam Photos</a>
                     <a href="{{cgo 'timesheet' 'signoutOnDuty'}}" class="dropdown-item">Bulk Signout</a>
                 </div>
-                <div class="col">
+                <div class="col-sm-3">
                     <a href="{{cgo 'timesheet' 'thankYouCards'}}" class="dropdown-item">Thank-You Cards</a>
                     <a href="{{cgo 'timesheet' 'sanityCheckTimeSheets'}}" class="dropdown-item">Timesheet Sanity Check</a>
                     <a href="{{cgo 'manualreview' 'selectAll'}}" class="dropdown-item">Manual Review</a>
