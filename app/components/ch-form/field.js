@@ -26,25 +26,25 @@ export default Component.extend({
   },
 
   @computed('name')
-  domId() {
+  get domId() {
     return `${this.get('formid')}-${this.get('name')}`
   },
 
   // ember-changeset-validate uses model.error (singular)
   // to place validation errors
   @computed('model.error')
-  error() {
+  get error() {
     const error = this.get('model.error');
     return error ? error[this.get('name')] : null;
   },
 
   @computed('error')
-  isValid() {
+  get isValid() {
     return !this.get('error');
   },
 
   @computed('value', 'model', 'name')
-  _val() {
+  get _val() {
     return this.get('value') || this.get(`model.${this.get('name')}`);
   },
 

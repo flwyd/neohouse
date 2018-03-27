@@ -7,7 +7,7 @@ export default Component.extend({
   tagClass: 'bg-dark list-group-item list-group-item-action',
 
   @computed('routePath')
-  isUrl() {
+  get isUrl() {
     const url = this.get('routePath');
 
     if (url == '') {

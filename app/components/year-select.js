@@ -7,7 +7,7 @@ export default Component.extend({
   year: 0,
 
   @computed("years")
-  yearOptions() {
+  get yearOptions() {
     const currentYear = (new Date()).getFullYear();
     const years = (this.get('years') || []).slice();
 

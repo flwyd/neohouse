@@ -45,16 +45,16 @@ export default DS.Model.extend({
   year:             DS.attr('number', { readOnly: true }),
 
   @computed('slot_signed_up', 'slot_max')
-  isFull() {
+  get isFull() {
     return (this.get('slot_signed_up') >= this.get('slot_max'));
   },
 
   @computed('slot_begins')
-  slotDay() {
+  get slotDay() {
     const begins = this.get('slot_begins');
     let date;
     try {
-      date = moment(begins).format('YYYY/MM/DD');
+      date = moment(begins).format('YYYY-MM-DD');
     } catch (error) {
       return begins + ' '+error;
     }

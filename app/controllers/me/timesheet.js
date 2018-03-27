@@ -6,7 +6,7 @@ export default Controller.extend({
   queryParams: [ 'year' ],
 
   @computed('timesheets')
-  positions() {
+  get positions() {
     let positionGroups = {};
     const timesheets = this.get('timesheets');
 
@@ -35,7 +35,7 @@ export default Controller.extend({
   },
 
   @computed('session.user.roles')
-  showActions() {
+  get showActions() {
     const user = this.get('session.user');
 
     return (user.hasRole([ Role.ADMIN, Role.MANAGE ]));

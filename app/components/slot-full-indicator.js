@@ -4,7 +4,7 @@ import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
   @computed('slot')
-  styleWidth() {
+  get styleWidth() {
     const slot = this.get('slot');
     const signedUp = slot.get('slot_signed_up');
     const max = slot.get('slot_max');
@@ -13,7 +13,7 @@ export default Component.extend({
   },
 
   @computed('slot')
-  indicatorColor() {
+  get indicatorColor() {
     const slot = this.get('slot');
     const signedUp = slot.get('slot_signed_up');
     const max = slot.get('slot_max');

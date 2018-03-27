@@ -52,8 +52,16 @@ main {
   margin: 15px 10px;
 }
 
-.dropdown-mega {
-  width: 650px;
+.dropdown-large {
+  position: static;
+}
+
+.dropdown-menu-large {
+  width:80%;
+   left:0;
+   right:0;
+ /*  height of nav-item  */
+   top:45px;
 }
 
 .dropdown-menu .navbar-text {

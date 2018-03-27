@@ -28,7 +28,7 @@ export default Component.extend({
   valueProperty: 'value',
 
   @computed('options')
-  checkboxes() {
+  get checkboxes() {
     const self = this;
     const options = this.get('options') || [];
     const labelProperty = this.get('labelProperty');

@@ -21,7 +21,7 @@ export default DS.Model.extend({
   delivered:          DS.attr('boolean', { readOnly: true }),
 
   @computed('creator_person_id', 'sender_person_id')
-  isDictacted() {
+  get isDictacted() {
       return (this.get('creator_person_id') != this.get('sender_person_id'));
   },
 

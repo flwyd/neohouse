@@ -38,6 +38,14 @@ module.exports = function(environment) {
       authorizationHeaderName  : 'Authorization',
       headers                  : {}
     },
+
+    //
+    // Set true if supporting dual clubhouses
+    // Will use dual authorization to support switching betweeen
+    // websites
+    //
+    'dual-clubhouse':    false,
+    'clubhouse-prime':      '',
   };
 
   if (environment === 'development') {
@@ -55,12 +63,20 @@ module.exports = function(environment) {
       'style-src': "'self' 'unsafe-inline' ",
       'media-src': "'self' *"
     }
+
+    ENV['dual-clubhouse'] = true;
+    ENV['clubhouse-prime'] = 'http://localhost:9000';
+
     ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://localhost:8000/api/auth/login'
     ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = 'http://localhost:8000/api/auth/refresh'
+
     ENV['api-server'] = 'http://localhost:8000/api'
+
+  /*
     ENV.APP.LOG_TRANSITIONS = true
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true
     ENV.APP.LOG_VIEW_LOOKUPS = true
+*/
 
     ENV['ember-cli-mirage'] = {
       enabled: false
@@ -81,6 +97,9 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV['dual-clubhouse'] = true;
+    ENV['clubhouse-prime'] = 'https://clubprime.burg.me';
+
     ENV['ember-simple-auth-token'].serverTokenEndpoint = 'https://neohouse.burg.me/api/auth/login'
     ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = 'https://neohouse.burg.me/api/auth/refresh'
     ENV['api-server'] = 'https://neohouse.burg.me/api'
