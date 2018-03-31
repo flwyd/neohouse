@@ -1,8 +1,7 @@
 import Route from '@ember/routing/route';
 import PersonMixin from 'neohouse/mixins/person';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
+export default Route.extend(PersonMixin, {
   afterModel(model, transition) {
     const params = transition.queryParams;
     const replyTo = params.replyTo;

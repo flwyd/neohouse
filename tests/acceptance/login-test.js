@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { visit, currentURL, fillIn } from '@ember/test-helpers';
+import { visit, currentURL, fillIn, click, wait } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
 module('Acceptance | login', function(hooks) {
@@ -12,12 +12,12 @@ module('Acceptance | login', function(hooks) {
     assert.equal(currentURL(), '/login');
   });
 
-/*  test('successful login', async function(assert) {
+  test('successful login', async function(assert) {
     await visit('/login');
-    await fillIn('input.identification', 'dirt@example.com');
-    await fillIn('input.password', 'ineedashower!');
-    await click('button.submit');
+    await fillIn('input[name="identification"]', 'active@example.com');
+    await fillIn('input[name="password"]', 'ineedashower!');
+    await click('button.login-submit');
     assert.equal(currentURL(), '/me/overview');
-  });*/
+  });
 
 });

@@ -7,7 +7,7 @@ export default Mixin.create({
     let message;
     let responseErrors = '';
 
-    console.error("Error Response: ", response);
+    console.error("Error Response: ", JSON.stringify(response));
 
     if (response) {
       if (response.payload && response.payload.errors) {

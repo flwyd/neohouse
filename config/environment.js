@@ -27,7 +27,9 @@ module.exports = function(environment) {
     },
 
     'ember-simple-auth-token': {
-      refreshAccessTokens      : true,
+      // NOTE: setting refreshAccessTokens true will hang the tests since
+      // there is an outstanding timeout
+      refreshAccessTokens      : false,
       identificationField      : 'identification',
       passwordField            : 'password',
       tokenPropertyName        : 'token',
@@ -64,7 +66,7 @@ module.exports = function(environment) {
       'media-src': "'self' *"
     }
 
-    ENV['dual-clubhouse'] = true;
+    ENV['dual-clubhouse'] = false;
     ENV['clubhouse-prime'] = 'http://localhost:9000';
 
     ENV['ember-simple-auth-token'].serverTokenEndpoint = 'http://localhost:8000/api/auth/login'
@@ -102,7 +104,8 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
     ENV['ember-cli-mirage'] = {
-      enabled: true
+      enabled: true,
+      autostart: true
     };
   }
 

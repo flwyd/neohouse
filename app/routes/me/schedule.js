@@ -1,9 +1,8 @@
 import Route from '@ember/routing/route';
 import PersonMixin from 'neohouse/mixins/person';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import RSVP from 'rsvp';
 
-export default Route.extend(AuthenticatedRouteMixin, PersonMixin, {
+export default Route.extend(PersonMixin, {
   queryParams: {
     year: { refreshModel: true }
   },

@@ -23,12 +23,12 @@ export default function() {
   });
 
   this.post('/api/auth/login', function(schema, request) {
-    var params = JSON.parse(request.requestBody);
+    let params = JSON.parse(request.requestBody);
 
-    if (!params.identifier || !params.password) {
+    if (!params.identification || !params.password) {
       const errors = [];
 
-      if (!params.identifier) {
+      if (!params.identification) {
         errors.push({ status: 422, title: 'Email cannot be blank'});
       }
 
@@ -36,23 +36,41 @@ export default function() {
         errors.push({ status: 422, title: 'Password cannot be blank'});
       }
 
+      console.log("/api/configs Returning errors ");
       return new Response(422, {'Content-Type': 'application/json'}, { errors });
     }
 
-    const data = JWT.sign({}, 'secret', { expiresIn: 1000 },
-      (token) => {
-        return {
-          token,
-          token_type: 'bearer',
-          expires_in: 1000,
-          person_id:  1,
-       };
-     }
-    );
+    const person = schema.db.people.findBy({ email: params.identification });
+    if (!person) {
+      return new Response(401, { 'Content-Type': 'application/json' }, {
+        errors: [ { status: 401, title: 'The email and/or password is incorrect. '}]
+      } );
+    }
+
+    let token = JWT.sign({person_id: person.id}, 'secret', { expiresIn: 1000 });
+    let data =  {
+      token,
+      token_type: 'bearer',
+      expires_in: 1000,
+      person_id:  person.id,
+   };
 
     return data;
-
   });
+
+  this.get('/api/person/:id', ({people}, request) => {
+    const person = people.find(request.params.id);
+
+    if (!person) {
+      return new Response(404, { 'Content-Type': 'application/json' }, {
+        errors: [ { status: 404, title: 'Record does not exist.'}]
+      } );
+    }
+
+    return person;
+    //return this.serializerOrRegistry.serialize(person, 'person');
+  });
+
   /*
     Shorthand cheatsheet:
 
