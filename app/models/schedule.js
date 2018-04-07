@@ -60,5 +60,21 @@ export default DS.Model.extend({
     }
 
     return date;
+  },
+
+  // Check to see if the url is just a url and nothing else
+  @computed('slot_url')
+  get infoIsUrl() {
+    const url = this.get('slot_url');
+
+    if (!url) {
+      return false;
+    }
+
+    if (/^(https?\:\/\/[^\s]+)$/.exec(url)) {
+      return true;
+    }
+
+    return false;
   }
 });

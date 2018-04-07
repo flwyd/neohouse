@@ -1,0 +1,9 @@
+{{#if slot.slot_url}}
+  {{#if slot.infoIsUrl}}
+    <a href="{{slot.slot_url}}" target="_blank"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
+  {{else}}
+    <a href="#" {{action 'show'}}><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
+  {{/if}}
+{{else}}
+  {{slot.slot_description}}
+{{/if}}

@@ -36,14 +36,7 @@
             <td class="schedule-time" data-title="To">{{shift-format slot.slot_ends}}</td>
             <td class="schedule-duration td-number" data-title="Time">{{hour-minute-format slot.slot_duration}}</td>
             <td class="schedule-credits td-number" data-title="Credits">{{credits-format slot.credits}}</td>
-            <td class="schedule-description" data-title="Description">
-              {{slot.position_title}}<br>
-              {{#if slot.slot_url}}
-                <a href="{{slot.slot_url}}"><i class="fas fa-info-circle"></i> {{slot.slot_description}}</a>
-              {{else}}
-                {{slot.slot_description}}
-              {{/if}}
-            </td>
+            <td class="schedule-description" data-title="Description">{{slot-info-link slot=slot}}</td>
             <td class="schedule-actions d-print-none" data-title="Actions">
               <a href="#" {{action 'showPeople' slot}} class="btn btn-primary btn-sm">{{fa-icon 'users' type='fas'}}</a>
               <a href="#" {{action 'leaveSlot' slot}} class="btn btn-danger btn-sm">{{fa-icon 'trash-alt' type='fas'}}</a>
