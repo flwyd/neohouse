@@ -8,6 +8,7 @@ const inflector = Inflector.inflector;
 inflector.uncountable('person');
 inflector.uncountable('timesheet');
 inflector.uncountable('access-document');
+inflector.uncountable('position');
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV['api-server'],

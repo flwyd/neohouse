@@ -12,7 +12,7 @@ export default Component.extend({
   onCancel: null,
   tagName:'',   // prevent component wrapping
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     let model;

@@ -77,7 +77,7 @@
                     <a href="{{cgo 'slot' 'selectAll'}}" class="dropdown-item">Edit Schedule Slots</a>
                     <a href="{{cgo 'slot' 'selectCredits'}}" class="dropdown-item">Edit Schedule Credits</a>
             {{#if (has-role 'admin')}}
-                    <a href="{{cgo 'position' 'selectAll'}}" class="dropdown-item">Edit Positions</a>
+                    {{#link-to 'admin.positions' class='dropdown-item'}}Edit Positions{{/link-to}}
                     <a href="{{cgo 'role' 'selectAll'}}" class="dropdown-item">Edit (System) Roles</a>
                     <a href="{{cgo 'maintenance' 'selectAll'}}" class="dropdown-item">Maintenance</a>
                     <a href="{{cgo 'logview' 'show'}}" class="dropdown-item">Log View</a>

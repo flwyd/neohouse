@@ -31,21 +31,30 @@ export default Mixin.create({
     this.notify.danger(message, {sticky: true})
   },
 
-  saveModel(model, isValid, successMessage, routeAfterSave) {
+  saveModel(model, isValid, successMessage, routeOrCallback) {
     if (!isValid)
       return;
 
     const self = this;
+    const isCallback = typeof(routeOrCallback) == 'function';
 
     if (!model.get('isDirty')) {
       self.notify.success(successMessage);
-      self.transitionToRoute(routeAfterSave);
+      if (isCallback) {
+        routeOrCallback(model);
+      } else {
+        self.transitionToRoute(routeOrCallback);
+      }
       return;
     }
 
     return model.save().then(function() {
       self.notify.success(successMessage);
-      self.transitionToRoute(routeAfterSave);
+      if (isCallback) {
+        routeOrCallback(model);
+      } else {
+        self.transitionToRoute(routeOrCallback);
+      }
     }).catch((response) => {
       self.handleErrorResponse(response);
     });

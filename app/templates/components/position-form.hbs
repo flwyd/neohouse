@@ -1,0 +1,37 @@
+{{#ch-form 'position' position validator=PositionValidations onSubmit=(action 'save') as |f|}}
+  <fieldset>
+    <legend>Description</legend>
+    <div class="form-row">
+      {{f.input 'title' label='Title' maxlength=25 wrapClass='form-group col-auto'}}
+      {{f.input 'short_title' label='Short Title' maxlength='6' wrapClass='form-group col-auto'}}
+      {{f.input 'type' type='select' label='Type' options=PositionTypes wrapClass='form-group col-auto'}}
+      {{f.input 'training_position_id' label='Training Position' type='select' options=trainingOptions wrapClass='form-group col-auto'}}
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Suggested Ranger Counts Per Slot</legend>
+    <div class="form-row">
+      {{f.input 'min' label='Min' size=3 maxlength=3 wrapClass='form-group col-auto'}}
+      {{f.input 'max' label='Max' size=3 maxlength=3 wrapClass='form-group col-auto'}}
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Flags</legend>
+    <div class="form-row">
+      {{f.input 'all_rangers' type='checkbox' label='All rangers' wrapClass='form-check form-check-inline'}}
+      {{f.input 'new_user_eligible' type='checkbox' label='New user eligible' wrapClass='form-check form-check-inline'}}
+      {{f.input 'count_hours' type='checkbox' label='Count hours' wrapClass='form-check form-check-inline'}}
+      {{f.input 'auto_signout' type='checkbox' label='Can be auto-signed out' wrapClass='form-check form-check-inline'}}
+      {{f.input 'ol_sl_report' type='checkbox' label='On SL report' wrapClass='form-check form-check-inline'}}
+    </div>
+  </fieldset>
+
+  <div class="mt-2">
+    {{f.submit}}
+    <button type="submit" class="btn btn-secondary" {{action 'cancel'}}>Cancel</button>
+  </div>
+
+{{/ch-form}}
+<hr>

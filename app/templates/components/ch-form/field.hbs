@@ -69,7 +69,7 @@
 
   {{else if (eq type "checkbox")}}
     <div class="{{checkboxClass}}">
-      <label>
+      <label class="form-check-label">
         <input
           type       = "checkbox"
           name       = name
@@ -98,6 +98,7 @@
       autofocus   = autofocus
       rows        = rows
       cols        = cols
+      maxLength   = maxlength
     }}
   {{else}}
     <input
@@ -109,6 +110,8 @@
       disabled    = {{disabled}}
       autofocus   = {{autofocus}}
       oninput     = {{action "update" value = "target.value"}}
+      maxlength   = {{maxlength}}
+      size        = {{size}}
       >
   {{/if}}
 {{/if}}

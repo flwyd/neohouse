@@ -37,6 +37,9 @@ Router.map(function() {
   this.route('search', function() {
     this.route('person');
   });
+  this.route('admin', function() {
+    this.route('positions');
+  });
 });
 
 export default Router;
