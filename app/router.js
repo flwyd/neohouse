@@ -40,6 +40,7 @@ Router.map(function() {
   this.route('admin', function() {
     this.route('positions');
   });
+  this.route('handle-checker');
 });
 
 export default Router;

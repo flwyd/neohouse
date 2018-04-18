@@ -63,6 +63,7 @@
     "node": "^4.5 || 6.* || >= 7.*"
   },
   "dependencies": {
+    "double-metaphone": "^1.0.2",
     "ember-browserify": "^1.2.1",
     "moment": "^2.21.0",
     "npm": "^5.7.1"
