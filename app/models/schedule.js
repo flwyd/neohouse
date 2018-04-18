@@ -71,7 +71,7 @@ export default DS.Model.extend({
       return false;
     }
 
-    if (/^(https?\:\/\/[^\s]+)$/.exec(url)) {
+    if (/^(https?:\/\/[^\s]+)$/.exec(url)) {
       return true;
     }
 
